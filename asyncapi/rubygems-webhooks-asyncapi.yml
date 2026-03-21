@@ -1,0 +1,155 @@
+asyncapi: 2.6.0
+info:
+  title: RubyGems Webhook Events
+  description: >-
+    The RubyGems webhook event system delivers HTTP POST notifications when
+    gems are pushed to RubyGems.org. Webhook subscribers receive a JSON
+    payload containing the full gem metadata whenever a new version of a
+    watched gem (or any gem, for global webhooks) is published. Each
+    notification includes an Authorization header containing a SHA-256
+    HMAC signature that receivers can use to verify the notification
+    originated from RubyGems.org.
+  version: '1.0'
+  contact:
+    name: RubyGems.org Support
+    url: https://help.rubygems.org
+servers:
+  rubygems:
+    url: https://rubygems.org
+    protocol: https
+    description: >-
+      RubyGems.org production server that sends webhook notifications
+      when gems are pushed.
+channels:
+  /webhook:
+    description: >-
+      Webhook endpoint that receives notifications when gems are pushed
+      to RubyGems.org. The subscriber provides this URL when registering
+      the webhook via the Webhooks API.
+    publish:
+      operationId: onGemPush
+      summary: Receive gem push notification
+      description: >-
+        Fired when a gem version is pushed to RubyGems.org. The notification
+        is sent as an HTTP POST request to the registered webhook URL. The
+        request includes an Authorization header with a SHA-256 HMAC
+        signature for verifying the notification authenticity.
+      message:
+        $ref: '#/components/messages/GemPushEvent'
+components:
+  messages:
+    GemPushEvent:
+      name: GemPushEvent
+      title: Gem Push Event
+      summary: >-
+        Notification sent when a gem version is pushed to RubyGems.org.
+      description: >-
+        Contains the full gem metadata for the newly pushed version,
+        identical to the response from the GET /api/v1/gems endpoint.
+        The HTTP request includes an Authorization header with a SHA-256
+        HMAC signature derived from the gem name and the API key of the
+        webhook creator.
+      headers:
+        type: object
+        properties:
+          Authorization:
+            type: string
+            description: >-
+              SHA-256 HMAC signature for verifying the webhook notification
+              authenticity. Computed from the gem name using the API key of
+              the user who registered the webhook.
+      payload:
+        type: object
+        description: Full gem metadata for the pushed version
+        properties:
+          name:
+            type: string
+            description: The name of the gem
+          downloads:
+            type: integer
+            description: Total number of downloads for this gem
+          version:
+            type: string
+            description: The version number that was pushed
+          version_created_at:
+            type: string
+            format: date-time
+            description: Timestamp when this version was created
+          version_downloads:
+            type: integer
+            description: Download count for this version
+          platform:
+            type: string
+            description: The platform of the gem
+          authors:
+            type: string
+            description: Comma-separated list of gem authors
+          info:
+            type: string
+            description: Short description of the gem
+          licenses:
+            type: array
+            items:
+              type: string
+            description: List of licenses for the gem
+          metadata:
+            type: object
+            additionalProperties:
+              type: string
+            description: Additional metadata key-value pairs
+          sha:
+            type: string
+            description: SHA-256 checksum of the gem file
+          project_uri:
+            type: string
+            format: uri
+            description: URI to the gem project page on RubyGems.org
+          gem_uri:
+            type: string
+            format: uri
+            description: URI to download the gem file
+          homepage_uri:
+            type: string
+            format: uri
+            description: URI to the gem homepage
+          documentation_uri:
+            type: string
+            format: uri
+            description: URI to the gem documentation
+          source_code_uri:
+            type: string
+            format: uri
+            description: URI to the gem source code
+          bug_tracker_uri:
+            type: string
+            format: uri
+            description: URI to the gem bug tracker
+          changelog_uri:
+            type: string
+            format: uri
+            description: URI to the gem changelog
+          dependencies:
+            type: object
+            properties:
+              development:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dependency'
+                description: Development dependencies
+              runtime:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dependency'
+                description: Runtime dependencies
+            description: Gem dependency information
+  schemas:
+    Dependency:
+      type: object
+      description: A gem dependency
+      properties:
+        name:
+          type: string
+          description: Name of the dependency gem
+        requirements:
+          type: string
+          description: Version requirements string

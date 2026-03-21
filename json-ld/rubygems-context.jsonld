@@ -1,0 +1,155 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "rubygems": "https://rubygems.org/ns/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "spdx": "http://spdx.org/licenses/",
+
+    "Gem": {
+      "@id": "rubygems:Gem",
+      "@context": {
+        "name": "schema:name",
+        "description": "schema:description",
+        "version": "schema:softwareVersion",
+        "authors": "schema:author",
+        "info": "schema:description",
+        "platform": "schema:operatingSystem",
+        "downloads": {
+          "@id": "rubygems:downloadCount",
+          "@type": "xsd:integer"
+        },
+        "version_downloads": {
+          "@id": "rubygems:versionDownloadCount",
+          "@type": "xsd:integer"
+        },
+        "version_created_at": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "licenses": {
+          "@id": "schema:license",
+          "@container": "@set"
+        },
+        "homepage_uri": {
+          "@id": "schema:url",
+          "@type": "@id"
+        },
+        "project_uri": {
+          "@id": "rubygems:projectUrl",
+          "@type": "@id"
+        },
+        "gem_uri": {
+          "@id": "schema:downloadUrl",
+          "@type": "@id"
+        },
+        "documentation_uri": {
+          "@id": "rubygems:documentationUrl",
+          "@type": "@id"
+        },
+        "source_code_uri": {
+          "@id": "schema:codeRepository",
+          "@type": "@id"
+        },
+        "bug_tracker_uri": {
+          "@id": "rubygems:bugTrackerUrl",
+          "@type": "@id"
+        },
+        "changelog_uri": {
+          "@id": "rubygems:changelogUrl",
+          "@type": "@id"
+        },
+        "wiki_uri": {
+          "@id": "rubygems:wikiUrl",
+          "@type": "@id"
+        },
+        "mailing_list_uri": {
+          "@id": "rubygems:mailingListUrl",
+          "@type": "@id"
+        },
+        "funding_uri": {
+          "@id": "schema:funding",
+          "@type": "@id"
+        },
+        "sha": "rubygems:sha256",
+        "yanked": {
+          "@id": "rubygems:yanked",
+          "@type": "xsd:boolean"
+        },
+        "dependencies": "rubygems:dependencies"
+      }
+    },
+
+    "GemVersion": {
+      "@id": "rubygems:GemVersion",
+      "@context": {
+        "number": "schema:softwareVersion",
+        "summary": "schema:abstract",
+        "description": "schema:description",
+        "authors": "schema:author",
+        "platform": "schema:operatingSystem",
+        "built_at": {
+          "@id": "rubygems:builtAt",
+          "@type": "xsd:dateTime"
+        },
+        "created_at": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "downloads_count": {
+          "@id": "rubygems:downloadCount",
+          "@type": "xsd:integer"
+        },
+        "prerelease": {
+          "@id": "rubygems:prerelease",
+          "@type": "xsd:boolean"
+        },
+        "ruby_version": {
+          "@id": "rubygems:rubyVersionRequirement",
+          "@type": "xsd:string"
+        },
+        "rubygems_version": {
+          "@id": "rubygems:rubygemsVersionRequirement",
+          "@type": "xsd:string"
+        },
+        "licenses": {
+          "@id": "schema:license",
+          "@container": "@set"
+        },
+        "sha": "rubygems:sha256"
+      }
+    },
+
+    "Dependency": {
+      "@id": "rubygems:Dependency",
+      "@context": {
+        "name": "schema:name",
+        "requirements": "rubygems:versionRequirement"
+      }
+    },
+
+    "Owner": {
+      "@id": "rubygems:Owner",
+      "@context": {
+        "id": "schema:identifier",
+        "handle": "schema:alternateName",
+        "email": "schema:email"
+      }
+    },
+
+    "Webhook": {
+      "@id": "rubygems:Webhook",
+      "@context": {
+        "url": {
+          "@id": "schema:url",
+          "@type": "@id"
+        },
+        "failure_count": {
+          "@id": "rubygems:failureCount",
+          "@type": "xsd:integer"
+        }
+      }
+    }
+  }
+}

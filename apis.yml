@@ -1,0 +1,150 @@
+aid: rubygems
+url: https://raw.githubusercontent.com/api-evangelist/rubygems/refs/heads/main/apis.yml
+modified: '2026-03-20'
+apis:
+  - aid: rubygems:gems-api
+    name: RubyGems Gems API
+    tags:
+      - Packages
+      - Ruby
+      - Gems
+      - Package Management
+      - Software Distribution
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    baseURL: https://rubygems.org/api/v1
+    humanURL: https://guides.rubygems.org/rubygems-org-api/
+    properties:
+      - url: https://guides.rubygems.org/rubygems-org-api/
+        type: Documentation
+      - url: openapi/rubygems-gems-api-openapi.yml
+        type: OpenAPI
+    description: >-
+      The RubyGems Gems API provides endpoints for retrieving detailed
+      information about Ruby gems hosted on RubyGems.org, including gem
+      metadata, version history, dependencies, and download statistics.
+      Developers can query individual gems by name, list gems owned by a
+      specific user, and submit or yank gem versions programmatically. The
+      API supports both JSON and YAML response formats and is the primary
+      interface for tooling that interacts with the RubyGems.org package
+      registry.
+  - aid: rubygems:search-api
+    name: RubyGems Search API
+    tags:
+      - Search
+      - Ruby
+      - Gems
+      - Package Discovery
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    baseURL: https://rubygems.org/api/v1
+    humanURL: https://guides.rubygems.org/rubygems-org-api/
+    properties:
+      - url: https://guides.rubygems.org/rubygems-org-api/
+        type: Documentation
+      - url: openapi/rubygems-search-api-openapi.yml
+        type: OpenAPI
+    description: >-
+      The RubyGems Search API allows developers to search for gems on
+      RubyGems.org by matching a query string against gem names and
+      descriptions. It returns an array of matching active gems with their
+      metadata, making it useful for building gem discovery tools, IDE
+      integrations, and dependency resolution utilities. The search endpoint
+      supports pagination for handling large result sets.
+  - aid: rubygems:webhooks-api
+    name: RubyGems Webhooks API
+    tags:
+      - Webhooks
+      - Notifications
+      - Ruby
+      - Events
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    baseURL: https://rubygems.org/api/v1
+    humanURL: https://guides.rubygems.org/rubygems-org-api/
+    properties:
+      - url: https://guides.rubygems.org/rubygems-org-api/
+        type: Documentation
+      - url: openapi/rubygems-webhooks-api-openapi.yml
+        type: OpenAPI
+      - url: asyncapi/rubygems-webhooks-asyncapi.yml
+        type: AsyncAPI
+    description: >-
+      The RubyGems Webhooks API enables developers to register, list, test,
+      and remove webhook subscriptions that fire when gems are pushed to
+      RubyGems.org. Webhooks can be configured for specific gems or applied
+      globally using a wildcard to receive notifications for all gem pushes.
+      Each webhook request includes an Authorization header for verification,
+      allowing downstream systems to confirm the notification originated from
+      RubyGems.org.
+  - aid: rubygems:activity-api
+    name: RubyGems Activity API
+    tags:
+      - Activity
+      - Ruby
+      - Gems
+      - Updates
+      - Recent
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    baseURL: https://rubygems.org/api/v1
+    humanURL: https://guides.rubygems.org/rubygems-org-api/
+    properties:
+      - url: https://guides.rubygems.org/rubygems-org-api/
+        type: Documentation
+      - url: openapi/rubygems-activity-api-openapi.yml
+        type: OpenAPI
+    description: >-
+      The RubyGems Activity API provides endpoints that return the most
+      recently added and most recently updated gems on RubyGems.org. The
+      latest endpoint returns the 50 gems most recently published to the
+      registry, while the just-updated endpoint returns the 50 most recently
+      modified gems. These endpoints are useful for building activity feeds,
+      monitoring new releases, and tracking changes across the Ruby ecosystem.
+  - aid: rubygems:downloads-api
+    name: RubyGems Downloads API
+    tags:
+      - Downloads
+      - Statistics
+      - Ruby
+      - Gems
+      - Analytics
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    baseURL: https://rubygems.org/api/v1
+    humanURL: https://guides.rubygems.org/rubygems-org-api/
+    properties:
+      - url: https://guides.rubygems.org/rubygems-org-api/
+        type: Documentation
+      - url: openapi/rubygems-downloads-api-openapi.yml
+        type: OpenAPI
+    description: >-
+      The RubyGems Downloads API provides access to download count statistics
+      for gems hosted on RubyGems.org. Developers can retrieve total download
+      counts for specific gems and individual gem versions. This data is
+      commonly used to gauge gem popularity, generate usage reports, and
+      build dashboards that track adoption trends across the Ruby package
+      ecosystem.
+  - aid: rubygems:api-v2
+    name: RubyGems API V2
+    tags:
+      - Packages
+      - Ruby
+      - Gems
+      - Versions
+      - Dependencies
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    baseURL: https://rubygems.org/api/v2
+    humanURL: https://guides.rubygems.org/rubygems-org-api-v2/
+    properties:
+      - url: https://guides.rubygems.org/rubygems-org-api-v2/
+        type: Documentation
+      - url: openapi/rubygems-api-v2-openapi.yml
+        type: OpenAPI
+    description: >-
+      The RubyGems API V2 is the next-generation API for interacting with
+      RubyGems.org, providing improved endpoints for querying gem versions
+      and dependency information. It offers more structured responses and
+      enhanced filtering capabilities compared to the V1 API. The V2 API
+      is designed to better support modern tooling and dependency resolution
+      workflows used by bundler and other Ruby package management tools.
+common:
+  - type: JSON-LD
+    url: json-ld/rubygems-context.jsonld
+  - type: JSONSchema
+    url: json-schema/rubygems-gem-schema.json

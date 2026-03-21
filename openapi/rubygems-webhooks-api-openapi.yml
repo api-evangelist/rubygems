@@ -1,0 +1,238 @@
+openapi: 3.1.0
+info:
+  title: RubyGems Webhooks API
+  description: >-
+    The RubyGems Webhooks API enables developers to register, list, test,
+    and remove webhook subscriptions that fire when gems are pushed to
+    RubyGems.org. Webhooks can be configured for specific gems or applied
+    globally using a wildcard to receive notifications for all gem pushes.
+    Each webhook request includes an Authorization header for verification,
+    allowing downstream systems to confirm the notification originated from
+    RubyGems.org.
+  version: '1.0'
+  contact:
+    name: RubyGems.org Support
+    url: https://help.rubygems.org
+  termsOfService: https://rubygems.org/pages/about
+externalDocs:
+  description: RubyGems.org API Documentation
+  url: https://guides.rubygems.org/rubygems-org-api/
+servers:
+  - url: https://rubygems.org/api/v1
+    description: Production Server
+tags:
+  - name: Webhooks
+    description: >-
+      Endpoints for managing webhook subscriptions that fire when gems are
+      pushed to RubyGems.org.
+security:
+  - apiKeyAuth: []
+paths:
+  /web_hooks.json:
+    get:
+      operationId: listWebhooks
+      summary: List webhooks
+      description: >-
+        Returns all webhooks registered under the authenticated user's
+        account. The response is an object where keys are gem names (or a
+        wildcard) and values are arrays of webhook objects.
+      tags:
+        - Webhooks
+      responses:
+        '200':
+          description: Successful response with webhook listings
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Webhook'
+                description: >-
+                  Object mapping gem names to arrays of webhook objects.
+                  The key is a gem name or asterisk for global webhooks.
+        '401':
+          description: Unauthorized - invalid or missing API key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /web_hooks:
+    post:
+      operationId: createWebhook
+      summary: Create a webhook
+      description: >-
+        Register a new webhook that fires when a gem is pushed to
+        RubyGems.org. Use an asterisk (*) as the gem_name to create a
+        global webhook that fires for all gem pushes.
+      tags:
+        - Webhooks
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - gem_name
+                - url
+              properties:
+                gem_name:
+                  type: string
+                  description: >-
+                    Name of the gem to watch, or asterisk (*) for all gems.
+                  example: rails
+                url:
+                  type: string
+                  format: uri
+                  description: The URL to receive webhook notifications
+                  example: https://example.com/webhooks/rubygems
+      responses:
+        '201':
+          description: Webhook created successfully
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: 'Successfully created webhook for rails to https://example.com/webhooks/rubygems'
+        '401':
+          description: Unauthorized - invalid or missing API key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '409':
+          description: Webhook already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /web_hooks/remove:
+    delete:
+      operationId: removeWebhook
+      summary: Remove a webhook
+      description: >-
+        Remove an existing webhook subscription. The gem_name and url must
+        match an existing webhook. Use an asterisk (*) as the gem_name to
+        remove a global webhook.
+      tags:
+        - Webhooks
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - gem_name
+                - url
+              properties:
+                gem_name:
+                  type: string
+                  description: >-
+                    Name of the gem, or asterisk (*) for a global webhook.
+                  example: rails
+                url:
+                  type: string
+                  format: uri
+                  description: The URL of the webhook to remove
+                  example: https://example.com/webhooks/rubygems
+      responses:
+        '200':
+          description: Webhook removed successfully
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: 'Successfully removed webhook for rails to https://example.com/webhooks/rubygems'
+        '401':
+          description: Unauthorized - invalid or missing API key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Webhook not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /web_hooks/fire:
+    post:
+      operationId: fireWebhook
+      summary: Test fire a webhook
+      description: >-
+        Test fire an existing webhook to verify it is working correctly.
+        The fired request includes an Authorization header containing a
+        SHA-256 HMAC signature for verification. Use an asterisk (*) as
+        the gem_name to test fire a global webhook.
+      tags:
+        - Webhooks
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - gem_name
+                - url
+              properties:
+                gem_name:
+                  type: string
+                  description: >-
+                    Name of the gem, or asterisk (*) for a global webhook.
+                  example: rails
+                url:
+                  type: string
+                  format: uri
+                  description: The URL of the webhook to test fire
+                  example: https://example.com/webhooks/rubygems
+      responses:
+        '200':
+          description: Webhook test fired successfully
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: 'Successfully deployed webhook for rails to https://example.com/webhooks/rubygems'
+        '401':
+          description: Unauthorized - invalid or missing API key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Webhook not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: >-
+        RubyGems.org API key passed in the Authorization header.
+  schemas:
+    Webhook:
+      type: object
+      description: A webhook subscription on RubyGems.org
+      properties:
+        url:
+          type: string
+          format: uri
+          description: The URL that receives webhook notifications
+        failure_count:
+          type: integer
+          description: Number of consecutive delivery failures
+    Error:
+      type: object
+      description: Error response from the RubyGems.org API
+      properties:
+        error:
+          type: string
+          description: Error message

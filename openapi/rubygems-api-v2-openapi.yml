@@ -1,0 +1,232 @@
+openapi: 3.1.0
+info:
+  title: RubyGems API V2
+  description: >-
+    The RubyGems API V2 is the next-generation API for interacting with
+    RubyGems.org, providing improved endpoints for querying gem versions
+    and dependency information. It offers more structured responses and
+    enhanced filtering capabilities compared to the V1 API. The V2 API
+    is designed to better support modern tooling and dependency resolution
+    workflows used by bundler and other Ruby package management tools.
+  version: '2.0'
+  contact:
+    name: RubyGems.org Support
+    url: https://help.rubygems.org
+  termsOfService: https://rubygems.org/pages/about
+externalDocs:
+  description: RubyGems.org API V2 Documentation
+  url: https://guides.rubygems.org/rubygems-org-api-v2/
+servers:
+  - url: https://rubygems.org/api/v2
+    description: Production Server
+tags:
+  - name: Versions
+    description: >-
+      Endpoints for querying detailed version information for specific
+      gem versions, including metadata, dependencies, checksums, and
+      platform-specific builds.
+paths:
+  /rubygems/{gemName}/versions/{versionNumber}.json:
+    get:
+      operationId: getGemVersionDetails
+      summary: Get gem version details
+      description: >-
+        Returns detailed information about a specific gem version, including
+        name, version number, download counts, platform, authors, description,
+        dependencies, URIs, timestamps, checksums, and metadata. Optionally
+        filter by platform using the platform query parameter.
+      tags:
+        - Versions
+      security: []
+      parameters:
+        - name: gemName
+          in: path
+          description: The name of the gem
+          required: true
+          schema:
+            type: string
+          example: coulda
+        - name: versionNumber
+          in: path
+          description: The version number of the gem
+          required: true
+          schema:
+            type: string
+          example: '0.7.1'
+        - name: platform
+          in: query
+          description: >-
+            Filter by platform. Common values include ruby, java, and
+            x86_64-linux. If not specified, defaults to the ruby platform.
+          required: false
+          schema:
+            type: string
+          example: ruby
+      responses:
+        '200':
+          description: Successful response with version details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GemVersionDetail'
+        '404':
+          description: Gem or version not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    GemVersionDetail:
+      type: object
+      description: Detailed information about a specific gem version
+      properties:
+        name:
+          type: string
+          description: The name of the gem
+        downloads:
+          type: integer
+          description: Total downloads across all versions
+        version:
+          type: string
+          description: The version number
+        version_created_at:
+          type: string
+          format: date-time
+          description: Timestamp when this version was created
+        version_downloads:
+          type: integer
+          description: Download count for this specific version
+        platform:
+          type: string
+          description: The platform for this version
+        authors:
+          type: string
+          description: Comma-separated list of authors
+        info:
+          type: string
+          description: Short description of the gem
+        licenses:
+          type: array
+          items:
+            type: string
+          description: List of licenses
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+          description: Additional metadata key-value pairs
+        yanked:
+          type: boolean
+          description: Whether this version has been yanked
+        sha:
+          type: string
+          description: SHA-256 checksum of the gem file
+        spec_sha:
+          type: string
+          description: SHA-256 checksum of the gemspec
+        project_uri:
+          type: string
+          format: uri
+          description: URI to the gem project page
+        gem_uri:
+          type: string
+          format: uri
+          description: URI to download the gem file
+        homepage_uri:
+          type: string
+          format: uri
+          description: URI to the gem homepage
+        wiki_uri:
+          type: string
+          format: uri
+          description: URI to the gem wiki
+        documentation_uri:
+          type: string
+          format: uri
+          description: URI to the gem documentation
+        mailing_list_uri:
+          type: string
+          format: uri
+          description: URI to the gem mailing list
+        source_code_uri:
+          type: string
+          format: uri
+          description: URI to the gem source code
+        bug_tracker_uri:
+          type: string
+          format: uri
+          description: URI to the gem bug tracker
+        changelog_uri:
+          type: string
+          format: uri
+          description: URI to the gem changelog
+        funding_uri:
+          type: string
+          format: uri
+          description: URI to the gem funding page
+        dependencies:
+          type: object
+          properties:
+            development:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dependency'
+              description: Development dependencies
+            runtime:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dependency'
+              description: Runtime dependencies
+          description: Gem dependency information
+        built_at:
+          type: string
+          format: date-time
+          description: Timestamp when the gem was built
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp when the version was published
+        description:
+          type: string
+          description: Full description of the gem
+        downloads_count:
+          type: integer
+          description: Download count for this version
+        number:
+          type: string
+          description: The version number
+        summary:
+          type: string
+          description: Short summary of the gem
+        rubygems_version:
+          type: string
+          description: Minimum RubyGems version required
+        ruby_version:
+          type: string
+          description: Minimum Ruby version required
+        prerelease:
+          type: boolean
+          description: Whether this is a prerelease version
+        requirements:
+          type: array
+          items:
+            type: string
+          description: Requirements for this version
+    Dependency:
+      type: object
+      description: A gem dependency
+      properties:
+        name:
+          type: string
+          description: Name of the dependency gem
+        requirements:
+          type: string
+          description: Version requirements string
+    Error:
+      type: object
+      description: Error response from the RubyGems.org API
+      properties:
+        error:
+          type: string
+          description: Error message

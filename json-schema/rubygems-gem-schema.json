@@ -1,0 +1,280 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rubygems.org/schemas/rubygems/gem.json",
+  "title": "RubyGems Gem",
+  "description": "A Ruby gem hosted on RubyGems.org, representing a packaged Ruby library or application distributed through the RubyGems package registry.",
+  "type": "object",
+  "required": ["name", "version"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The unique name of the gem on RubyGems.org",
+      "pattern": "^[a-zA-Z0-9._-]+$",
+      "minLength": 1,
+      "maxLength": 255
+    },
+    "downloads": {
+      "type": "integer",
+      "description": "Total number of downloads across all versions of this gem",
+      "minimum": 0
+    },
+    "version": {
+      "type": "string",
+      "description": "The current (latest) version number following Ruby versioning conventions",
+      "pattern": "^[0-9]+(\\.[0-9]+)*(\\.[a-zA-Z0-9]+)*$"
+    },
+    "version_created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the current version was published"
+    },
+    "version_downloads": {
+      "type": "integer",
+      "description": "Number of downloads for the current version",
+      "minimum": 0
+    },
+    "platform": {
+      "type": "string",
+      "description": "The platform the gem targets (e.g., ruby, java, x86_64-linux)",
+      "default": "ruby"
+    },
+    "authors": {
+      "type": "string",
+      "description": "Comma-separated list of gem authors"
+    },
+    "info": {
+      "type": "string",
+      "description": "Short description of the gem"
+    },
+    "licenses": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "SPDX license identifiers for the gem"
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "Additional metadata key-value pairs defined in the gemspec"
+    },
+    "yanked": {
+      "type": "boolean",
+      "description": "Whether the current version has been yanked from the registry"
+    },
+    "sha": {
+      "type": "string",
+      "description": "SHA-256 checksum of the gem file",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "project_uri": {
+      "type": "string",
+      "format": "uri",
+      "description": "URI to the gem project page on RubyGems.org"
+    },
+    "gem_uri": {
+      "type": "string",
+      "format": "uri",
+      "description": "URI to download the gem file"
+    },
+    "homepage_uri": {
+      "type": ["string", "null"],
+      "format": "uri",
+      "description": "URI to the gem homepage"
+    },
+    "wiki_uri": {
+      "type": ["string", "null"],
+      "format": "uri",
+      "description": "URI to the gem wiki"
+    },
+    "documentation_uri": {
+      "type": ["string", "null"],
+      "format": "uri",
+      "description": "URI to the gem documentation"
+    },
+    "mailing_list_uri": {
+      "type": ["string", "null"],
+      "format": "uri",
+      "description": "URI to the gem mailing list"
+    },
+    "source_code_uri": {
+      "type": ["string", "null"],
+      "format": "uri",
+      "description": "URI to the gem source code repository"
+    },
+    "bug_tracker_uri": {
+      "type": ["string", "null"],
+      "format": "uri",
+      "description": "URI to the gem bug tracker"
+    },
+    "changelog_uri": {
+      "type": ["string", "null"],
+      "format": "uri",
+      "description": "URI to the gem changelog"
+    },
+    "funding_uri": {
+      "type": ["string", "null"],
+      "format": "uri",
+      "description": "URI to the gem funding page"
+    },
+    "dependencies": {
+      "$ref": "#/$defs/Dependencies"
+    }
+  },
+  "$defs": {
+    "Dependencies": {
+      "type": "object",
+      "description": "Runtime and development dependency lists for the gem",
+      "properties": {
+        "development": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Dependency"
+          },
+          "description": "Dependencies needed only during development"
+        },
+        "runtime": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Dependency"
+          },
+          "description": "Dependencies required at runtime"
+        }
+      }
+    },
+    "Dependency": {
+      "type": "object",
+      "description": "A dependency on another gem with version constraints",
+      "required": ["name", "requirements"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the dependency gem"
+        },
+        "requirements": {
+          "type": "string",
+          "description": "Version requirement string (e.g., '>= 1.0', '~> 2.0')"
+        }
+      }
+    },
+    "GemVersion": {
+      "type": "object",
+      "description": "A specific version of a Ruby gem with build and publication metadata",
+      "required": ["number"],
+      "properties": {
+        "authors": {
+          "type": "string",
+          "description": "Comma-separated list of version authors"
+        },
+        "built_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 timestamp when the version was built"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 timestamp when the version was published"
+        },
+        "description": {
+          "type": "string",
+          "description": "Full description of the gem version"
+        },
+        "downloads_count": {
+          "type": "integer",
+          "description": "Number of downloads for this version",
+          "minimum": 0
+        },
+        "metadata": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Additional metadata for this version"
+        },
+        "number": {
+          "type": "string",
+          "description": "The version number"
+        },
+        "summary": {
+          "type": "string",
+          "description": "Short summary of the gem version"
+        },
+        "platform": {
+          "type": "string",
+          "description": "The platform for this version"
+        },
+        "rubygems_version": {
+          "type": "string",
+          "description": "Minimum RubyGems version required"
+        },
+        "ruby_version": {
+          "type": "string",
+          "description": "Minimum Ruby version required"
+        },
+        "prerelease": {
+          "type": "boolean",
+          "description": "Whether this is a prerelease version"
+        },
+        "licenses": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "SPDX license identifiers for this version"
+        },
+        "requirements": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "System requirements for this version"
+        },
+        "sha": {
+          "type": "string",
+          "description": "SHA-256 checksum of the gem file",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "Owner": {
+      "type": "object",
+      "description": "A gem owner on RubyGems.org",
+      "required": ["id"],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Unique user ID"
+        },
+        "handle": {
+          "type": "string",
+          "description": "User handle on RubyGems.org"
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "User email address"
+        }
+      }
+    },
+    "Webhook": {
+      "type": "object",
+      "description": "A webhook subscription on RubyGems.org",
+      "required": ["url"],
+      "properties": {
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "The URL that receives webhook POST notifications"
+        },
+        "failure_count": {
+          "type": "integer",
+          "description": "Number of consecutive delivery failures",
+          "minimum": 0
+        }
+      }
+    }
+  }
+}

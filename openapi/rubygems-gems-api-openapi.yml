@@ -1,0 +1,971 @@
+openapi: 3.1.0
+info:
+  title: RubyGems Gems API
+  description: >-
+    The RubyGems Gems API provides endpoints for retrieving detailed
+    information about Ruby gems hosted on RubyGems.org, including gem
+    metadata, version history, dependencies, and download statistics.
+    Developers can query individual gems by name, list gems owned by a
+    specific user, and submit or yank gem versions programmatically. The
+    API supports both JSON and YAML response formats and is the primary
+    interface for tooling that interacts with the RubyGems.org package
+    registry.
+  version: '1.0'
+  contact:
+    name: RubyGems.org Support
+    url: https://help.rubygems.org
+  termsOfService: https://rubygems.org/pages/about
+externalDocs:
+  description: RubyGems.org API Documentation
+  url: https://guides.rubygems.org/rubygems-org-api/
+servers:
+  - url: https://rubygems.org/api/v1
+    description: Production Server
+tags:
+  - name: Gems
+    description: >-
+      Endpoints for retrieving gem metadata, listing owned gems,
+      submitting new gems, and yanking gem versions.
+  - name: Versions
+    description: >-
+      Endpoints for querying version information for specific gems,
+      including version history and latest version lookups.
+  - name: Owners
+    description: >-
+      Endpoints for managing gem ownership, including listing owners,
+      adding and removing owners, and listing gems by owner.
+  - name: Profiles
+    description: >-
+      Endpoints for retrieving user profile information from RubyGems.org.
+  - name: Dependencies
+    description: >-
+      Endpoints for querying gem dependency information.
+security:
+  - apiKeyAuth: []
+paths:
+  /gems/{gemName}.json:
+    get:
+      operationId: getGemInfo
+      summary: Get gem information
+      description: >-
+        Returns detailed information about a specific gem, including its
+        name, downloads count, current version, authors, version downloads,
+        homepage URI, and dependency lists for runtime and development.
+      tags:
+        - Gems
+      security: []
+      parameters:
+        - $ref: '#/components/parameters/gemName'
+      responses:
+        '200':
+          description: Successful response with gem details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Gem'
+        '404':
+          description: Gem not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /gems.json:
+    get:
+      operationId: listOwnedGems
+      summary: List gems owned by the authenticated user
+      description: >-
+        Returns an array of gem objects that the authenticated user owns.
+        Requires a valid API key for authentication.
+      tags:
+        - Gems
+      responses:
+        '200':
+          description: Successful response with array of owned gems
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Gem'
+        '401':
+          description: Unauthorized - invalid or missing API key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /gems:
+    post:
+      operationId: pushGem
+      summary: Submit a gem
+      description: >-
+        Submit a built RubyGem (.gem file) to RubyGems.org. The gem binary
+        must be included in the request body. On successful submission, the
+        gem is published and available for installation.
+      tags:
+        - Gems
+      parameters:
+        - name: OTP
+          in: header
+          description: >-
+            One-time passcode for multi-factor authentication if enabled
+            on the account.
+          required: false
+          schema:
+            type: string
+      requestBody:
+        description: The built .gem file binary
+        required: true
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+      responses:
+        '200':
+          description: Gem successfully registered
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: 'Successfully registered gem: example (1.0.0)'
+        '401':
+          description: Unauthorized - invalid or missing API key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '409':
+          description: Conflict - gem version already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /gems/yank:
+    delete:
+      operationId: yankGem
+      summary: Yank a gem version
+      description: >-
+        Remove a specific gem version from RubyGems.org. Yanked gems are no
+        longer available for installation but their metadata is retained. The
+        gem name, version, and optionally platform must be specified.
+      tags:
+        - Gems
+      parameters:
+        - name: gem_name
+          in: query
+          description: Name of the gem to yank
+          required: true
+          schema:
+            type: string
+        - name: version
+          in: query
+          description: Version number to yank
+          required: true
+          schema:
+            type: string
+        - name: platform
+          in: query
+          description: >-
+            Platform of the gem version to yank, such as ruby, java,
+            or x86_64-linux.
+          required: false
+          schema:
+            type: string
+        - name: OTP
+          in: header
+          description: >-
+            One-time passcode for multi-factor authentication if enabled
+            on the account.
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Gem version successfully yanked
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: 'Successfully yanked gem: example (1.0.0)'
+        '401':
+          description: Unauthorized - invalid or missing API key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Gem or version not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /gems/{gemName}/reverse_dependencies.json:
+    get:
+      operationId: getReverseDependencies
+      summary: Get reverse dependencies
+      description: >-
+        Returns an array of gem names that depend on the specified gem.
+        This is useful for understanding the downstream impact of changes
+        to a gem.
+      tags:
+        - Gems
+      security: []
+      parameters:
+        - $ref: '#/components/parameters/gemName'
+      responses:
+        '200':
+          description: Successful response with array of dependent gem names
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+                example:
+                  - rails
+                  - sinatra
+        '404':
+          description: Gem not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /versions/{gemName}.json:
+    get:
+      operationId: getGemVersions
+      summary: List gem versions
+      description: >-
+        Returns an array of version objects for a specific gem, including
+        version numbers, platforms, authors, descriptions, checksums,
+        and metadata for each published version.
+      tags:
+        - Versions
+      security: []
+      parameters:
+        - $ref: '#/components/parameters/gemName'
+      responses:
+        '200':
+          description: Successful response with array of version objects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GemVersion'
+        '404':
+          description: Gem not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /versions/{gemName}/latest.json:
+    get:
+      operationId: getLatestGemVersion
+      summary: Get latest gem version
+      description: >-
+        Returns an object containing the latest version number for the
+        specified gem.
+      tags:
+        - Versions
+      security: []
+      parameters:
+        - $ref: '#/components/parameters/gemName'
+      responses:
+        '200':
+          description: Successful response with latest version
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  version:
+                    type: string
+                    description: The latest version number
+                    example: '3.5.0'
+        '404':
+          description: Gem not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /timeframe_versions.json:
+    get:
+      operationId: getTimeframeVersions
+      summary: Get versions within a timeframe
+      description: >-
+        Returns an array of gem versions created within a specified
+        timeframe. The from parameter is required and must be an ISO 8601
+        timestamp. The time span cannot exceed 7 days. Results are paginated
+        with 30 versions per page.
+      tags:
+        - Versions
+      security: []
+      parameters:
+        - name: from
+          in: query
+          description: >-
+            Start of the timeframe in ISO 8601 format (e.g., 2024-01-01T00:00:00Z).
+            Required.
+          required: true
+          schema:
+            type: string
+            format: date-time
+        - name: to
+          in: query
+          description: >-
+            End of the timeframe in ISO 8601 format. Defaults to current time
+            if not specified.
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: page
+          in: query
+          description: Page number for paginated results
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+      responses:
+        '200':
+          description: Successful response with array of gem versions
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GemVersion'
+  /owners/{userHandle}/gems.json:
+    get:
+      operationId: listGemsByOwner
+      summary: List gems by owner
+      description: >-
+        Returns an array of gem objects owned by the specified user,
+        identified by their handle or user ID.
+      tags:
+        - Owners
+      security: []
+      parameters:
+        - $ref: '#/components/parameters/userHandle'
+      responses:
+        '200':
+          description: Successful response with array of gems
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Gem'
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /gems/{gemName}/owners.json:
+    get:
+      operationId: listGemOwners
+      summary: List owners of a gem
+      description: >-
+        Returns an array of owner objects for the specified gem, including
+        their email addresses.
+      tags:
+        - Owners
+      security: []
+      parameters:
+        - $ref: '#/components/parameters/gemName'
+      responses:
+        '200':
+          description: Successful response with array of owners
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Owner'
+        '404':
+          description: Gem not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /gems/{gemName}/owners:
+    post:
+      operationId: addGemOwner
+      summary: Add a gem owner
+      description: >-
+        Add a new owner to the specified gem. The new owner is identified by
+        their email address and can be assigned a role.
+      tags:
+        - Owners
+      parameters:
+        - $ref: '#/components/parameters/gemName'
+        - name: OTP
+          in: header
+          description: >-
+            One-time passcode for multi-factor authentication if enabled.
+          required: false
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - email
+              properties:
+                email:
+                  type: string
+                  format: email
+                  description: Email address of the user to add as owner
+                role:
+                  type: string
+                  description: Role to assign to the new owner
+      responses:
+        '200':
+          description: Owner added successfully
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: Owner added successfully.
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Gem or user not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: removeGemOwner
+      summary: Remove a gem owner
+      description: >-
+        Remove an owner from the specified gem. The owner is identified by
+        their email address.
+      tags:
+        - Owners
+      parameters:
+        - $ref: '#/components/parameters/gemName'
+        - name: OTP
+          in: header
+          description: >-
+            One-time passcode for multi-factor authentication if enabled.
+          required: false
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - email
+              properties:
+                email:
+                  type: string
+                  format: email
+                  description: Email address of the owner to remove
+      responses:
+        '200':
+          description: Owner removed successfully
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: Owner removed successfully.
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Gem or user not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    patch:
+      operationId: updateGemOwner
+      summary: Update a gem owner
+      description: >-
+        Update the role of an existing owner on the specified gem.
+      tags:
+        - Owners
+      parameters:
+        - $ref: '#/components/parameters/gemName'
+        - name: OTP
+          in: header
+          description: >-
+            One-time passcode for multi-factor authentication if enabled.
+          required: false
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - email
+                - role
+              properties:
+                email:
+                  type: string
+                  format: email
+                  description: Email address of the owner to update
+                role:
+                  type: string
+                  description: New role for the owner
+      responses:
+        '200':
+          description: Owner updated successfully
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: Owner updated successfully.
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Gem or user not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /profiles/{userHandle}.json:
+    get:
+      operationId: getUserProfile
+      summary: Get user profile
+      description: >-
+        Returns profile information for the specified user, identified by
+        their handle or user ID.
+      tags:
+        - Profiles
+      security: []
+      parameters:
+        - $ref: '#/components/parameters/userHandle'
+      responses:
+        '200':
+          description: Successful response with user profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Profile'
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /profile/me.json:
+    get:
+      operationId: getMyProfile
+      summary: Get authenticated user profile
+      description: >-
+        Returns the profile information for the currently authenticated user,
+        including multi-factor authentication status. Requires HTTP Basic
+        authentication with email and password.
+      tags:
+        - Profiles
+      security:
+        - basicAuth: []
+      responses:
+        '200':
+          description: Successful response with user profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileWithMfa'
+        '401':
+          description: Unauthorized - invalid credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /dependencies:
+    get:
+      operationId: getDependencies
+      summary: Get gem dependencies
+      description: >-
+        Returns dependency information for one or more gems specified as a
+        comma-separated list. The response is a marshalled array of hashes
+        containing dependency details. This endpoint is deprecated in favor
+        of the Compact Index API.
+      tags:
+        - Dependencies
+      security: []
+      deprecated: true
+      parameters:
+        - name: gems
+          in: query
+          description: Comma-separated list of gem names
+          required: true
+          schema:
+            type: string
+          example: rails,sinatra
+      responses:
+        '200':
+          description: Successful response with dependency information
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DependencyInfo'
+  /api_key.json:
+    get:
+      operationId: getApiKey
+      summary: Get API key
+      description: >-
+        Retrieve the API key for the authenticated user. Requires HTTP Basic
+        authentication with email and password.
+      tags:
+        - Gems
+      security:
+        - basicAuth: []
+      responses:
+        '200':
+          description: Successful response with API key
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  rubygems_api_key:
+                    type: string
+                    description: The API key for authenticating API requests
+        '401':
+          description: Unauthorized - invalid credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /oidc/trusted_publisher/exchange_token:
+    post:
+      operationId: exchangeOidcToken
+      summary: Exchange OIDC token for API key
+      description: >-
+        Exchange an OIDC identity token from a trusted publisher for a
+        short-lived RubyGems API key. This enables automated gem publishing
+        from CI/CD systems without storing long-lived API keys.
+      tags:
+        - Gems
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - jwt
+              properties:
+                jwt:
+                  type: string
+                  description: The OIDC identity token from the trusted publisher
+      responses:
+        '200':
+          description: Successful token exchange
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  rubygems_api_key:
+                    type: string
+                    description: Short-lived API key
+                  name:
+                    type: string
+                    description: Name of the API key
+                  scopes:
+                    type: array
+                    items:
+                      type: string
+                    description: Scopes granted to the API key
+                  expires_at:
+                    type: string
+                    format: date-time
+                    description: Expiration time of the API key
+        '400':
+          description: Invalid token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: >-
+        RubyGems.org API key passed in the Authorization header.
+    basicAuth:
+      type: http
+      scheme: basic
+      description: >-
+        HTTP Basic authentication using email and password. Used for
+        retrieving API keys and authenticated user profiles.
+  parameters:
+    gemName:
+      name: gemName
+      in: path
+      description: The name of the gem
+      required: true
+      schema:
+        type: string
+      example: rails
+    userHandle:
+      name: userHandle
+      in: path
+      description: The user handle or numeric user ID
+      required: true
+      schema:
+        type: string
+      example: tenderlove
+  schemas:
+    Gem:
+      type: object
+      description: A Ruby gem hosted on RubyGems.org
+      properties:
+        name:
+          type: string
+          description: The name of the gem
+        downloads:
+          type: integer
+          description: Total number of downloads for this gem
+        version:
+          type: string
+          description: The current (latest) version number
+        version_created_at:
+          type: string
+          format: date-time
+          description: Timestamp when the current version was created
+        version_downloads:
+          type: integer
+          description: Download count for the current version
+        platform:
+          type: string
+          description: The platform of the gem (e.g., ruby, java)
+        authors:
+          type: string
+          description: Comma-separated list of gem authors
+        info:
+          type: string
+          description: Short description of the gem
+        licenses:
+          type: array
+          items:
+            type: string
+          description: List of licenses for the gem
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+          description: Additional metadata key-value pairs
+        yanked:
+          type: boolean
+          description: Whether this gem version has been yanked
+        sha:
+          type: string
+          description: SHA-256 checksum of the gem file
+        project_uri:
+          type: string
+          format: uri
+          description: URI to the gem project page on RubyGems.org
+        gem_uri:
+          type: string
+          format: uri
+          description: URI to download the gem file
+        homepage_uri:
+          type: string
+          format: uri
+          description: URI to the gem homepage
+        wiki_uri:
+          type: string
+          format: uri
+          description: URI to the gem wiki
+        documentation_uri:
+          type: string
+          format: uri
+          description: URI to the gem documentation
+        mailing_list_uri:
+          type: string
+          format: uri
+          description: URI to the gem mailing list
+        source_code_uri:
+          type: string
+          format: uri
+          description: URI to the gem source code
+        bug_tracker_uri:
+          type: string
+          format: uri
+          description: URI to the gem bug tracker
+        changelog_uri:
+          type: string
+          format: uri
+          description: URI to the gem changelog
+        funding_uri:
+          type: string
+          format: uri
+          description: URI to the gem funding page
+        dependencies:
+          type: object
+          properties:
+            development:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dependency'
+              description: Development dependencies
+            runtime:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dependency'
+              description: Runtime dependencies
+          description: Gem dependency information
+    GemVersion:
+      type: object
+      description: A specific version of a Ruby gem
+      properties:
+        authors:
+          type: string
+          description: Comma-separated list of version authors
+        built_at:
+          type: string
+          format: date-time
+          description: Timestamp when the version was built
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp when the version was published
+        description:
+          type: string
+          description: Full description of the gem version
+        downloads_count:
+          type: integer
+          description: Number of downloads for this version
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+          description: Additional metadata for this version
+        number:
+          type: string
+          description: The version number
+        summary:
+          type: string
+          description: Short summary of the gem version
+        platform:
+          type: string
+          description: The platform for this version
+        rubygems_version:
+          type: string
+          description: The minimum RubyGems version required
+        ruby_version:
+          type: string
+          description: The minimum Ruby version required
+        prerelease:
+          type: boolean
+          description: Whether this is a prerelease version
+        licenses:
+          type: array
+          items:
+            type: string
+          description: Licenses for this version
+        requirements:
+          type: array
+          items:
+            type: string
+          description: Requirements for this version
+        sha:
+          type: string
+          description: SHA-256 checksum of the gem file
+    Dependency:
+      type: object
+      description: A gem dependency
+      properties:
+        name:
+          type: string
+          description: Name of the dependency gem
+        requirements:
+          type: string
+          description: Version requirements string
+    Owner:
+      type: object
+      description: A gem owner on RubyGems.org
+      properties:
+        id:
+          type: integer
+          description: Unique user ID
+        handle:
+          type: string
+          description: User handle
+        email:
+          type: string
+          format: email
+          description: User email address
+    Profile:
+      type: object
+      description: A RubyGems.org user profile
+      properties:
+        id:
+          type: integer
+          description: Unique user ID
+        handle:
+          type: string
+          description: User handle
+    ProfileWithMfa:
+      type: object
+      description: >-
+        A RubyGems.org user profile with multi-factor authentication status
+      properties:
+        id:
+          type: integer
+          description: Unique user ID
+        handle:
+          type: string
+          description: User handle
+        mfa:
+          type: string
+          description: Multi-factor authentication status
+    DependencyInfo:
+      type: object
+      description: Dependency information for a gem version
+      properties:
+        name:
+          type: string
+          description: Name of the gem
+        number:
+          type: string
+          description: Version number
+        platform:
+          type: string
+          description: Platform identifier
+        dependencies:
+          type: array
+          items:
+            type: array
+            items:
+              type: string
+          description: Array of dependency pairs (name, version requirement)
+    Error:
+      type: object
+      description: Error response from the RubyGems.org API
+      properties:
+        error:
+          type: string
+          description: Error message

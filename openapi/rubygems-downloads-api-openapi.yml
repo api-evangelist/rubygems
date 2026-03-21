@@ -1,0 +1,104 @@
+openapi: 3.1.0
+info:
+  title: RubyGems Downloads API
+  description: >-
+    The RubyGems Downloads API provides access to download count statistics
+    for gems hosted on RubyGems.org. Developers can retrieve total download
+    counts for specific gems and individual gem versions. This data is
+    commonly used to gauge gem popularity, generate usage reports, and
+    build dashboards that track adoption trends across the Ruby package
+    ecosystem.
+  version: '1.0'
+  contact:
+    name: RubyGems.org Support
+    url: https://help.rubygems.org
+  termsOfService: https://rubygems.org/pages/about
+externalDocs:
+  description: RubyGems.org API Documentation
+  url: https://guides.rubygems.org/rubygems-org-api/
+servers:
+  - url: https://rubygems.org/api/v1
+    description: Production Server
+tags:
+  - name: Downloads
+    description: >-
+      Endpoints for retrieving download count statistics for gems and
+      gem versions on RubyGems.org.
+paths:
+  /downloads.json:
+    get:
+      operationId: getTotalDownloads
+      summary: Get total downloads
+      description: >-
+        Returns the total number of gem downloads across all gems on
+        RubyGems.org. This provides a single aggregate count of all
+        gem installations ever recorded.
+      tags:
+        - Downloads
+      security: []
+      responses:
+        '200':
+          description: Successful response with total download count
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    type: integer
+                    description: Total number of gem downloads across all gems
+                    example: 100000000000
+  /downloads/{gemNameVersion}.json:
+    get:
+      operationId: getVersionDownloads
+      summary: Get version download counts
+      description: >-
+        Returns download count statistics for a specific gem version. The
+        path parameter combines the gem name and version number with a
+        hyphen separator (e.g., rails-7.0.0). Returns both the version-
+        specific download count and the total download count across all
+        versions of the gem.
+      tags:
+        - Downloads
+      security: []
+      parameters:
+        - name: gemNameVersion
+          in: path
+          description: >-
+            The gem name and version number joined by a hyphen
+            (e.g., rails-7.0.0).
+          required: true
+          schema:
+            type: string
+          example: rails-7.0.0
+      responses:
+        '200':
+          description: Successful response with download statistics
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  version_downloads:
+                    type: integer
+                    description: Number of downloads for this specific version
+                    example: 5000000
+                  total_downloads:
+                    type: integer
+                    description: Total downloads across all versions of this gem
+                    example: 500000000
+        '404':
+          description: Gem version not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Error:
+      type: object
+      description: Error response from the RubyGems.org API
+      properties:
+        error:
+          type: string
+          description: Error message

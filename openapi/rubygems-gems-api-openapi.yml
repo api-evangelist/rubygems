@@ -22,14 +22,13 @@ servers:
   - url: https://rubygems.org/api/v1
     description: Production Server
 tags:
+  - name: Dependencies
+    description: >-
+      Endpoints for querying gem dependency information.
   - name: Gems
     description: >-
       Endpoints for retrieving gem metadata, listing owned gems,
       submitting new gems, and yanking gem versions.
-  - name: Versions
-    description: >-
-      Endpoints for querying version information for specific gems,
-      including version history and latest version lookups.
   - name: Owners
     description: >-
       Endpoints for managing gem ownership, including listing owners,
@@ -37,9 +36,10 @@ tags:
   - name: Profiles
     description: >-
       Endpoints for retrieving user profile information from RubyGems.org.
-  - name: Dependencies
+  - name: Versions
     description: >-
-      Endpoints for querying gem dependency information.
+      Endpoints for querying version information for specific gems,
+      including version history and latest version lookups.
 security:
   - apiKeyAuth: []
 paths:

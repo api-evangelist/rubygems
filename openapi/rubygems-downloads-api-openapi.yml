@@ -28,7 +28,7 @@ paths:
   /downloads.json:
     get:
       operationId: getTotalDownloads
-      summary: Get total downloads
+      summary: Get Total Downloads
       description: >-
         Returns the total number of gem downloads across all gems on
         RubyGems.org. This provides a single aggregate count of all
@@ -51,7 +51,7 @@ paths:
   /downloads/{gemNameVersion}.json:
     get:
       operationId: getVersionDownloads
-      summary: Get version download counts
+      summary: Get Version Download Counts
       description: >-
         Returns download count statistics for a specific gem version. The
         path parameter combines the gem name and version number with a

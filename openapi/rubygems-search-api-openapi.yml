@@ -27,7 +27,7 @@ paths:
   /search.json:
     get:
       operationId: searchGems
-      summary: Search for gems
+      summary: Search For Gems
       description: >-
         Submit a search query to RubyGems.org for active gems. Returns an
         array of gem objects that match the query string against gem names

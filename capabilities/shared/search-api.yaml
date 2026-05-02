@@ -1,0 +1,84 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "RubyGems Search API"
+  description: >-
+    Shared capability definition for the RubyGems Search API. Provides
+    full-text search across gem names and descriptions on RubyGems.org
+    with paginated results.
+  tags:
+    - Ruby
+    - Search
+    - Discovery
+    - RubyGems
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+binds:
+  - namespace: env
+    keys: {}
+
+capability:
+  consumes:
+    - type: http
+      namespace: search-api
+      baseUri: https://rubygems.org/api/v1
+      description: "RubyGems Search API for gem discovery"
+      resources:
+        - name: search
+          path: /search
+          description: Search for gems by name and description
+          operations:
+            - name: search-gems
+              method: GET
+              description: "Search RubyGems.org for gems matching a query"
+              inputParameters:
+                - name: query
+                  in: query
+                  type: string
+                  required: true
+                  description: "Search query string"
+                - name: page
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Page number (30 results per page)"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8101
+      namespace: search-api-rest
+      resources:
+        - path: /v1/search
+          name: search
+          description: "Search for gems"
+          operations:
+            - method: GET
+              name: search-gems
+              description: "Search gems by query"
+              call: "search-api.search-gems"
+              with:
+                query: "rest.query"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9101
+      namespace: search-api-mcp
+      transport: http
+      tools:
+        - name: search-gems
+          description: "Search RubyGems.org for gems by name or description"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "search-api.search-gems"
+          outputParameters:
+            - type: object
+              mapping: "$."

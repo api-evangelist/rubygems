@@ -1,0 +1,79 @@
+{
+  "title": "RubyGems Data Structures",
+  "description": "JSON structure documentation for RubyGems.org API data entities",
+  "version": "1.0",
+  "entities": {
+    "Gem": {
+      "description": "A Ruby gem hosted on RubyGems.org",
+      "fields": {
+        "name": { "type": "string", "description": "Gem name", "required": true },
+        "downloads": { "type": "integer", "description": "Total download count" },
+        "version": { "type": "string", "description": "Latest version number" },
+        "version_created_at": { "type": "string", "description": "Latest version publish timestamp" },
+        "version_downloads": { "type": "integer", "description": "Downloads for current version" },
+        "platform": { "type": "string", "description": "Platform (ruby, java, x86_64-linux)" },
+        "authors": { "type": "string", "description": "Comma-separated author list" },
+        "info": { "type": "string", "description": "Short gem description" },
+        "licenses": { "type": "array", "description": "SPDX license identifiers" },
+        "metadata": { "type": "object", "description": "Key-value metadata pairs" },
+        "sha": { "type": "string", "description": "SHA-256 checksum of gem file" },
+        "project_uri": { "type": "string", "description": "RubyGems.org project page URL" },
+        "gem_uri": { "type": "string", "description": "Download URL for gem file" },
+        "homepage_uri": { "type": "string", "description": "Gem project homepage URL" },
+        "source_code_uri": { "type": "string", "description": "Source code repository URL" },
+        "documentation_uri": { "type": "string", "description": "Documentation URL" },
+        "bug_tracker_uri": { "type": "string", "description": "Issue tracker URL" },
+        "changelog_uri": { "type": "string", "description": "Changelog URL" },
+        "funding_uri": { "type": "string", "description": "Funding/sponsorship URL" },
+        "dependencies": {
+          "type": "object",
+          "description": "Runtime and development dependencies",
+          "fields": {
+            "runtime": { "type": "array", "description": "Runtime dependency list" },
+            "development": { "type": "array", "description": "Development dependency list" }
+          }
+        }
+      }
+    },
+    "GemVersion": {
+      "description": "A specific published version of a Ruby gem",
+      "fields": {
+        "number": { "type": "string", "description": "Version number", "required": true },
+        "platform": { "type": "string", "description": "Platform identifier" },
+        "authors": { "type": "string", "description": "Comma-separated authors" },
+        "built_at": { "type": "string", "description": "Build timestamp" },
+        "created_at": { "type": "string", "description": "Publish timestamp" },
+        "description": { "type": "string", "description": "Full version description" },
+        "summary": { "type": "string", "description": "Short summary" },
+        "downloads_count": { "type": "integer", "description": "Version download count" },
+        "prerelease": { "type": "boolean", "description": "Is prerelease" },
+        "licenses": { "type": "array", "description": "License list" },
+        "rubygems_version": { "type": "string", "description": "Minimum RubyGems version" },
+        "ruby_version": { "type": "string", "description": "Minimum Ruby version" },
+        "sha": { "type": "string", "description": "SHA-256 checksum" }
+      }
+    },
+    "Dependency": {
+      "description": "A dependency on another gem",
+      "fields": {
+        "name": { "type": "string", "description": "Dependency gem name", "required": true },
+        "requirements": { "type": "string", "description": "Version requirement string (e.g., >= 1.0)" }
+      }
+    },
+    "Owner": {
+      "description": "A gem owner on RubyGems.org",
+      "fields": {
+        "id": { "type": "integer", "description": "User ID" },
+        "handle": { "type": "string", "description": "User handle" },
+        "email": { "type": "string", "description": "Email address" }
+      }
+    },
+    "Webhook": {
+      "description": "A webhook subscription on RubyGems.org",
+      "fields": {
+        "url": { "type": "string", "description": "Webhook delivery URL", "required": true },
+        "failure_count": { "type": "integer", "description": "Consecutive delivery failure count" }
+      }
+    }
+  }
+}

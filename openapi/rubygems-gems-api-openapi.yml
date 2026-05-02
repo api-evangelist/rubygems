@@ -46,7 +46,7 @@ paths:
   /gems/{gemName}.json:
     get:
       operationId: getGemInfo
-      summary: Get gem information
+      summary: Get Gem Information
       description: >-
         Returns detailed information about a specific gem, including its
         name, downloads count, current version, authors, version downloads,
@@ -72,7 +72,7 @@ paths:
   /gems.json:
     get:
       operationId: listOwnedGems
-      summary: List gems owned by the authenticated user
+      summary: List Gems Owned By The Authenticated User
       description: >-
         Returns an array of gem objects that the authenticated user owns.
         Requires a valid API key for authentication.
@@ -96,7 +96,7 @@ paths:
   /gems:
     post:
       operationId: pushGem
-      summary: Submit a gem
+      summary: Submit A Gem
       description: >-
         Submit a built RubyGem (.gem file) to RubyGems.org. The gem binary
         must be included in the request body. On successful submission, the
@@ -143,7 +143,7 @@ paths:
   /gems/yank:
     delete:
       operationId: yankGem
-      summary: Yank a gem version
+      summary: Yank A Gem Version
       description: >-
         Remove a specific gem version from RubyGems.org. Yanked gems are no
         longer available for installation but their metadata is retained. The
@@ -202,7 +202,7 @@ paths:
   /gems/{gemName}/reverse_dependencies.json:
     get:
       operationId: getReverseDependencies
-      summary: Get reverse dependencies
+      summary: Get Reverse Dependencies
       description: >-
         Returns an array of gem names that depend on the specified gem.
         This is useful for understanding the downstream impact of changes
@@ -233,7 +233,7 @@ paths:
   /versions/{gemName}.json:
     get:
       operationId: getGemVersions
-      summary: List gem versions
+      summary: List Gem Versions
       description: >-
         Returns an array of version objects for a specific gem, including
         version numbers, platforms, authors, descriptions, checksums,
@@ -261,7 +261,7 @@ paths:
   /versions/{gemName}/latest.json:
     get:
       operationId: getLatestGemVersion
-      summary: Get latest gem version
+      summary: Get Latest Gem Version
       description: >-
         Returns an object containing the latest version number for the
         specified gem.
@@ -291,7 +291,7 @@ paths:
   /timeframe_versions.json:
     get:
       operationId: getTimeframeVersions
-      summary: Get versions within a timeframe
+      summary: Get Versions Within A Timeframe
       description: >-
         Returns an array of gem versions created within a specified
         timeframe. The from parameter is required and must be an ISO 8601
@@ -338,7 +338,7 @@ paths:
   /owners/{userHandle}/gems.json:
     get:
       operationId: listGemsByOwner
-      summary: List gems by owner
+      summary: List Gems By Owner
       description: >-
         Returns an array of gem objects owned by the specified user,
         identified by their handle or user ID.
@@ -365,7 +365,7 @@ paths:
   /gems/{gemName}/owners.json:
     get:
       operationId: listGemOwners
-      summary: List owners of a gem
+      summary: List Owners Of A Gem
       description: >-
         Returns an array of owner objects for the specified gem, including
         their email addresses.
@@ -392,7 +392,7 @@ paths:
   /gems/{gemName}/owners:
     post:
       operationId: addGemOwner
-      summary: Add a gem owner
+      summary: Add A Gem Owner
       description: >-
         Add a new owner to the specified gem. The new owner is identified by
         their email address and can be assigned a role.
@@ -445,7 +445,7 @@ paths:
                 $ref: '#/components/schemas/Error'
     delete:
       operationId: removeGemOwner
-      summary: Remove a gem owner
+      summary: Remove A Gem Owner
       description: >-
         Remove an owner from the specified gem. The owner is identified by
         their email address.
@@ -495,7 +495,7 @@ paths:
                 $ref: '#/components/schemas/Error'
     patch:
       operationId: updateGemOwner
-      summary: Update a gem owner
+      summary: Update A Gem Owner
       description: >-
         Update the role of an existing owner on the specified gem.
       tags:
@@ -549,7 +549,7 @@ paths:
   /profiles/{userHandle}.json:
     get:
       operationId: getUserProfile
-      summary: Get user profile
+      summary: Get User Profile
       description: >-
         Returns profile information for the specified user, identified by
         their handle or user ID.
@@ -574,7 +574,7 @@ paths:
   /profile/me.json:
     get:
       operationId: getMyProfile
-      summary: Get authenticated user profile
+      summary: Get Authenticated User Profile
       description: >-
         Returns the profile information for the currently authenticated user,
         including multi-factor authentication status. Requires HTTP Basic
@@ -599,7 +599,7 @@ paths:
   /dependencies:
     get:
       operationId: getDependencies
-      summary: Get gem dependencies
+      summary: Get Gem Dependencies
       description: >-
         Returns dependency information for one or more gems specified as a
         comma-separated list. The response is a marshalled array of hashes
@@ -629,7 +629,7 @@ paths:
   /api_key.json:
     get:
       operationId: getApiKey
-      summary: Get API key
+      summary: Get API Key
       description: >-
         Retrieve the API key for the authenticated user. Requires HTTP Basic
         authentication with email and password.
@@ -657,7 +657,7 @@ paths:
   /oidc/trusted_publisher/exchange_token:
     post:
       operationId: exchangeOidcToken
-      summary: Exchange OIDC token for API key
+      summary: Exchange OIDC Token For API Key
       description: >-
         Exchange an OIDC identity token from a trusted publisher for a
         short-lived RubyGems API key. This enables automated gem publishing

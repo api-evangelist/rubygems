@@ -31,7 +31,7 @@ paths:
   /web_hooks.json:
     get:
       operationId: listWebhooks
-      summary: List webhooks
+      summary: List Webhooks
       description: >-
         Returns all webhooks registered under the authenticated user's
         account. The response is an object where keys are gem names (or a
@@ -61,7 +61,7 @@ paths:
   /web_hooks:
     post:
       operationId: createWebhook
-      summary: Create a webhook
+      summary: Create A Webhook
       description: >-
         Register a new webhook that fires when a gem is pushed to
         RubyGems.org. Use an asterisk (*) as the gem_name to create a
@@ -111,7 +111,7 @@ paths:
   /web_hooks/remove:
     delete:
       operationId: removeWebhook
-      summary: Remove a webhook
+      summary: Remove A Webhook
       description: >-
         Remove an existing webhook subscription. The gem_name and url must
         match an existing webhook. Use an asterisk (*) as the gem_name to
@@ -161,7 +161,7 @@ paths:
   /web_hooks/fire:
     post:
       operationId: fireWebhook
-      summary: Test fire a webhook
+      summary: Test Fire A Webhook
       description: >-
         Test fire an existing webhook to verify it is working correctly.
         The fired request includes an Authorization header containing a

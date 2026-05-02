@@ -1,0 +1,85 @@
+rules:
+  rubygems-operation-ids-camel-case:
+    description: All operationIds must use camelCase naming convention.
+    severity: warn
+    given: "$.paths.*[get,post,put,patch,delete].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+
+  rubygems-tags-title-case:
+    description: All tags must use Title Case.
+    severity: warn
+    given: "$.tags[*].name"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][a-zA-Z0-9 ]*$"
+
+  rubygems-api-key-auth:
+    description: Authenticated endpoints must use apiKeyAuth or basicAuth security schemes.
+    severity: warn
+    given: "$.components.securitySchemes"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          oneOf:
+            - required: ["apiKeyAuth"]
+            - required: ["basicAuth"]
+
+  rubygems-json-responses:
+    description: All GET endpoints should return application/json content type.
+    severity: warn
+    given: "$.paths.*.get.responses.200.content"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          properties:
+            application/json:
+              type: object
+
+  rubygems-paths-snake-case-params:
+    description: Query parameter names should use snake_case per RubyGems convention.
+    severity: info
+    given: "$.paths.*[get,post,delete].parameters[?(@.in=='query')].name"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-z0-9_]*$"
+
+  rubygems-response-200-defined:
+    description: All operations must define a 200 or 201 response.
+    severity: error
+    given: "$.paths.*[get,post,put,patch,delete].responses"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          anyOf:
+            - required: ["200"]
+            - required: ["201"]
+
+  rubygems-401-on-protected:
+    description: Protected endpoints must define a 401 response.
+    severity: warn
+    given: "$.paths.*[post,delete,patch].responses"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          required:
+            - "401"
+
+  rubygems-summaries-title-case:
+    description: Operation summaries must use Title Case.
+    severity: warn
+    given: "$.paths.*[get,post,put,patch,delete].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z]"

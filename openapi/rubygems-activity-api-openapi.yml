@@ -28,7 +28,7 @@ paths:
   /activity/latest.json:
     get:
       operationId: getLatestGems
-      summary: Get latest gems
+      summary: Get Latest Gems
       description: >-
         Returns the 50 gems most recently added to RubyGems.org. This
         endpoint provides a snapshot of the newest gems published to the
@@ -50,7 +50,7 @@ paths:
   /activity/just_updated.json:
     get:
       operationId: getJustUpdatedGems
-      summary: Get recently updated gems
+      summary: Get Recently Updated Gems
       description: >-
         Returns the 50 most recently updated gems on RubyGems.org. This
         endpoint returns gem versions that have been most recently modified,

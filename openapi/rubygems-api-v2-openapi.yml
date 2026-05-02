@@ -29,7 +29,7 @@ paths:
   /rubygems/{gemName}/versions/{versionNumber}.json:
     get:
       operationId: getGemVersionDetails
-      summary: Get gem version details
+      summary: Get Gem Version Details
       description: >-
         Returns detailed information about a specific gem version, including
         name, version number, download counts, platform, authors, description,

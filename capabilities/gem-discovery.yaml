@@ -1,0 +1,200 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "RubyGems Gem Discovery"
+  description: >-
+    Workflow capability for discovering and evaluating Ruby gems using the
+    RubyGems.org APIs. Combines search, gem metadata retrieval, version
+    history, download statistics, and dependency analysis for developers
+    choosing gems for their projects. Serves Ruby developers, DevOps teams,
+    and security researchers evaluating the Ruby gem ecosystem.
+  tags:
+    - Ruby
+    - Gems
+    - Discovery
+    - Package Manager
+    - RubyGems
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+binds:
+  - namespace: env
+    keys:
+      RUBYGEMS_API_KEY: RUBYGEMS_API_KEY
+
+capability:
+  consumes:
+    - import: gems-api
+      location: ./shared/gems-api.yaml
+    - import: search-api
+      location: ./shared/search-api.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: gem-discovery-api
+      description: "Unified REST API for Ruby gem discovery and evaluation."
+      resources:
+        - path: /v1/gems/search
+          name: gem-search
+          description: "Search for gems"
+          operations:
+            - method: GET
+              name: search-gems
+              description: "Search RubyGems.org for gems by name or description"
+              call: "search-api.search-gems"
+              with:
+                query: "rest.query"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/gems/{gemName}
+          name: gem-details
+          description: "Get gem details"
+          operations:
+            - method: GET
+              name: get-gem
+              description: "Get detailed gem metadata"
+              call: "gems-api.get-gem-info"
+              with:
+                gemName: "rest.gemName"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/gems/{gemName}/versions
+          name: gem-versions
+          description: "Get all gem versions"
+          operations:
+            - method: GET
+              name: list-gem-versions
+              description: "List all published versions of a gem"
+              call: "gems-api.get-gem-versions"
+              with:
+                gemName: "rest.gemName"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/gems/{gemName}/versions/latest
+          name: latest-version
+          description: "Get latest gem version"
+          operations:
+            - method: GET
+              name: get-latest-version
+              description: "Get the latest version of a gem"
+              call: "gems-api.get-latest-gem-version"
+              with:
+                gemName: "rest.gemName"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/gems/{gemName}/reverse-dependencies
+          name: reverse-deps
+          description: "Get gems that depend on this gem"
+          operations:
+            - method: GET
+              name: get-reverse-dependencies
+              description: "List gems depending on a specific gem"
+              call: "gems-api.get-reverse-dependencies"
+              with:
+                gemName: "rest.gemName"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/versions
+          name: recent-versions
+          description: "Recently released gem versions"
+          operations:
+            - method: GET
+              name: get-timeframe-versions
+              description: "Get gem versions released in a timeframe"
+              call: "gems-api.get-timeframe-versions"
+              with:
+                from: "rest.from"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: gem-discovery-mcp
+      transport: http
+      description: "MCP server for AI-assisted Ruby gem discovery and evaluation."
+      tools:
+        - name: search-gems
+          description: "Search RubyGems.org for Ruby gems by name or description"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "search-api.search-gems"
+          with:
+            query: "tools.query"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-gem-info
+          description: "Get detailed metadata for a specific Ruby gem"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "gems-api.get-gem-info"
+          with:
+            gemName: "tools.gemName"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-gem-versions
+          description: "List all published versions of a Ruby gem with metadata"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "gems-api.get-gem-versions"
+          with:
+            gemName: "tools.gemName"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-latest-gem-version
+          description: "Get the latest published version number of a Ruby gem"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "gems-api.get-latest-gem-version"
+          with:
+            gemName: "tools.gemName"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-reverse-dependencies
+          description: "Find which Ruby gems depend on a given gem (downstream impact analysis)"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "gems-api.get-reverse-dependencies"
+          with:
+            gemName: "tools.gemName"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-gem-owners
+          description: "List the owners of a specific Ruby gem"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "gems-api.list-gem-owners"
+          with:
+            gemName: "tools.gemName"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-recently-released-versions
+          description: "Get all gem versions released within a given timeframe (up to 7 days)"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "gems-api.get-timeframe-versions"
+          with:
+            from: "tools.from"
+            to: "tools.to"
+          outputParameters:
+            - type: object
+              mapping: "$."

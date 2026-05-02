@@ -1,0 +1,41 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://rubygems.org/api/v1/search.json?query=json+parser&page=1"
+  },
+  "response": {
+    "status": 200,
+    "body": [
+      {
+        "name": "json",
+        "downloads": 500000000,
+        "version": "2.7.2",
+        "platform": "ruby",
+        "authors": "Florian Frank",
+        "info": "This is a JSON implementation as a Ruby extension in C.",
+        "licenses": ["Ruby"],
+        "project_uri": "https://rubygems.org/gems/json",
+        "homepage_uri": "https://www.ruby-lang.org",
+        "dependencies": {
+          "runtime": [],
+          "development": []
+        }
+      },
+      {
+        "name": "oj",
+        "downloads": 250000000,
+        "version": "3.16.10",
+        "platform": "ruby",
+        "authors": "Peter Ohler",
+        "info": "A fast JSON parser and Object marshaller as a Ruby gem.",
+        "licenses": ["MIT"],
+        "project_uri": "https://rubygems.org/gems/oj",
+        "homepage_uri": "http://www.ohler.com/oj",
+        "dependencies": {
+          "runtime": [],
+          "development": []
+        }
+      }
+    ]
+  }
+}

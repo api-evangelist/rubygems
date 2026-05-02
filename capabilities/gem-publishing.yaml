@@ -1,0 +1,219 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "RubyGems Gem Publishing"
+  description: >-
+    Workflow capability for publishing and managing Ruby gems on RubyGems.org.
+    Combines gem publishing, yanking, ownership management, and webhook
+    notification setup. Serves gem maintainers and CI/CD pipelines that
+    automate gem releases and manage the gem lifecycle on RubyGems.org.
+  tags:
+    - Ruby
+    - Gems
+    - Publishing
+    - CI/CD
+    - Package Manager
+    - RubyGems
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+binds:
+  - namespace: env
+    keys:
+      RUBYGEMS_API_KEY: RUBYGEMS_API_KEY
+
+capability:
+  consumes:
+    - import: gems-api
+      location: ./shared/gems-api.yaml
+    - import: webhooks-api
+      location: ./shared/webhooks-api.yaml
+
+  exposes:
+    - type: rest
+      port: 8081
+      namespace: gem-publishing-api
+      description: "Unified REST API for Ruby gem publishing and lifecycle management."
+      resources:
+        - path: /v1/gems
+          name: gems
+          description: "Gem publishing operations"
+          operations:
+            - method: POST
+              name: publish-gem
+              description: "Submit a built gem to RubyGems.org"
+              call: "gems-api.push-gem"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/gems/yank
+          name: yank-gem
+          description: "Yank a gem version"
+          operations:
+            - method: DELETE
+              name: yank-gem
+              description: "Remove a gem version from the index"
+              call: "gems-api.yank-gem"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/gems/{gemName}/owners
+          name: gem-owners
+          description: "Gem ownership management"
+          operations:
+            - method: GET
+              name: list-owners
+              description: "List gem owners"
+              call: "gems-api.list-gem-owners"
+              with:
+                gemName: "rest.gemName"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: add-owner
+              description: "Add a gem owner"
+              call: "gems-api.add-gem-owner"
+              with:
+                gemName: "rest.gemName"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: DELETE
+              name: remove-owner
+              description: "Remove a gem owner"
+              call: "gems-api.remove-gem-owner"
+              with:
+                gemName: "rest.gemName"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/webhooks
+          name: webhooks
+          description: "Webhook subscriptions for gem push events"
+          operations:
+            - method: GET
+              name: list-webhooks
+              description: "List webhooks"
+              call: "webhooks-api.list-webhooks"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-webhook
+              description: "Create a webhook"
+              call: "webhooks-api.create-webhook"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9091
+      namespace: gem-publishing-mcp
+      transport: http
+      description: "MCP server for AI-assisted Ruby gem publishing and lifecycle management."
+      tools:
+        - name: push-gem
+          description: "Submit a built Ruby gem (.gem file) to RubyGems.org for publishing"
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: "gems-api.push-gem"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: yank-gem
+          description: "Remove a specific Ruby gem version from the RubyGems.org index"
+          hints:
+            readOnly: false
+            destructive: true
+            idempotent: true
+          call: "gems-api.yank-gem"
+          with:
+            gem_name: "tools.gemName"
+            version: "tools.version"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-owned-gems
+          description: "List all gems owned by the authenticated RubyGems user"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "gems-api.list-owned-gems"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-gem-owners
+          description: "List all owners of a specific gem"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "gems-api.list-gem-owners"
+          with:
+            gemName: "tools.gemName"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: add-gem-owner
+          description: "Add a new owner to a Ruby gem by email address"
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: "gems-api.add-gem-owner"
+          with:
+            gemName: "tools.gemName"
+            email: "tools.email"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: remove-gem-owner
+          description: "Remove an owner from a Ruby gem by email address"
+          hints:
+            readOnly: false
+            destructive: true
+            idempotent: true
+          call: "gems-api.remove-gem-owner"
+          with:
+            gemName: "tools.gemName"
+            email: "tools.email"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-webhook
+          description: "Register a webhook to receive notifications when a gem is pushed"
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: "webhooks-api.create-webhook"
+          with:
+            gem_name: "tools.gemName"
+            url: "tools.url"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-webhooks
+          description: "List all webhook subscriptions for the authenticated user"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "webhooks-api.list-webhooks"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: test-webhook
+          description: "Test fire a webhook to verify it is receiving notifications correctly"
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: "webhooks-api.fire-webhook"
+          with:
+            gem_name: "tools.gemName"
+            url: "tools.url"
+          outputParameters:
+            - type: object
+              mapping: "$."

@@ -1,0 +1,38 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://rubygems.org/api/v1/gems/rails.json"
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "name": "rails",
+      "downloads": 756482034,
+      "version": "7.2.2",
+      "version_created_at": "2024-10-03T09:00:00.000Z",
+      "version_downloads": 12450000,
+      "platform": "ruby",
+      "authors": "David Heinemeier Hansson",
+      "info": "Ruby on Rails is a full-stack web framework optimized for programmer happiness and sustainable productivity.",
+      "licenses": ["MIT"],
+      "metadata": {
+        "changelog_uri": "https://github.com/rails/rails/releases/tag/v7.2.2",
+        "source_code_uri": "https://github.com/rails/rails/tree/v7.2.2"
+      },
+      "yanked": false,
+      "sha": "abc123def456",
+      "project_uri": "https://rubygems.org/gems/rails",
+      "gem_uri": "https://rubygems.org/gems/rails-7.2.2.gem",
+      "homepage_uri": "https://rubyonrails.org",
+      "source_code_uri": "https://github.com/rails/rails",
+      "changelog_uri": "https://github.com/rails/rails/releases",
+      "dependencies": {
+        "runtime": [
+          { "name": "activesupport", "requirements": "= 7.2.2" },
+          { "name": "actionpack", "requirements": "= 7.2.2" }
+        ],
+        "development": []
+      }
+    }
+  }
+}

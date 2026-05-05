@@ -1,0 +1,13 @@
+{
+  "repo": "rubygems",
+  "feeds": [
+    {
+      "source": "https://blog.rubygems.org/",
+      "feed_url": "https://blog.rubygems.org/atom.xml",
+      "saved": 10,
+      "title": "RubyGems Blog"
+    }
+  ],
+  "post_count": 10,
+  "fetched": "2026-05-03T23:35:02Z"
+}

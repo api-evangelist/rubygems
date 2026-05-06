@@ -4,110 +4,74 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: RubyGems
 providerId: rubygems
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: true
 tags:
   - Ruby
   - Package Manager
   - Open Source
   - Developer Tools
   - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the RubyGems API surface. Captures per-tier quotas,
-  burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to be replaced
-  with published provider limits.
+description: RubyGems.org enforces rate limits at two layers. A load balancer tier caps raw request rate
+  per source IP across the API and website. An application tier (rack-attack) layers additional limits
+  on auth, MFA, gem ownership, and gem publishing endpoints. Limits apply per IP/account; there is no
+  paid tier to raise them. Extreme abuse can result in IP blackholing, with appeal via support@rubygems.org.
+sources:
+  - https://guides.rubygems.org/rubygems-org-rate-limits/
 headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
   retryAfter: Retry-After
-  policy: RateLimit-Policy
 responseCodes:
   throttled: 429
-  quotaExceeded: 429
-  serviceUnavailable: 503
 limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
+  - name: Load balancer (API and website)
+    scope: IP
+    metric: requests_per_second
     limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - RubyGems Gems API
-      - RubyGems API V2
-      - RubyGems Downloads API
-      - RubyGems Search API
-      - RubyGems Activity API
-      - RubyGems Webhooks API
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - RubyGems Gems API
-      - RubyGems API V2
-      - RubyGems Downloads API
-      - RubyGems Search API
-      - RubyGems Activity API
-      - RubyGems Webhooks API
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
+    timeFrame: second
+    notes: Applies broadly to rubygems.org API and website traffic from a single source IP.
+  - name: Load balancer (Dependency API / Compact Index)
+    scope: IP
+    metric: requests_per_second
+    limit: 15
+    timeFrame: second
+    notes: Slightly higher cap reflecting bundler resolver behavior.
+  - name: Auth and account endpoints
+    scope: IP
+    metric: requests_per_window
     limit: 100
-    burst: 200
     timeFrame: minute
-    applies:
-      - RubyGems Gems API
-      - RubyGems API V2
-      - RubyGems Downloads API
-      - RubyGems Search API
-      - RubyGems Activity API
-      - RubyGems Webhooks API
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - RubyGems Gems API
-      - RubyGems API V2
-      - RubyGems Downloads API
-      - RubyGems Search API
-      - RubyGems Activity API
-      - RubyGems Webhooks API
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
+    notes: 100 requests per 10 minutes across sign-in, sign-up, password reset, profile, and email confirmation.
+  - name: Sensitive operations (exponential backoff, short window)
+    scope: account
+    metric: requests_per_window
+    limit: 300
     timeFrame: minute
-    applies:
-      - RubyGems Gems API
-      - RubyGems API V2
-      - RubyGems Downloads API
-      - RubyGems Search API
-      - RubyGems Activity API
-      - RubyGems Webhooks API
+    notes: 300 requests per 5 minutes against MFA, ownership changes, API key retrieval, and gem yanking.
+  - name: Sensitive operations (exponential backoff, long window)
+    scope: account
+    metric: requests_per_window
+    limit: 600
+    timeFrame: day
+    notes: 600 requests per 25 hours against MFA, ownership changes, API key retrieval, and gem yanking.
+  - name: Gem publishing (POST /api/v1/gems)
+    scope: account
+    metric: requests_per_hour
+    limit: 400
+    timeFrame: hour
+    notes: 400 successful pushes per hour. Failed pushes additionally counted at 300 / 5 min and 600 /
+      25 hours.
 policies:
-  - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
+  - name: Retry-After signaling
+    description: Throttled responses include a Retry-After header indicating when to retry. Clients should
+      wait at least that long before retrying.
+  - name: Exponential backoff on sensitive endpoints
+    description: rack-attack escalates penalties on MFA, ownership, key, and yank endpoints; clients should
+      apply exponential backoff with jitter on 429 responses.
+  - name: No paid raise path
+    description: There is no commercial tier to raise limits. High-volume consumers are expected to mirror
+      the index, use the compact index efficiently, or contact support@rubygems.org.
+  - name: IP blackhole for abuse
+    description: Persistent abusive sources may be blackholed at the network edge. Recourse is via support@rubygems.org.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

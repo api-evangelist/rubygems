@@ -1,0 +1,319 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: RubyGems Gems API — Gems
+  description: 'RubyGems Gems API — Gems. 7 operations. Lead operation: Get API Key. Self-contained Naftiko capability covering
+    one Rubygems business surface.'
+  tags:
+  - Rubygems
+  - Gems
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RUBYGEMS_API_KEY: RUBYGEMS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: gems-gems
+    baseUri: https://rubygems.org/api/v1
+    description: RubyGems Gems API — Gems business capability. Self-contained, no shared references.
+    resources:
+    - name: api_key.json
+      path: /api_key.json
+      operations:
+      - name: getapikey
+        method: GET
+        description: Get API Key
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: gems
+      path: /gems
+      operations:
+      - name: pushgem
+        method: POST
+        description: Submit A Gem
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: OTP
+          in: header
+          type: string
+          description: One-time passcode for multi-factor authentication if enabled on the account.
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: gems.json
+      path: /gems.json
+      operations:
+      - name: listownedgems
+        method: GET
+        description: List Gems Owned By The Authenticated User
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: gems-yank
+      path: /gems/yank
+      operations:
+      - name: yankgem
+        method: DELETE
+        description: Yank A Gem Version
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: gem_name
+          in: query
+          type: string
+          description: Name of the gem to yank
+          required: true
+        - name: version
+          in: query
+          type: string
+          description: Version number to yank
+          required: true
+        - name: platform
+          in: query
+          type: string
+          description: Platform of the gem version to yank, such as ruby, java, or x86_64-linux.
+        - name: OTP
+          in: header
+          type: string
+          description: One-time passcode for multi-factor authentication if enabled on the account.
+    - name: gems-gemName}.json
+      path: /gems/{gemName}.json
+      operations:
+      - name: getgeminfo
+        method: GET
+        description: Get Gem Information
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: gems-gemName-reverse_dependencies.json
+      path: /gems/{gemName}/reverse_dependencies.json
+      operations:
+      - name: getreversedependencies
+        method: GET
+        description: Get Reverse Dependencies
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: oidc-trusted_publisher-exchange_token
+      path: /oidc/trusted_publisher/exchange_token
+      operations:
+      - name: exchangeoidctoken
+        method: POST
+        description: Exchange OIDC Token For API Key
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.RUBYGEMS_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: gems-gems-rest
+    port: 8080
+    description: REST adapter for RubyGems Gems API — Gems. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/api-key-json
+      name: api-key-json
+      description: REST surface for api_key.json.
+      operations:
+      - method: GET
+        name: getapikey
+        description: Get API Key
+        call: gems-gems.getapikey
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/gems
+      name: gems
+      description: REST surface for gems.
+      operations:
+      - method: POST
+        name: pushgem
+        description: Submit A Gem
+        call: gems-gems.pushgem
+        with:
+          OTP: rest.OTP
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/gems-json
+      name: gems-json
+      description: REST surface for gems.json.
+      operations:
+      - method: GET
+        name: listownedgems
+        description: List Gems Owned By The Authenticated User
+        call: gems-gems.listownedgems
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/gems/yank
+      name: gems-yank
+      description: REST surface for gems-yank.
+      operations:
+      - method: DELETE
+        name: yankgem
+        description: Yank A Gem Version
+        call: gems-gems.yankgem
+        with:
+          gem_name: rest.gem_name
+          version: rest.version
+          platform: rest.platform
+          OTP: rest.OTP
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/gems/gemname-json
+      name: gems-gemname-json
+      description: REST surface for gems-gemName}.json.
+      operations:
+      - method: GET
+        name: getgeminfo
+        description: Get Gem Information
+        call: gems-gems.getgeminfo
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/gems/{gemname}/reverse-dependencies-json
+      name: gems-gemname-reverse-dependencies-json
+      description: REST surface for gems-gemName-reverse_dependencies.json.
+      operations:
+      - method: GET
+        name: getreversedependencies
+        description: Get Reverse Dependencies
+        call: gems-gems.getreversedependencies
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/oidc/trusted-publisher/exchange-token
+      name: oidc-trusted-publisher-exchange-token
+      description: REST surface for oidc-trusted_publisher-exchange_token.
+      operations:
+      - method: POST
+        name: exchangeoidctoken
+        description: Exchange OIDC Token For API Key
+        call: gems-gems.exchangeoidctoken
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: gems-gems-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for RubyGems Gems API — Gems. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: get-api-key
+      description: Get API Key
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: gems-gems.getapikey
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: submit-gem
+      description: Submit A Gem
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: gems-gems.pushgem
+      with:
+        OTP: tools.OTP
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-gems-owned-authenticated-user
+      description: List Gems Owned By The Authenticated User
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: gems-gems.listownedgems
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: yank-gem-version
+      description: Yank A Gem Version
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: gems-gems.yankgem
+      with:
+        gem_name: tools.gem_name
+        version: tools.version
+        platform: tools.platform
+        OTP: tools.OTP
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-gem-information
+      description: Get Gem Information
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: gems-gems.getgeminfo
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-reverse-dependencies
+      description: Get Reverse Dependencies
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: gems-gems.getreversedependencies
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: exchange-oidc-token-api-key
+      description: Exchange OIDC Token For API Key
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: gems-gems.exchangeoidctoken
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

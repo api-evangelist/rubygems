@@ -1,0 +1,109 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: RubyGems Downloads API — Downloads
+  description: 'RubyGems Downloads API — Downloads. 2 operations. Lead operation: Get Total Downloads. Self-contained Naftiko
+    capability covering one Rubygems business surface.'
+  tags:
+  - Rubygems
+  - Downloads
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RUBYGEMS_API_KEY: RUBYGEMS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: downloads-downloads
+    baseUri: https://rubygems.org/api/v1
+    description: RubyGems Downloads API — Downloads business capability. Self-contained, no shared references.
+    resources:
+    - name: downloads.json
+      path: /downloads.json
+      operations:
+      - name: gettotaldownloads
+        method: GET
+        description: Get Total Downloads
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: downloads-gemNameVersion}.json
+      path: /downloads/{gemNameVersion}.json
+      operations:
+      - name: getversiondownloads
+        method: GET
+        description: Get Version Download Counts
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: gemNameVersion
+          in: path
+          type: string
+          description: The gem name and version number joined by a hyphen (e.g., rails-7.0.0).
+          required: true
+  exposes:
+  - type: rest
+    namespace: downloads-downloads-rest
+    port: 8080
+    description: REST adapter for RubyGems Downloads API — Downloads. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/downloads-json
+      name: downloads-json
+      description: REST surface for downloads.json.
+      operations:
+      - method: GET
+        name: gettotaldownloads
+        description: Get Total Downloads
+        call: downloads-downloads.gettotaldownloads
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/downloads/gemnameversion-json
+      name: downloads-gemnameversion-json
+      description: REST surface for downloads-gemNameVersion}.json.
+      operations:
+      - method: GET
+        name: getversiondownloads
+        description: Get Version Download Counts
+        call: downloads-downloads.getversiondownloads
+        with:
+          gemNameVersion: rest.gemNameVersion
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: downloads-downloads-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for RubyGems Downloads API — Downloads. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: get-total-downloads
+      description: Get Total Downloads
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: downloads-downloads.gettotaldownloads
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-version-download-counts
+      description: Get Version Download Counts
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: downloads-downloads.getversiondownloads
+      with:
+        gemNameVersion: tools.gemNameVersion
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,99 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: RubyGems Activity API — Activity
+  description: 'RubyGems Activity API — Activity. 2 operations. Lead operation: Get Recently Updated Gems. Self-contained
+    Naftiko capability covering one Rubygems business surface.'
+  tags:
+  - Rubygems
+  - Activity
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RUBYGEMS_API_KEY: RUBYGEMS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: activity-activity
+    baseUri: https://rubygems.org/api/v1
+    description: RubyGems Activity API — Activity business capability. Self-contained, no shared references.
+    resources:
+    - name: activity-just_updated.json
+      path: /activity/just_updated.json
+      operations:
+      - name: getjustupdatedgems
+        method: GET
+        description: Get Recently Updated Gems
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: activity-latest.json
+      path: /activity/latest.json
+      operations:
+      - name: getlatestgems
+        method: GET
+        description: Get Latest Gems
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: activity-activity-rest
+    port: 8080
+    description: REST adapter for RubyGems Activity API — Activity. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/activity/just-updated-json
+      name: activity-just-updated-json
+      description: REST surface for activity-just_updated.json.
+      operations:
+      - method: GET
+        name: getjustupdatedgems
+        description: Get Recently Updated Gems
+        call: activity-activity.getjustupdatedgems
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/activity/latest-json
+      name: activity-latest-json
+      description: REST surface for activity-latest.json.
+      operations:
+      - method: GET
+        name: getlatestgems
+        description: Get Latest Gems
+        call: activity-activity.getlatestgems
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: activity-activity-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for RubyGems Activity API — Activity. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: get-recently-updated-gems
+      description: Get Recently Updated Gems
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: activity-activity.getjustupdatedgems
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-latest-gems
+      description: Get Latest Gems
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: activity-activity.getlatestgems
+      outputParameters:
+      - type: object
+        mapping: $.

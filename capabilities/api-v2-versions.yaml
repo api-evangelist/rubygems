@@ -1,0 +1,91 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: RubyGems API V2 — Versions
+  description: 'RubyGems API V2 — Versions. 1 operations. Lead operation: Get Gem Version Details. Self-contained Naftiko
+    capability covering one Rubygems business surface.'
+  tags:
+  - Rubygems
+  - Versions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RUBYGEMS_API_KEY: RUBYGEMS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: api-v2-versions
+    baseUri: https://rubygems.org/api/v2
+    description: RubyGems API V2 — Versions business capability. Self-contained, no shared references.
+    resources:
+    - name: rubygems-gemName-versions-versionNumber}.json
+      path: /rubygems/{gemName}/versions/{versionNumber}.json
+      operations:
+      - name: getgemversiondetails
+        method: GET
+        description: Get Gem Version Details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: gemName
+          in: path
+          type: string
+          description: The name of the gem
+          required: true
+        - name: versionNumber
+          in: path
+          type: string
+          description: The version number of the gem
+          required: true
+        - name: platform
+          in: query
+          type: string
+          description: Filter by platform. Common values include ruby, java, and x86_64-linux. If not specified, defaults
+            to the ruby platform.
+  exposes:
+  - type: rest
+    namespace: api-v2-versions-rest
+    port: 8080
+    description: REST adapter for RubyGems API V2 — Versions. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/rubygems/{gemname}/versions/versionnumber-json
+      name: rubygems-gemname-versions-versionnumber-json
+      description: REST surface for rubygems-gemName-versions-versionNumber}.json.
+      operations:
+      - method: GET
+        name: getgemversiondetails
+        description: Get Gem Version Details
+        call: api-v2-versions.getgemversiondetails
+        with:
+          gemName: rest.gemName
+          versionNumber: rest.versionNumber
+          platform: rest.platform
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: api-v2-versions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for RubyGems API V2 — Versions. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: get-gem-version-details
+      description: Get Gem Version Details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: api-v2-versions.getgemversiondetails
+      with:
+        gemName: tools.gemName
+        versionNumber: tools.versionNumber
+        platform: tools.platform
+      outputParameters:
+      - type: object
+        mapping: $.

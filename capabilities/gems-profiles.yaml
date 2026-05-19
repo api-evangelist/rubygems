@@ -1,0 +1,104 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: RubyGems Gems API — Profiles
+  description: 'RubyGems Gems API — Profiles. 2 operations. Lead operation: Get Authenticated User Profile. Self-contained
+    Naftiko capability covering one Rubygems business surface.'
+  tags:
+  - Rubygems
+  - Profiles
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RUBYGEMS_API_KEY: RUBYGEMS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: gems-profiles
+    baseUri: https://rubygems.org/api/v1
+    description: RubyGems Gems API — Profiles business capability. Self-contained, no shared references.
+    resources:
+    - name: profile-me.json
+      path: /profile/me.json
+      operations:
+      - name: getmyprofile
+        method: GET
+        description: Get Authenticated User Profile
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: profiles-userHandle}.json
+      path: /profiles/{userHandle}.json
+      operations:
+      - name: getuserprofile
+        method: GET
+        description: Get User Profile
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.RUBYGEMS_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: gems-profiles-rest
+    port: 8080
+    description: REST adapter for RubyGems Gems API — Profiles. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/profile/me-json
+      name: profile-me-json
+      description: REST surface for profile-me.json.
+      operations:
+      - method: GET
+        name: getmyprofile
+        description: Get Authenticated User Profile
+        call: gems-profiles.getmyprofile
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/profiles/userhandle-json
+      name: profiles-userhandle-json
+      description: REST surface for profiles-userHandle}.json.
+      operations:
+      - method: GET
+        name: getuserprofile
+        description: Get User Profile
+        call: gems-profiles.getuserprofile
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: gems-profiles-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for RubyGems Gems API — Profiles. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: get-authenticated-user-profile
+      description: Get Authenticated User Profile
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: gems-profiles.getmyprofile
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-user-profile
+      description: Get User Profile
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: gems-profiles.getuserprofile
+      outputParameters:
+      - type: object
+        mapping: $.

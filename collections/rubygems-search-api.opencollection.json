@@ -1,0 +1,43 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "RubyGems Search API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search For Gems",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rubygems.org/api/v1/search.json",
+            "params": [
+              {
+                "name": "query",
+                "value": "json parser",
+                "type": "query",
+                "description": "The search query string to match against gem names and descriptions."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for paginated results. Each page returns up to 30 matching gems."
+              }
+            ]
+          },
+          "docs": "Submit a search query to RubyGems.org for active gems. Returns an array of gem objects that match the query string against gem names and descriptions. Results are paginated with 30 gems per page."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

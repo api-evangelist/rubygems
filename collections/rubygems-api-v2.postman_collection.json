@@ -1,0 +1,197 @@
+{
+  "item": [
+    {
+      "id": "7feb86fa-3245-46e1-a888-8c5a25f65f4f",
+      "name": "Versions",
+      "description": {
+        "content": "Endpoints for querying detailed version information for specific gem versions, including metadata, dependencies, checksums, and platform-specific builds.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f82cd969-484c-45f8-a6fa-4ce75eac56de",
+          "name": "Get Gem Version Details",
+          "request": {
+            "name": "Get Gem Version Details",
+            "description": {
+              "content": "Returns detailed information about a specific gem version, including name, version number, download counts, platform, authors, description, dependencies, URIs, timestamps, checksums, and metadata. Optionally filter by platform using the platform query parameter.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "rubygems",
+                ":gemName",
+                "versions",
+                "{{versionNumber}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "platform",
+                  "value": "<string>",
+                  "description": "Filter by platform. Common values include ruby, java, and x86_64-linux. If not specified, defaults to the ruby platform."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "gemName",
+                  "description": "(Required) The name of the gem"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4760a9c6-27b8-444b-960b-bd0d5bcde252",
+              "name": "Successful response with version details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rubygems",
+                    ":gemName",
+                    "versions",
+                    "{{versionNumber}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "platform",
+                      "value": "ruby"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "gemName",
+                      "description": "(Required) The name of the gem"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"downloads\": 3837,\n  \"version\": \"string\",\n  \"version_created_at\": \"2002-09-05T01:36:37.943Z\",\n  \"version_downloads\": 8119,\n  \"platform\": \"string\",\n  \"authors\": \"string\",\n  \"info\": \"string\",\n  \"licenses\": [\n    \"string\",\n    \"string\"\n  ],\n  \"metadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"yanked\": true,\n  \"sha\": \"string\",\n  \"spec_sha\": \"string\",\n  \"project_uri\": \"http://bOVZUCxZCKji.ejkoeo2XY3+.dOuw2Wpg2CArPAJbegegaDFkXrqEcUIKLyX.7hkVlbIyYhp3\",\n  \"gem_uri\": \"http://oHyUrBlOFydwMCqYGgRGhaALASgo.somu,UMbI3zDTkanonjvsTChK\",\n  \"homepage_uri\": \"https://NDKoroPixtJSVFDtOlKWIPUd.oplXFSPR1MPr-Jiyp+XPE.QbriFuttPnU.ciIOaMcJ63uS.9PtIaKmsCwzJPU\",\n  \"wiki_uri\": \"http://qCLKdKEIsiRAwnbAbjLK.balplWtDdoXPBa71klKxmA8MBIylvfxwtBSA8piZstFHmnoD0ArCnuBC\",\n  \"documentation_uri\": \"https://gfgULdTAlIOwaPUbqRVupcSY.gkxvSkZZxEr8xSfbG,jA-o,id3wwKc7-ScD9G5-8FnmbRTGv\",\n  \"mailing_list_uri\": \"https://NarCnOxGoPCD.jrtlSd1DMlwz8NG,AF31n7xBSI1Yb00jM.OLmROZEBCufNFj0GfixeWauQCYS+gxv7pikpmNrQox40\",\n  \"source_code_uri\": \"http://AEZznhxFVJCBzrueBGHVG.bjmaSD4k+a0l9Eva2o4jIjwmuTdA2.VdtoAIbK2H6wF\",\n  \"bug_tracker_uri\": \"https://OxnEQHVCHwixfcDDPvUGuzpOu.muB7+A-gerD+ebnIkT\",\n  \"changelog_uri\": \"http://aiQJAECMO.gozmdUtwskRQ+chJl4Ya8ADvomd6UV+4XLLV+fFv44qIkVXrLY,QBKM5kbyviv+21\",\n  \"funding_uri\": \"http://NJAqJCVLtjHgQmHySs.krsrRrHOrvrtZen2N9MaRmzDK6fBM2PUR36NEsobWpiIrTCa+wvEz\",\n  \"dependencies\": {\n    \"development\": [\n      {\n        \"name\": \"string\",\n        \"requirements\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"requirements\": \"string\"\n      }\n    ],\n    \"runtime\": [\n      {\n        \"name\": \"string\",\n        \"requirements\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"requirements\": \"string\"\n      }\n    ]\n  },\n  \"built_at\": \"2017-06-11T08:38:28.820Z\",\n  \"created_at\": \"2016-02-15T01:52:51.670Z\",\n  \"description\": \"string\",\n  \"downloads_count\": 6798,\n  \"number\": \"string\",\n  \"summary\": \"string\",\n  \"rubygems_version\": \"string\",\n  \"ruby_version\": \"string\",\n  \"prerelease\": true,\n  \"requirements\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a342fbf3-2bc9-4b4e-90cf-856269dc5408",
+              "name": "Gem or version not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rubygems",
+                    ":gemName",
+                    "versions",
+                    "{{versionNumber}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "platform",
+                      "value": "ruby"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "gemName",
+                      "description": "(Required) The name of the gem"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://rubygems.org/api/v2",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) The version number of the gem",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "versionNumber"
+    }
+  ],
+  "info": {
+    "_postman_id": "da6341b9-8b87-46bb-9453-d258989fc7a3",
+    "name": "RubyGems API V2",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The RubyGems API V2 is the next-generation API for interacting with RubyGems.org, providing improved endpoints for querying gem versions and dependency information. It offers more structured responses and enhanced filtering capabilities compared to the V1 API. The V2 API is designed to better support modern tooling and dependency resolution workflows used by bundler and other Ruby package management tools.\n\nContact Support:\n Name: RubyGems.org Support",
+      "type": "text/plain"
+    }
+  }
+}

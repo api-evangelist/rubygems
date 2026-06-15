@@ -1,0 +1,176 @@
+{
+  "item": [
+    {
+      "id": "1d63cdcd-b368-442a-9c26-14c55b3e0b18",
+      "name": "Activity",
+      "description": {
+        "content": "Endpoints for monitoring recently added and recently updated gems on RubyGems.org.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2b73f4e2-0ef8-42e6-aa46-9859985c5468",
+          "name": "Get Latest Gems",
+          "request": {
+            "name": "Get Latest Gems",
+            "description": {
+              "content": "Returns the 50 gems most recently added to RubyGems.org. This endpoint provides a snapshot of the newest gems published to the registry and is useful for building activity feeds and monitoring new package releases.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "activity",
+                "latest.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "900df620-264d-441e-aa71-c635383b2b89",
+              "name": "Successful response with array of latest gems",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "activity",
+                    "latest.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"downloads\": 3692,\n    \"version\": \"string\",\n    \"version_created_at\": \"1987-02-27T07:21:46.929Z\",\n    \"version_downloads\": 6815,\n    \"platform\": \"string\",\n    \"authors\": \"string\",\n    \"info\": \"string\",\n    \"licenses\": [\n      \"string\",\n      \"string\"\n    ],\n    \"metadata\": {\n      \"key_0\": \"string\"\n    },\n    \"sha\": \"string\",\n    \"project_uri\": \"https://HgKmRajPTNZJyHXow.icti.FxZSoSqqTUZ\",\n    \"gem_uri\": \"https://KSuBhvKvSRhdGWNcfRlWorzWxXfmL.sbq+Oxo4Gppho.AOulvf2dob03+TCcT6BbxjmSwVE+y4G\",\n    \"homepage_uri\": \"http://JLzaSdWxRmgKVgstYRVAfxQkWVHf.mlQSAwuafXo8xNACQmxT\",\n    \"source_code_uri\": \"http://DjmKchgWtosKYuVW.lhzPBs26S-2LGKbgaTMDPSPGQlOs8N4BFdVKDJ5xmaYRBcbvLcyHbv1BuvDLPEg9\",\n    \"dependencies\": {\n      \"development\": [\n        {\n          \"name\": \"string\",\n          \"requirements\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"requirements\": \"string\"\n        }\n      ],\n      \"runtime\": [\n        {\n          \"name\": \"string\",\n          \"requirements\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"requirements\": \"string\"\n        }\n      ]\n    }\n  },\n  {\n    \"name\": \"string\",\n    \"downloads\": 5259,\n    \"version\": \"string\",\n    \"version_created_at\": \"1948-02-21T10:58:19.687Z\",\n    \"version_downloads\": 856,\n    \"platform\": \"string\",\n    \"authors\": \"string\",\n    \"info\": \"string\",\n    \"licenses\": [\n      \"string\",\n      \"string\"\n    ],\n    \"metadata\": {\n      \"key_0\": \"string\"\n    },\n    \"sha\": \"string\",\n    \"project_uri\": \"http://CGXecOyUQTmAxjMRhGuyO.uosxKJSALok8gIaVrEYkYJWAqvr1nLUG5i70LzHf\",\n    \"gem_uri\": \"http://zBIxspRlsumdetxmdaIZVTKZnq.ztinAzgz9,PuM\",\n    \"homepage_uri\": \"https://tnagLkPTOUMkbFFXT.wgqnOM1Pf,upCJC.pxNQDo7SZ0-bPKfs3+a8TNGa\",\n    \"source_code_uri\": \"https://HQIgKvGpAHkhkvSECJiroGHrDild.hstezI7TtmZ1O8mKb+FP\",\n    \"dependencies\": {\n      \"development\": [\n        {\n          \"name\": \"string\",\n          \"requirements\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"requirements\": \"string\"\n        }\n      ],\n      \"runtime\": [\n        {\n          \"name\": \"string\",\n          \"requirements\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"requirements\": \"string\"\n        }\n      ]\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f2f7c653-3d51-469c-a031-b004ce12d247",
+          "name": "Get Recently Updated Gems",
+          "request": {
+            "name": "Get Recently Updated Gems",
+            "description": {
+              "content": "Returns the 50 most recently updated gems on RubyGems.org. This endpoint returns gem versions that have been most recently modified, making it useful for tracking updates and changes across the Ruby package ecosystem.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "activity",
+                "just_updated.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5ab4ea01-e852-4c3c-915d-89ef5ffd4e99",
+              "name": "Successful response with array of recently updated gems",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "activity",
+                    "just_updated.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"authors\": \"string\",\n    \"built_at\": \"1983-02-15T20:18:06.770Z\",\n    \"created_at\": \"1996-12-23T05:19:14.398Z\",\n    \"description\": \"string\",\n    \"downloads_count\": 3753,\n    \"number\": \"string\",\n    \"summary\": \"string\",\n    \"platform\": \"string\",\n    \"prerelease\": true,\n    \"licenses\": [\n      \"string\",\n      \"string\"\n    ],\n    \"sha\": \"string\"\n  },\n  {\n    \"authors\": \"string\",\n    \"built_at\": \"1958-02-25T17:38:07.966Z\",\n    \"created_at\": \"1969-08-03T06:34:54.750Z\",\n    \"description\": \"string\",\n    \"downloads_count\": 88,\n    \"number\": \"string\",\n    \"summary\": \"string\",\n    \"platform\": \"string\",\n    \"prerelease\": false,\n    \"licenses\": [\n      \"string\",\n      \"string\"\n    ],\n    \"sha\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://rubygems.org/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "d3bad286-b67f-46bf-b08e-0a5cdc63db05",
+    "name": "RubyGems Activity API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The RubyGems Activity API provides endpoints that return the most recently added and most recently updated gems on RubyGems.org. The latest endpoint returns the 50 gems most recently published to the registry, while the just-updated endpoint returns the 50 most recently modified gems. These endpoints are useful for building activity feeds, monitoring new releases, and tracking changes across the Ruby ecosystem.\n\nContact Support:\n Name: RubyGems.org Support",
+      "type": "text/plain"
+    }
+  }
+}

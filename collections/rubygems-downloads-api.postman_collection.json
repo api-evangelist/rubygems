@@ -1,0 +1,220 @@
+{
+  "item": [
+    {
+      "id": "9eaeded4-1f11-445b-b3aa-a7eb52e3eeb1",
+      "name": "Downloads",
+      "description": {
+        "content": "Endpoints for retrieving download count statistics for gems and gem versions on RubyGems.org.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "aa749d94-b212-443b-a7f6-a0666fff5b3b",
+          "name": "Get Total Downloads",
+          "request": {
+            "name": "Get Total Downloads",
+            "description": {
+              "content": "Returns the total number of gem downloads across all gems on RubyGems.org. This provides a single aggregate count of all gem installations ever recorded.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "downloads.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a95dbc1d-8b7f-4e78-9366-ae6841b39675",
+              "name": "Successful response with total download count",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "downloads.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 100000000000\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4bc95f06-1549-4d7b-84ad-2479323e6212",
+          "name": "Get Version Download Counts",
+          "request": {
+            "name": "Get Version Download Counts",
+            "description": {
+              "content": "Returns download count statistics for a specific gem version. The path parameter combines the gem name and version number with a hyphen separator (e.g., rails-7.0.0). Returns both the version- specific download count and the total download count across all versions of the gem.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "downloads",
+                "{{gemNameVersion}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "61f0fcee-5b32-4362-829b-71249c79a2ea",
+              "name": "Successful response with download statistics",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "downloads",
+                    "{{gemNameVersion}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"version_downloads\": 5000000,\n  \"total_downloads\": 500000000\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6cdf818a-1be6-48ce-b4fa-452fbde32f07",
+              "name": "Gem version not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "downloads",
+                    "{{gemNameVersion}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://rubygems.org/api/v1",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) The gem name and version number joined by a hyphen (e.g., rails-7.0.0).",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "gemNameVersion"
+    }
+  ],
+  "info": {
+    "_postman_id": "a7675224-1b97-45b4-9bcf-8a0e571c530f",
+    "name": "RubyGems Downloads API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The RubyGems Downloads API provides access to download count statistics for gems hosted on RubyGems.org. Developers can retrieve total download counts for specific gems and individual gem versions. This data is commonly used to gauge gem popularity, generate usage reports, and build dashboards that track adoption trends across the Ruby package ecosystem.\n\nContact Support:\n Name: RubyGems.org Support",
+      "type": "text/plain"
+    }
+  }
+}

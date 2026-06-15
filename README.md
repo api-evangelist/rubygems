@@ -1,92 +1,222 @@
-# RubyGems
+# RubyGems (rubygems)
 
-RubyGems.org is the Ruby community's primary gem hosting service, providing the infrastructure for publishing, discovering, and installing Ruby gems. The RubyGems API enables programmatic access to gem metadata, version information, download statistics, search, owner management, webhooks, and the compact index used by Bundler.
+RubyGems.org is the Ruby community's primary gem hosting service, providing the infrastructure for publishing, discovering, and installing Ruby gems. The RubyGems API enables programmatic access to gem metadata, version information, download statistics, search, owner management, webhooks, and the compact index used by Bundler for dependency resolution. RubyGems.org hosts over 160,000 gems with billions of total downloads.
 
-**Human URL:** https://guides.rubygems.org/
+**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/rubygems/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/rubygems/refs/heads/main/apis.yml)
+
+## Scope
+
+- **Type:** Index
+- **Position:** Consumer
+- **Access:** 3rd-Party
+
+## Tags
+
+- Ruby
+- Package Manager
+- Open Source
+- Developer Tools
+
+## Timestamps
+
+- **Created:** 2025-01-01
+- **Modified:** 2026-05-19
 
 ## APIs
 
-| API | Description |
-|-----|-------------|
-| [RubyGems Gems API](openapi/rubygems-gems-api-openapi.yml) | Gem metadata, ownership, publishing, and OIDC trusted publishing |
-| [RubyGems API V2](openapi/rubygems-api-v2-openapi.yml) | Next-generation gem version details API |
-| [RubyGems Downloads API](openapi/rubygems-downloads-api-openapi.yml) | Download count statistics for gems and versions |
-| [RubyGems Search API](openapi/rubygems-search-api-openapi.yml) | Full-text gem search |
-| [RubyGems Activity API](openapi/rubygems-activity-api-openapi.yml) | Recently added and updated gem feeds |
-| [RubyGems Webhooks API](openapi/rubygems-webhooks-api-openapi.yml) | Webhook subscriptions for gem push events |
+### RubyGems Gems API
 
-## OpenAPI Specifications
+The RubyGems Gems API (v1) provides endpoints for retrieving gem metadata, listing owned gems, submitting new gems, yanking gem versions, managing gem ownership, retrieving user profiles, querying gem dependencies, and exchanging OIDC tokens for API keys for trusted publishing workflows.
 
-| Spec | Description |
-|------|-------------|
-| [rubygems-gems-api-openapi.yml](openapi/rubygems-gems-api-openapi.yml) | Gems, Versions, Owners, Profiles, Dependencies, API Keys |
-| [rubygems-api-v2-openapi.yml](openapi/rubygems-api-v2-openapi.yml) | API V2 gem version details endpoint |
-| [rubygems-downloads-api-openapi.yml](openapi/rubygems-downloads-api-openapi.yml) | Download statistics endpoints |
-| [rubygems-search-api-openapi.yml](openapi/rubygems-search-api-openapi.yml) | Search endpoint |
-| [rubygems-activity-api-openapi.yml](openapi/rubygems-activity-api-openapi.yml) | Activity feed endpoints |
-| [rubygems-webhooks-api-openapi.yml](openapi/rubygems-webhooks-api-openapi.yml) | Webhook management endpoints |
+- **Human URL:** [https://guides.rubygems.org/rubygems-org-api/](https://guides.rubygems.org/rubygems-org-api/)
+- **Base URL:** `https://rubygems.org/api/v1`
 
-## AsyncAPI Specifications
+#### Tags
 
-| Spec | Description |
-|------|-------------|
-| [rubygems-webhooks-asyncapi.yml](asyncapi/rubygems-webhooks-asyncapi.yml) | Webhook event schemas for gem push notifications |
+- Ruby
+- Gems
+- Package Manager
 
-## Rules
+#### Properties
 
-| Ruleset | Description |
-|---------|-------------|
-| [rubygems-spectral-rules.yml](rules/rubygems-spectral-rules.yml) | Spectral ruleset enforcing RubyGems API design conventions |
+- [Documentation](https://guides.rubygems.org/rubygems-org-api/)
+- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/rubygems/refs/heads/main/openapi/rubygems-gems-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/rubygems-activity-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/rubygems-activity-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/rubygems-api-v2.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/rubygems-api-v2.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/rubygems-downloads-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/rubygems-downloads-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/rubygems-gems-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/rubygems-gems-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/rubygems-search-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/rubygems-search-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/rubygems-webhooks-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/rubygems-webhooks-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
-## Capabilities
+### RubyGems API V2
 
-### Workflow Capabilities
+The RubyGems API V2 provides improved endpoints for querying detailed gem version information including metadata, dependencies, checksums, and platform-specific builds. Designed to better support modern tooling and dependency resolution workflows.
 
-| Capability | Description |
-|------------|-------------|
-| [gem-discovery.yaml](capabilities/gem-discovery.yaml) | Gem search, metadata, version history, and dependency analysis |
-| [gem-publishing.yaml](capabilities/gem-publishing.yaml) | Gem publishing, ownership management, and webhook setup |
+- **Human URL:** [https://guides.rubygems.org/rubygems-org-api-v2/](https://guides.rubygems.org/rubygems-org-api-v2/)
+- **Base URL:** `https://rubygems.org/api/v2`
 
-### Shared Definitions
+#### Tags
 
-| Shared | Description |
-|--------|-------------|
-| [gems-api.yaml](capabilities/shared/gems-api.yaml) | Per-API definition for RubyGems Gems API v1 |
-| [search-api.yaml](capabilities/shared/search-api.yaml) | Per-API definition for RubyGems Search API |
-| [webhooks-api.yaml](capabilities/shared/webhooks-api.yaml) | Per-API definition for RubyGems Webhooks API |
+- Ruby
+- Gems
+- Versions
+- Package Manager
 
-## Schemas
+#### Properties
 
-| Schema | Description |
-|--------|-------------|
-| [rubygems-gem-schema.json](json-schema/rubygems-gem-schema.json) | JSON Schema for Ruby gem records |
+- [Documentation](https://guides.rubygems.org/rubygems-org-api-v2/)
+- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/rubygems/refs/heads/main/openapi/rubygems-api-v2-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/rubygems-activity-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/rubygems-activity-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/rubygems-api-v2.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/rubygems-api-v2.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/rubygems-downloads-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/rubygems-downloads-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/rubygems-gems-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/rubygems-gems-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/rubygems-search-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/rubygems-search-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/rubygems-webhooks-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/rubygems-webhooks-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
-## Structures
+### RubyGems Downloads API
 
-| Structure | Description |
-|-----------|-------------|
-| [rubygems-structure.json](json-structure/rubygems-structure.json) | JSON structure documentation for RubyGems data entities |
+The RubyGems Downloads API provides download count statistics for gems and individual gem versions hosted on RubyGems.org.
 
-## JSON-LD
+- **Human URL:** [https://guides.rubygems.org/rubygems-org-api/](https://guides.rubygems.org/rubygems-org-api/)
+- **Base URL:** `https://rubygems.org/api/v1`
 
-| Context | Description |
-|---------|-------------|
-| [rubygems-context.jsonld](json-ld/rubygems-context.jsonld) | JSON-LD context mapping RubyGems vocabulary to schema.org |
+#### Tags
 
-## Examples
+- Ruby
+- Downloads
+- Statistics
 
-| Example | Description |
-|---------|-------------|
-| [rubygems-get-gem-info-example.json](examples/rubygems-get-gem-info-example.json) | Get detailed information about the rails gem |
-| [rubygems-search-gems-example.json](examples/rubygems-search-gems-example.json) | Search for JSON parser gems |
+#### Properties
 
-## Vocabulary
+- [Documentation](https://guides.rubygems.org/rubygems-org-api/)
+- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/rubygems/refs/heads/main/openapi/rubygems-downloads-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/rubygems-activity-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/rubygems-activity-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/rubygems-api-v2.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/rubygems-api-v2.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/rubygems-downloads-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/rubygems-downloads-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/rubygems-gems-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/rubygems-gems-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/rubygems-search-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/rubygems-search-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/rubygems-webhooks-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/rubygems-webhooks-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
-| Vocabulary | Description |
-|------------|-------------|
-| [rubygems-vocabulary.yml](vocabulary/rubygems-vocabulary.yml) | Domain vocabulary for Ruby gems, versioning, and publishing |
+### RubyGems Search API
+
+The RubyGems Search API allows developers to search for gems by matching a query string against gem names and descriptions. Returns paginated results of active gems.
+
+- **Human URL:** [https://guides.rubygems.org/rubygems-org-api/](https://guides.rubygems.org/rubygems-org-api/)
+- **Base URL:** `https://rubygems.org/api/v1`
+
+#### Tags
+
+- Ruby
+- Search
+- Discovery
+
+#### Properties
+
+- [Documentation](https://guides.rubygems.org/rubygems-org-api/)
+- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/rubygems/refs/heads/main/openapi/rubygems-search-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/rubygems-activity-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/rubygems-activity-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/rubygems-api-v2.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/rubygems-api-v2.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/rubygems-downloads-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/rubygems-downloads-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/rubygems-gems-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/rubygems-gems-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/rubygems-search-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/rubygems-search-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/rubygems-webhooks-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/rubygems-webhooks-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+
+### RubyGems Activity API
+
+The RubyGems Activity API provides activity feeds of the most recently added and most recently updated gems on RubyGems.org, useful for monitoring new releases and tracking ecosystem changes.
+
+- **Human URL:** [https://guides.rubygems.org/rubygems-org-api/](https://guides.rubygems.org/rubygems-org-api/)
+- **Base URL:** `https://rubygems.org/api/v1`
+
+#### Tags
+
+- Ruby
+- Activity
+- Monitoring
+
+#### Properties
+
+- [Documentation](https://guides.rubygems.org/rubygems-org-api/)
+- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/rubygems/refs/heads/main/openapi/rubygems-activity-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/rubygems-activity-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/rubygems-activity-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/rubygems-api-v2.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/rubygems-api-v2.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/rubygems-downloads-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/rubygems-downloads-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/rubygems-gems-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/rubygems-gems-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/rubygems-search-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/rubygems-search-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/rubygems-webhooks-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/rubygems-webhooks-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+
+### RubyGems Webhooks API
+
+The RubyGems Webhooks API enables webhook subscriptions that fire when gems are pushed to RubyGems.org. Webhooks can be scoped to a specific gem or applied globally using a wildcard. Includes test-fire functionality and HMAC signature verification.
+
+- **Human URL:** [https://guides.rubygems.org/rubygems-org-api/](https://guides.rubygems.org/rubygems-org-api/)
+- **Base URL:** `https://rubygems.org/api/v1`
+
+#### Tags
+
+- Ruby
+- Webhooks
+- Events
+
+#### Properties
+
+- [Documentation](https://guides.rubygems.org/rubygems-org-api/)
+- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/rubygems/refs/heads/main/openapi/rubygems-webhooks-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [AsyncAPI](https://raw.githubusercontent.com/api-evangelist/rubygems/refs/heads/main/asyncapi/rubygems-webhooks-asyncapi.yml) — [AsyncAPI Specification](https://www.asyncapi.com/docs/reference/specification/latest)
+- [Postman Collection](collections/rubygems-activity-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/rubygems-activity-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/rubygems-api-v2.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/rubygems-api-v2.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/rubygems-downloads-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/rubygems-downloads-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/rubygems-gems-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/rubygems-gems-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/rubygems-search-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/rubygems-search-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/rubygems-webhooks-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/rubygems-webhooks-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+
+## Common Properties
+
+- [Portal](https://rubygems.org/)
+- [Documentation](https://guides.rubygems.org/)
+- [Authentication](https://guides.rubygems.org/api-key-scopes/)
+- [Git Hub](https://github.com/rubygems/rubygems.org)
+- [Status Page](https://status.rubygems.org/)
+- [Blog](https://blog.rubygems.org/)
+- [L L Ms Txt](https://blog.rubygems.org/llms.txt)
 
 ## Maintainers
 
-**FN:** Kin Lane  
+**FN:** Kin Lane
 **Email:** kin@apievangelist.com

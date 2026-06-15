@@ -1,0 +1,109 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "RubyGems Webhooks API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rubygems.org/api/v1/web_hooks.json"
+          },
+          "docs": "Returns all webhooks registered under the authenticated user's account. The response is an object where keys are gem names (or a wildcard) and values are arrays of webhook objects."
+        },
+        {
+          "info": {
+            "name": "Create A Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rubygems.org/api/v1/web_hooks",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "gem_name",
+                  "value": ""
+                },
+                {
+                  "name": "url",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Register a new webhook that fires when a gem is pushed to RubyGems.org. Use an asterisk (*) as the gem_name to create a global webhook that fires for all gem pushes."
+        },
+        {
+          "info": {
+            "name": "Remove A Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://rubygems.org/api/v1/web_hooks/remove",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "gem_name",
+                  "value": ""
+                },
+                {
+                  "name": "url",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Remove an existing webhook subscription. The gem_name and url must match an existing webhook. Use an asterisk (*) as the gem_name to remove a global webhook."
+        },
+        {
+          "info": {
+            "name": "Test Fire A Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rubygems.org/api/v1/web_hooks/fire",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "gem_name",
+                  "value": ""
+                },
+                {
+                  "name": "url",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Test fire an existing webhook to verify it is working correctly. The fired request includes an Authorization header containing a SHA-256 HMAC signature for verification. Use an asterisk (*) as the gem_name to test fire a global webhook."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

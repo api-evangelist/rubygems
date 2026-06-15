@@ -1,0 +1,40 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "RubyGems Activity API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Activity",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Latest Gems",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rubygems.org/api/v1/activity/latest.json"
+          },
+          "docs": "Returns the 50 gems most recently added to RubyGems.org. This endpoint provides a snapshot of the newest gems published to the registry and is useful for building activity feeds and monitoring new package releases."
+        },
+        {
+          "info": {
+            "name": "Get Recently Updated Gems",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rubygems.org/api/v1/activity/just_updated.json"
+          },
+          "docs": "Returns the 50 most recently updated gems on RubyGems.org. This endpoint returns gem versions that have been most recently modified, making it useful for tracking updates and changes across the Ruby package ecosystem."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

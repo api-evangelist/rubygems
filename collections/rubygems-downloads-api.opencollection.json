@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "RubyGems Downloads API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Downloads",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Total Downloads",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rubygems.org/api/v1/downloads.json"
+          },
+          "docs": "Returns the total number of gem downloads across all gems on RubyGems.org. This provides a single aggregate count of all gem installations ever recorded."
+        },
+        {
+          "info": {
+            "name": "Get Version Download Counts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rubygems.org/api/v1/downloads/:gemNameVersion.json",
+            "params": [
+              {
+                "name": "gemNameVersion",
+                "value": "rails-7.0.0",
+                "type": "path",
+                "description": "The gem name and version number joined by a hyphen (e.g., rails-7.0.0)."
+              }
+            ]
+          },
+          "docs": "Returns download count statistics for a specific gem version. The path parameter combines the gem name and version number with a hyphen separator (e.g., rails-7.0.0). Returns both the version- specific download count and the total download count across all versions of the gem."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

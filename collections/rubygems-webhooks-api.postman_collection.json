@@ -1,0 +1,931 @@
+{
+  "item": [
+    {
+      "id": "666a0f75-3880-4bfe-b2aa-21c9d77358f8",
+      "name": "Webhooks",
+      "description": {
+        "content": "Endpoints for managing webhook subscriptions that fire when gems are pushed to RubyGems.org.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e0f2fc66-d8e5-4830-8792-8f70bc3b7424",
+          "name": "List Webhooks",
+          "request": {
+            "name": "List Webhooks",
+            "description": {
+              "content": "Returns all webhooks registered under the authenticated user's account. The response is an object where keys are gem names (or a wildcard) and values are arrays of webhook objects.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "web_hooks.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c73abda7-7088-421e-a2c4-892db67b80f3",
+              "name": "Successful response with webhook listings",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "web_hooks.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": [\n    {\n      \"url\": \"https://vCKmjTteEhjOfgMEkVBSe.ciCSdX\",\n      \"failure_count\": 4335\n    },\n    {\n      \"url\": \"https://aXSjtlsC.jaoKNkmqD0fanOrwIlC-B8SwviTn+NhPeE3DeChWaIR\",\n      \"failure_count\": 9360\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "be759692-2b54-4fe8-b559-d74d030df1e7",
+              "name": "Unauthorized - invalid or missing API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "web_hooks.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a5b745de-b177-4024-9489-f3d8897335c0",
+          "name": "Create A Webhook",
+          "request": {
+            "name": "Create A Webhook",
+            "description": {
+              "content": "Register a new webhook that fires when a gem is pushed to RubyGems.org. Use an asterisk (*) as the gem_name to create a global webhook that fires for all gem pushes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "web_hooks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "gem_name",
+                  "value": "<string>",
+                  "description": "(Required) Name of the gem to watch, or asterisk (*) for all gems."
+                },
+                {
+                  "disabled": false,
+                  "key": "url",
+                  "value": "<uri>",
+                  "description": "(Required) The URL to receive webhook notifications"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3288cad2-e538-4eab-beaa-e55e916cd5a1",
+              "name": "Webhook created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "web_hooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Name of the gem to watch, or asterisk (*) for all gems.",
+                        "type": "text/plain"
+                      },
+                      "key": "gem_name",
+                      "value": "rails"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The URL to receive webhook notifications",
+                        "type": "text/plain"
+                      },
+                      "key": "url",
+                      "value": "https://example.com/webhooks/rubygems"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "Successfully created webhook for rails to https://example.com/webhooks/rubygems",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "67611528-5046-421c-acc7-e4adbb3c12bc",
+              "name": "Unauthorized - invalid or missing API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "web_hooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Name of the gem to watch, or asterisk (*) for all gems.",
+                        "type": "text/plain"
+                      },
+                      "key": "gem_name",
+                      "value": "rails"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The URL to receive webhook notifications",
+                        "type": "text/plain"
+                      },
+                      "key": "url",
+                      "value": "https://example.com/webhooks/rubygems"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8d2fe0d6-c720-4e82-a66a-4a43977f78ea",
+              "name": "Webhook already exists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "web_hooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Name of the gem to watch, or asterisk (*) for all gems.",
+                        "type": "text/plain"
+                      },
+                      "key": "gem_name",
+                      "value": "rails"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The URL to receive webhook notifications",
+                        "type": "text/plain"
+                      },
+                      "key": "url",
+                      "value": "https://example.com/webhooks/rubygems"
+                    }
+                  ]
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fa7136f5-254c-4f74-b430-510ab9aad231",
+          "name": "Remove A Webhook",
+          "request": {
+            "name": "Remove A Webhook",
+            "description": {
+              "content": "Remove an existing webhook subscription. The gem_name and url must match an existing webhook. Use an asterisk (*) as the gem_name to remove a global webhook.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "web_hooks",
+                "remove"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "gem_name",
+                  "value": "<string>",
+                  "description": "(Required) Name of the gem, or asterisk (*) for a global webhook."
+                },
+                {
+                  "disabled": false,
+                  "key": "url",
+                  "value": "<uri>",
+                  "description": "(Required) The URL of the webhook to remove"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "46fa2d4a-504e-4050-af30-e01713ef6890",
+              "name": "Webhook removed successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "web_hooks",
+                    "remove"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Name of the gem, or asterisk (*) for a global webhook.",
+                        "type": "text/plain"
+                      },
+                      "key": "gem_name",
+                      "value": "rails"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The URL of the webhook to remove",
+                        "type": "text/plain"
+                      },
+                      "key": "url",
+                      "value": "https://example.com/webhooks/rubygems"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "Successfully removed webhook for rails to https://example.com/webhooks/rubygems",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9c6ec39e-42c6-4414-87f1-d9c437036794",
+              "name": "Unauthorized - invalid or missing API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "web_hooks",
+                    "remove"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Name of the gem, or asterisk (*) for a global webhook.",
+                        "type": "text/plain"
+                      },
+                      "key": "gem_name",
+                      "value": "rails"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The URL of the webhook to remove",
+                        "type": "text/plain"
+                      },
+                      "key": "url",
+                      "value": "https://example.com/webhooks/rubygems"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f190f686-058d-45c5-bbc7-76d972f19ce7",
+              "name": "Webhook not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "web_hooks",
+                    "remove"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Name of the gem, or asterisk (*) for a global webhook.",
+                        "type": "text/plain"
+                      },
+                      "key": "gem_name",
+                      "value": "rails"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The URL of the webhook to remove",
+                        "type": "text/plain"
+                      },
+                      "key": "url",
+                      "value": "https://example.com/webhooks/rubygems"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "749be4aa-9719-4196-9145-e777c2c5b9a6",
+          "name": "Test Fire A Webhook",
+          "request": {
+            "name": "Test Fire A Webhook",
+            "description": {
+              "content": "Test fire an existing webhook to verify it is working correctly. The fired request includes an Authorization header containing a SHA-256 HMAC signature for verification. Use an asterisk (*) as the gem_name to test fire a global webhook.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "web_hooks",
+                "fire"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "gem_name",
+                  "value": "<string>",
+                  "description": "(Required) Name of the gem, or asterisk (*) for a global webhook."
+                },
+                {
+                  "disabled": false,
+                  "key": "url",
+                  "value": "<uri>",
+                  "description": "(Required) The URL of the webhook to test fire"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c18298fe-6049-4fa0-9cd3-89b29ea0e324",
+              "name": "Webhook test fired successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "web_hooks",
+                    "fire"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Name of the gem, or asterisk (*) for a global webhook.",
+                        "type": "text/plain"
+                      },
+                      "key": "gem_name",
+                      "value": "rails"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The URL of the webhook to test fire",
+                        "type": "text/plain"
+                      },
+                      "key": "url",
+                      "value": "https://example.com/webhooks/rubygems"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "Successfully deployed webhook for rails to https://example.com/webhooks/rubygems",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "124699f4-1a96-4e54-9af5-edade18cb5a0",
+              "name": "Unauthorized - invalid or missing API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "web_hooks",
+                    "fire"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Name of the gem, or asterisk (*) for a global webhook.",
+                        "type": "text/plain"
+                      },
+                      "key": "gem_name",
+                      "value": "rails"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The URL of the webhook to test fire",
+                        "type": "text/plain"
+                      },
+                      "key": "url",
+                      "value": "https://example.com/webhooks/rubygems"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3e2dbe39-014d-4bd4-930f-4daab91c6df7",
+              "name": "Webhook not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "web_hooks",
+                    "fire"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Name of the gem, or asterisk (*) for a global webhook.",
+                        "type": "text/plain"
+                      },
+                      "key": "gem_name",
+                      "value": "rails"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The URL of the webhook to test fire",
+                        "type": "text/plain"
+                      },
+                      "key": "url",
+                      "value": "https://example.com/webhooks/rubygems"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://rubygems.org/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "09e6e55b-55d4-46a8-9843-67277a2e3715",
+    "name": "RubyGems Webhooks API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The RubyGems Webhooks API enables developers to register, list, test, and remove webhook subscriptions that fire when gems are pushed to RubyGems.org. Webhooks can be configured for specific gems or applied globally using a wildcard to receive notifications for all gem pushes. Each webhook request includes an Authorization header for verification, allowing downstream systems to confirm the notification originated from RubyGems.org.\n\nContact Support:\n Name: RubyGems.org Support",
+      "type": "text/plain"
+    }
+  }
+}

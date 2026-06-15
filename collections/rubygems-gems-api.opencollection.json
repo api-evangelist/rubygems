@@ -1,0 +1,463 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "RubyGems Gems API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Gems",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Gem Information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rubygems.org/api/v1/gems/:gemName.json",
+            "params": [
+              {
+                "name": "gemName",
+                "value": "rails",
+                "type": "path",
+                "description": "The name of the gem"
+              }
+            ]
+          },
+          "docs": "Returns detailed information about a specific gem, including its name, downloads count, current version, authors, version downloads, homepage URI, and dependency lists for runtime and development."
+        },
+        {
+          "info": {
+            "name": "List Gems Owned By The Authenticated User",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rubygems.org/api/v1/gems.json"
+          },
+          "docs": "Returns an array of gem objects that the authenticated user owns. Requires a valid API key for authentication."
+        },
+        {
+          "info": {
+            "name": "Submit A Gem",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rubygems.org/api/v1/gems",
+            "headers": [
+              {
+                "name": "OTP",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Submit a built RubyGem (.gem file) to RubyGems.org. The gem binary must be included in the request body. On successful submission, the gem is published and available for installation."
+        },
+        {
+          "info": {
+            "name": "Yank A Gem Version",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://rubygems.org/api/v1/gems/yank",
+            "headers": [
+              {
+                "name": "OTP",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "gem_name",
+                "value": "",
+                "type": "query",
+                "description": "Name of the gem to yank"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query",
+                "description": "Version number to yank"
+              },
+              {
+                "name": "platform",
+                "value": "",
+                "type": "query",
+                "description": "Platform of the gem version to yank, such as ruby, java, or x86_64-linux."
+              }
+            ]
+          },
+          "docs": "Remove a specific gem version from RubyGems.org. Yanked gems are no longer available for installation but their metadata is retained. The gem name, version, and optionally platform must be specified."
+        },
+        {
+          "info": {
+            "name": "Get Reverse Dependencies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rubygems.org/api/v1/gems/:gemName/reverse_dependencies.json",
+            "params": [
+              {
+                "name": "gemName",
+                "value": "rails",
+                "type": "path",
+                "description": "The name of the gem"
+              }
+            ]
+          },
+          "docs": "Returns an array of gem names that depend on the specified gem. This is useful for understanding the downstream impact of changes to a gem."
+        },
+        {
+          "info": {
+            "name": "Get API Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rubygems.org/api/v1/api_key.json",
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Retrieve the API key for the authenticated user. Requires HTTP Basic authentication with email and password."
+        },
+        {
+          "info": {
+            "name": "Exchange OIDC Token For API Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rubygems.org/api/v1/oidc/trusted_publisher/exchange_token",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Exchange an OIDC identity token from a trusted publisher for a short-lived RubyGems API key. This enables automated gem publishing from CI/CD systems without storing long-lived API keys."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Versions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Gem Versions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rubygems.org/api/v1/versions/:gemName.json",
+            "params": [
+              {
+                "name": "gemName",
+                "value": "rails",
+                "type": "path",
+                "description": "The name of the gem"
+              }
+            ]
+          },
+          "docs": "Returns an array of version objects for a specific gem, including version numbers, platforms, authors, descriptions, checksums, and metadata for each published version."
+        },
+        {
+          "info": {
+            "name": "Get Latest Gem Version",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rubygems.org/api/v1/versions/:gemName/latest.json",
+            "params": [
+              {
+                "name": "gemName",
+                "value": "rails",
+                "type": "path",
+                "description": "The name of the gem"
+              }
+            ]
+          },
+          "docs": "Returns an object containing the latest version number for the specified gem."
+        },
+        {
+          "info": {
+            "name": "Get Versions Within A Timeframe",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rubygems.org/api/v1/timeframe_versions.json",
+            "params": [
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "Start of the timeframe in ISO 8601 format (e.g., 2024-01-01T00:00:00Z). Required."
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "End of the timeframe in ISO 8601 format. Defaults to current time if not specified."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for paginated results"
+              }
+            ]
+          },
+          "docs": "Returns an array of gem versions created within a specified timeframe. The from parameter is required and must be an ISO 8601 timestamp. The time span cannot exceed 7 days. Results are paginated with 30 versions per page."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Owners",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Gems By Owner",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rubygems.org/api/v1/owners/:userHandle/gems.json",
+            "params": [
+              {
+                "name": "userHandle",
+                "value": "tenderlove",
+                "type": "path",
+                "description": "The user handle or numeric user ID"
+              }
+            ]
+          },
+          "docs": "Returns an array of gem objects owned by the specified user, identified by their handle or user ID."
+        },
+        {
+          "info": {
+            "name": "List Owners Of A Gem",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rubygems.org/api/v1/gems/:gemName/owners.json",
+            "params": [
+              {
+                "name": "gemName",
+                "value": "rails",
+                "type": "path",
+                "description": "The name of the gem"
+              }
+            ]
+          },
+          "docs": "Returns an array of owner objects for the specified gem, including their email addresses."
+        },
+        {
+          "info": {
+            "name": "Add A Gem Owner",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rubygems.org/api/v1/gems/:gemName/owners",
+            "headers": [
+              {
+                "name": "OTP",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "gemName",
+                "value": "rails",
+                "type": "path",
+                "description": "The name of the gem"
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "email",
+                  "value": ""
+                },
+                {
+                  "name": "role",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Add a new owner to the specified gem. The new owner is identified by their email address and can be assigned a role."
+        },
+        {
+          "info": {
+            "name": "Update A Gem Owner",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://rubygems.org/api/v1/gems/:gemName/owners",
+            "headers": [
+              {
+                "name": "OTP",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "gemName",
+                "value": "rails",
+                "type": "path",
+                "description": "The name of the gem"
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "email",
+                  "value": ""
+                },
+                {
+                  "name": "role",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Update the role of an existing owner on the specified gem."
+        },
+        {
+          "info": {
+            "name": "Remove A Gem Owner",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://rubygems.org/api/v1/gems/:gemName/owners",
+            "headers": [
+              {
+                "name": "OTP",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "gemName",
+                "value": "rails",
+                "type": "path",
+                "description": "The name of the gem"
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "email",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Remove an owner from the specified gem. The owner is identified by their email address."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Profiles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get User Profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rubygems.org/api/v1/profiles/:userHandle.json",
+            "params": [
+              {
+                "name": "userHandle",
+                "value": "tenderlove",
+                "type": "path",
+                "description": "The user handle or numeric user ID"
+              }
+            ]
+          },
+          "docs": "Returns profile information for the specified user, identified by their handle or user ID."
+        },
+        {
+          "info": {
+            "name": "Get Authenticated User Profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rubygems.org/api/v1/profile/me.json",
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns the profile information for the currently authenticated user, including multi-factor authentication status. Requires HTTP Basic authentication with email and password."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Dependencies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Gem Dependencies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rubygems.org/api/v1/dependencies",
+            "params": [
+              {
+                "name": "gems",
+                "value": "rails,sinatra",
+                "type": "query",
+                "description": "Comma-separated list of gem names"
+              }
+            ]
+          },
+          "docs": "Returns dependency information for one or more gems specified as a comma-separated list. The response is a marshalled array of hashes containing dependency details. This endpoint is deprecated in favor of the Compact Index API."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

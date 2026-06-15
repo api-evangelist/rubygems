@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "RubyGems API V2",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Versions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Gem Version Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rubygems.org/api/v2/rubygems/:gemName/versions/:versionNumber.json",
+            "params": [
+              {
+                "name": "gemName",
+                "value": "coulda",
+                "type": "path",
+                "description": "The name of the gem"
+              },
+              {
+                "name": "versionNumber",
+                "value": "0.7.1",
+                "type": "path",
+                "description": "The version number of the gem"
+              },
+              {
+                "name": "platform",
+                "value": "ruby",
+                "type": "query",
+                "description": "Filter by platform. Common values include ruby, java, and x86_64-linux. If not specified, defaults to the ruby platform."
+              }
+            ]
+          },
+          "docs": "Returns detailed information about a specific gem version, including name, version number, download counts, platform, authors, description, dependencies, URIs, timestamps, checksums, and metadata. Optionally filter by platform using the platform query parameter."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

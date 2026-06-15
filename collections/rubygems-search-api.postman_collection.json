@@ -1,0 +1,124 @@
+{
+  "item": [
+    {
+      "id": "1d265dc9-4efb-40a2-b070-0af6844abbf9",
+      "name": "Search",
+      "description": {
+        "content": "Endpoints for searching gems on RubyGems.org by name and description.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1b19b3bf-7cb7-46f6-83b5-be6ff6491575",
+          "name": "Search For Gems",
+          "request": {
+            "name": "Search For Gems",
+            "description": {
+              "content": "Submit a search query to RubyGems.org for active gems. Returns an array of gem objects that match the query string against gem names and descriptions. Results are paginated with 30 gems per page.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "search.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>",
+                  "description": "(Required) The search query string to match against gem names and descriptions."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for paginated results. Each page returns up to 30 matching gems."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e3ad326d-996d-411a-9d5e-5046a2bd93e8",
+              "name": "Successful response with array of matching gems",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "json parser"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"downloads\": 7752,\n    \"version\": \"string\",\n    \"version_created_at\": \"1989-12-24T12:38:22.027Z\",\n    \"version_downloads\": 6501,\n    \"platform\": \"string\",\n    \"authors\": \"string\",\n    \"info\": \"string\",\n    \"licenses\": [\n      \"string\",\n      \"string\"\n    ],\n    \"metadata\": {\n      \"key_0\": \"string\"\n    },\n    \"sha\": \"string\",\n    \"project_uri\": \"https://usQRpPJXXVJYbMWQQIjaK.zmrQHYposZpyynZ.NreTILwFNGbIvzH8lgOcIB\",\n    \"gem_uri\": \"https://mfwZyjvEkhlznaoqxVzVQ.ycwub5Xtd9d.mesy51qO1pINb6hTANUfFeJq0Hi1ff8naP21idO4DJHrRV,Mq2GH8HgLvfL5nzmJDDf.\",\n    \"homepage_uri\": \"https://TQreH.qifnEU2ysEuwnbhCyY2fCSyo7RIs+ABj7FgIWopdn8xBKlBn9vj1ck8IGbABeRLtW31b2fFE6vSMr\",\n    \"documentation_uri\": \"https://awpUtHtnDaKRqKR.bwzmt0ry\",\n    \"source_code_uri\": \"https://WGxxNMocllORmvsgWhP.wauxSpBeVgTJhHT,GhXkK7-KJ9jEthVDjcGhyFpDGB4uPBCmp1w.cLE-Od5MEmv\",\n    \"bug_tracker_uri\": \"http://xkiaswQMwPbViXrPb.zzPsKqXQAYV+6ps-pHeGwKiVcxDe.S\",\n    \"changelog_uri\": \"https://pPwdyb.resuK8bpzmnMme9yE91HIq,YBWJG6uf2\",\n    \"dependencies\": {\n      \"development\": [\n        {\n          \"name\": \"string\",\n          \"requirements\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"requirements\": \"string\"\n        }\n      ],\n      \"runtime\": [\n        {\n          \"name\": \"string\",\n          \"requirements\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"requirements\": \"string\"\n        }\n      ]\n    }\n  },\n  {\n    \"name\": \"string\",\n    \"downloads\": 3170,\n    \"version\": \"string\",\n    \"version_created_at\": \"1979-09-12T09:34:26.559Z\",\n    \"version_downloads\": 9876,\n    \"platform\": \"string\",\n    \"authors\": \"string\",\n    \"info\": \"string\",\n    \"licenses\": [\n      \"string\",\n      \"string\"\n    ],\n    \"metadata\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"sha\": \"string\",\n    \"project_uri\": \"https://enKCLrGQkck.jaRdbcml41E7SJn6nuZMAfHUVB7yMIVgTNg+dKo6afcQMEUf\",\n    \"gem_uri\": \"https://GAUiJUtTMWKyRNzKWueIwbMrHjbhzSyU.swdbl3-uLwU5AgPUGT8-UrxstawJOkeh6P1OSHt61UuEuG\",\n    \"homepage_uri\": \"http://fbx.kdkzUGhj8QRhIYSmBofJXOOccOydNNCEbcLMvxH4+vH-ZC7QEmit\",\n    \"documentation_uri\": \"http://swgfTwfLXHYNfadTYryZElC.ntjs1bGR9ooffrRfcbsA6F99qCymV1PEJ8zMkCrleqJKPmm4\",\n    \"source_code_uri\": \"http://Wmdefaih.gqjEPwmapCgggdQnhUwnmLiwKF+Z59wxjs\",\n    \"bug_tracker_uri\": \"http://MBa.vbfnV3r1GZECG\",\n    \"changelog_uri\": \"http://eTnJgVmgrIRwSpZNHyCPjE.wbvdEX5itU37ugYe9GeE33rH0SP5eJQNbsVuR4Ltv1akyHnaj6\",\n    \"dependencies\": {\n      \"development\": [\n        {\n          \"name\": \"string\",\n          \"requirements\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"requirements\": \"string\"\n        }\n      ],\n      \"runtime\": [\n        {\n          \"name\": \"string\",\n          \"requirements\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"requirements\": \"string\"\n        }\n      ]\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://rubygems.org/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "ebca9ba0-5ee1-44dc-bac2-0b94bca6d856",
+    "name": "RubyGems Search API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The RubyGems Search API allows developers to search for gems on RubyGems.org by matching a query string against gem names and descriptions. It returns an array of matching active gems with their metadata, making it useful for building gem discovery tools, IDE integrations, and dependency resolution utilities. The search endpoint supports pagination for handling large result sets.\n\nContact Support:\n Name: RubyGems.org Support",
+      "type": "text/plain"
+    }
+  }
+}

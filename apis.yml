@@ -140,7 +140,7 @@ common:
     url: https://status.rubygems.org/
   - type: Blog
     url: https://blog.rubygems.org/
-  - type: LLMsTxt
+  - type: LlmsText
     url: https://blog.rubygems.org/llms.txt
 maintainers:
   - FN: Kin Lane

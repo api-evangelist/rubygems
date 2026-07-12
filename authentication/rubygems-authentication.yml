@@ -1,0 +1,25 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/rubygems-gems-api-openapi.yml, openapi/rubygems-webhooks-api-openapi.yml
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - header
+schemes:
+- name: apiKeyAuth
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: RubyGems.org API key passed in the Authorization header.
+  sources:
+  - openapi/rubygems-gems-api-openapi.yml
+  - openapi/rubygems-webhooks-api-openapi.yml
+- name: basicAuth
+  type: http
+  scheme: basic
+  description: HTTP Basic authentication using email and password. Used for retrieving API keys
+    and authenticated user profiles.
+  sources:
+  - openapi/rubygems-gems-api-openapi.yml

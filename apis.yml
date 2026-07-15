@@ -128,6 +128,8 @@ apis:
         url: >-
           https://raw.githubusercontent.com/api-evangelist/rubygems/refs/heads/main/asyncapi/rubygems-webhooks-asyncapi.yml
 common:
+  - type: AgenticAccess
+    url: agentic-access/rubygems-agentic-access.yml
   - type: DomainSecurity
     url: security/rubygems-domain-security.yml
   - type: Authentication

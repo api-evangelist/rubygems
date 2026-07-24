@@ -1,60 +1,43 @@
 openapi: 3.1.0
 info:
-  title: RubyGems Search API
-  description: >-
-    The RubyGems Search API allows developers to search for gems on
-    RubyGems.org by matching a query string against gem names and
-    descriptions. It returns an array of matching active gems with their
-    metadata, making it useful for building gem discovery tools, IDE
-    integrations, and dependency resolution utilities. The search endpoint
-    supports pagination for handling large result sets.
+  title: RubyGems Activity Search API
+  description: The RubyGems Activity API provides endpoints that return the most recently added and most recently updated gems on RubyGems.org. The latest endpoint returns the 50 gems most recently published to the registry, while the just-updated endpoint returns the 50 most recently modified gems. These endpoints are useful for building activity feeds, monitoring new releases, and tracking changes across the Ruby ecosystem.
   version: '1.0'
   contact:
     name: RubyGems.org Support
     url: https://help.rubygems.org
   termsOfService: https://rubygems.org/pages/about
-externalDocs:
-  description: RubyGems.org API Documentation
-  url: https://guides.rubygems.org/rubygems-org-api/
 servers:
-  - url: https://rubygems.org/api/v1
-    description: Production Server
+- url: https://rubygems.org/api/v1
+  description: Production Server
 tags:
-  - name: Search
-    description: >-
-      Endpoints for searching gems on RubyGems.org by name and description.
+- name: Search
+  description: Endpoints for searching gems on RubyGems.org by name and description.
 paths:
   /search.json:
     get:
       operationId: searchGems
       summary: Search For Gems
-      description: >-
-        Submit a search query to RubyGems.org for active gems. Returns an
-        array of gem objects that match the query string against gem names
-        and descriptions. Results are paginated with 30 gems per page.
+      description: Submit a search query to RubyGems.org for active gems. Returns an array of gem objects that match the query string against gem names and descriptions. Results are paginated with 30 gems per page.
       tags:
-        - Search
+      - Search
       security: []
       parameters:
-        - name: query
-          in: query
-          description: >-
-            The search query string to match against gem names and
-            descriptions.
-          required: true
-          schema:
-            type: string
-          example: json parser
-        - name: page
-          in: query
-          description: >-
-            Page number for paginated results. Each page returns up to
-            30 matching gems.
-          required: false
-          schema:
-            type: integer
-            minimum: 1
-            default: 1
+      - name: query
+        in: query
+        description: The search query string to match against gem names and descriptions.
+        required: true
+        schema:
+          type: string
+        example: json parser
+      - name: page
+        in: query
+        description: Page number for paginated results. Each page returns up to 30 matching gems.
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          default: 1
       responses:
         '200':
           description: Successful response with array of matching gems
@@ -66,6 +49,16 @@ paths:
                   $ref: '#/components/schemas/Gem'
 components:
   schemas:
+    Dependency:
+      type: object
+      description: A gem dependency
+      properties:
+        name:
+          type: string
+          description: Name of the dependency gem
+        requirements:
+          type: string
+          description: Version requirements string
     Gem:
       type: object
       description: A Ruby gem hosted on RubyGems.org
@@ -150,13 +143,6 @@ components:
                 $ref: '#/components/schemas/Dependency'
               description: Runtime dependencies
           description: Gem dependency information
-    Dependency:
-      type: object
-      description: A gem dependency
-      properties:
-        name:
-          type: string
-          description: Name of the dependency gem
-        requirements:
-          type: string
-          description: Version requirements string
+externalDocs:
+  description: RubyGems.org API Documentation
+  url: https://guides.rubygems.org/rubygems-org-api/

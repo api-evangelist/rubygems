@@ -1,0 +1,105 @@
+openapi: 3.1.0
+info:
+  title: RubyGems Activity Profiles API
+  description: The RubyGems Activity API provides endpoints that return the most recently added and most recently updated gems on RubyGems.org. The latest endpoint returns the 50 gems most recently published to the registry, while the just-updated endpoint returns the 50 most recently modified gems. These endpoints are useful for building activity feeds, monitoring new releases, and tracking changes across the Ruby ecosystem.
+  version: '1.0'
+  contact:
+    name: RubyGems.org Support
+    url: https://help.rubygems.org
+  termsOfService: https://rubygems.org/pages/about
+servers:
+- url: https://rubygems.org/api/v1
+  description: Production Server
+tags:
+- name: Profiles
+  description: Endpoints for retrieving user profile information from RubyGems.org.
+paths:
+  /profiles/{userHandle}.json:
+    get:
+      operationId: getUserProfile
+      summary: Get User Profile
+      description: Returns profile information for the specified user, identified by their handle or user ID.
+      tags:
+      - Profiles
+      security: []
+      parameters:
+      - $ref: '#/components/parameters/userHandle'
+      responses:
+        '200':
+          description: Successful response with user profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Profile'
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /profile/me.json:
+    get:
+      operationId: getMyProfile
+      summary: Get Authenticated User Profile
+      description: Returns the profile information for the currently authenticated user, including multi-factor authentication status. Requires HTTP Basic authentication with email and password.
+      tags:
+      - Profiles
+      security:
+      - basicAuth: []
+      responses:
+        '200':
+          description: Successful response with user profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileWithMfa'
+        '401':
+          description: Unauthorized - invalid credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    ProfileWithMfa:
+      type: object
+      description: A RubyGems.org user profile with multi-factor authentication status
+      properties:
+        id:
+          type: integer
+          description: Unique user ID
+        handle:
+          type: string
+          description: User handle
+        mfa:
+          type: string
+          description: Multi-factor authentication status
+    Profile:
+      type: object
+      description: A RubyGems.org user profile
+      properties:
+        id:
+          type: integer
+          description: Unique user ID
+        handle:
+          type: string
+          description: User handle
+    Error:
+      type: object
+      description: Error response from the RubyGems.org API
+      properties:
+        error:
+          type: string
+          description: Error message
+  parameters:
+    userHandle:
+      name: userHandle
+      in: path
+      description: The user handle or numeric user ID
+      required: true
+      schema:
+        type: string
+      example: tenderlove
+externalDocs:
+  description: RubyGems.org API Documentation
+  url: https://guides.rubygems.org/rubygems-org-api/

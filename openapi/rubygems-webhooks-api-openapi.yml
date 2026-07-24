@@ -1,43 +1,26 @@
 openapi: 3.1.0
 info:
-  title: RubyGems Webhooks API
-  description: >-
-    The RubyGems Webhooks API enables developers to register, list, test,
-    and remove webhook subscriptions that fire when gems are pushed to
-    RubyGems.org. Webhooks can be configured for specific gems or applied
-    globally using a wildcard to receive notifications for all gem pushes.
-    Each webhook request includes an Authorization header for verification,
-    allowing downstream systems to confirm the notification originated from
-    RubyGems.org.
+  title: RubyGems Activity Webhooks API
+  description: The RubyGems Activity API provides endpoints that return the most recently added and most recently updated gems on RubyGems.org. The latest endpoint returns the 50 gems most recently published to the registry, while the just-updated endpoint returns the 50 most recently modified gems. These endpoints are useful for building activity feeds, monitoring new releases, and tracking changes across the Ruby ecosystem.
   version: '1.0'
   contact:
     name: RubyGems.org Support
     url: https://help.rubygems.org
   termsOfService: https://rubygems.org/pages/about
-externalDocs:
-  description: RubyGems.org API Documentation
-  url: https://guides.rubygems.org/rubygems-org-api/
 servers:
-  - url: https://rubygems.org/api/v1
-    description: Production Server
+- url: https://rubygems.org/api/v1
+  description: Production Server
 tags:
-  - name: Webhooks
-    description: >-
-      Endpoints for managing webhook subscriptions that fire when gems are
-      pushed to RubyGems.org.
-security:
-  - apiKeyAuth: []
+- name: Webhooks
+  description: Endpoints for managing webhook subscriptions that fire when gems are pushed to RubyGems.org.
 paths:
   /web_hooks.json:
     get:
       operationId: listWebhooks
       summary: List Webhooks
-      description: >-
-        Returns all webhooks registered under the authenticated user's
-        account. The response is an object where keys are gem names (or a
-        wildcard) and values are arrays of webhook objects.
+      description: Returns all webhooks registered under the authenticated user's account. The response is an object where keys are gem names (or a wildcard) and values are arrays of webhook objects.
       tags:
-        - Webhooks
+      - Webhooks
       responses:
         '200':
           description: Successful response with webhook listings
@@ -49,9 +32,7 @@ paths:
                   type: array
                   items:
                     $ref: '#/components/schemas/Webhook'
-                description: >-
-                  Object mapping gem names to arrays of webhook objects.
-                  The key is a gem name or asterisk for global webhooks.
+                description: Object mapping gem names to arrays of webhook objects. The key is a gem name or asterisk for global webhooks.
         '401':
           description: Unauthorized - invalid or missing API key
           content:
@@ -62,12 +43,9 @@ paths:
     post:
       operationId: createWebhook
       summary: Create A Webhook
-      description: >-
-        Register a new webhook that fires when a gem is pushed to
-        RubyGems.org. Use an asterisk (*) as the gem_name to create a
-        global webhook that fires for all gem pushes.
+      description: Register a new webhook that fires when a gem is pushed to RubyGems.org. Use an asterisk (*) as the gem_name to create a global webhook that fires for all gem pushes.
       tags:
-        - Webhooks
+      - Webhooks
       requestBody:
         required: true
         content:
@@ -75,13 +53,12 @@ paths:
             schema:
               type: object
               required:
-                - gem_name
-                - url
+              - gem_name
+              - url
               properties:
                 gem_name:
                   type: string
-                  description: >-
-                    Name of the gem to watch, or asterisk (*) for all gems.
+                  description: Name of the gem to watch, or asterisk (*) for all gems.
                   example: rails
                 url:
                   type: string
@@ -95,7 +72,7 @@ paths:
             text/plain:
               schema:
                 type: string
-                example: 'Successfully created webhook for rails to https://example.com/webhooks/rubygems'
+                example: Successfully created webhook for rails to https://example.com/webhooks/rubygems
         '401':
           description: Unauthorized - invalid or missing API key
           content:
@@ -112,12 +89,9 @@ paths:
     delete:
       operationId: removeWebhook
       summary: Remove A Webhook
-      description: >-
-        Remove an existing webhook subscription. The gem_name and url must
-        match an existing webhook. Use an asterisk (*) as the gem_name to
-        remove a global webhook.
+      description: Remove an existing webhook subscription. The gem_name and url must match an existing webhook. Use an asterisk (*) as the gem_name to remove a global webhook.
       tags:
-        - Webhooks
+      - Webhooks
       requestBody:
         required: true
         content:
@@ -125,13 +99,12 @@ paths:
             schema:
               type: object
               required:
-                - gem_name
-                - url
+              - gem_name
+              - url
               properties:
                 gem_name:
                   type: string
-                  description: >-
-                    Name of the gem, or asterisk (*) for a global webhook.
+                  description: Name of the gem, or asterisk (*) for a global webhook.
                   example: rails
                 url:
                   type: string
@@ -145,7 +118,7 @@ paths:
             text/plain:
               schema:
                 type: string
-                example: 'Successfully removed webhook for rails to https://example.com/webhooks/rubygems'
+                example: Successfully removed webhook for rails to https://example.com/webhooks/rubygems
         '401':
           description: Unauthorized - invalid or missing API key
           content:
@@ -162,13 +135,9 @@ paths:
     post:
       operationId: fireWebhook
       summary: Test Fire A Webhook
-      description: >-
-        Test fire an existing webhook to verify it is working correctly.
-        The fired request includes an Authorization header containing a
-        SHA-256 HMAC signature for verification. Use an asterisk (*) as
-        the gem_name to test fire a global webhook.
+      description: Test fire an existing webhook to verify it is working correctly. The fired request includes an Authorization header containing a SHA-256 HMAC signature for verification. Use an asterisk (*) as the gem_name to test fire a global webhook.
       tags:
-        - Webhooks
+      - Webhooks
       requestBody:
         required: true
         content:
@@ -176,13 +145,12 @@ paths:
             schema:
               type: object
               required:
-                - gem_name
-                - url
+              - gem_name
+              - url
               properties:
                 gem_name:
                   type: string
-                  description: >-
-                    Name of the gem, or asterisk (*) for a global webhook.
+                  description: Name of the gem, or asterisk (*) for a global webhook.
                   example: rails
                 url:
                   type: string
@@ -196,7 +164,7 @@ paths:
             text/plain:
               schema:
                 type: string
-                example: 'Successfully deployed webhook for rails to https://example.com/webhooks/rubygems'
+                example: Successfully deployed webhook for rails to https://example.com/webhooks/rubygems
         '401':
           description: Unauthorized - invalid or missing API key
           content:
@@ -210,14 +178,14 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 components:
-  securitySchemes:
-    apiKeyAuth:
-      type: apiKey
-      in: header
-      name: Authorization
-      description: >-
-        RubyGems.org API key passed in the Authorization header.
   schemas:
+    Error:
+      type: object
+      description: Error response from the RubyGems.org API
+      properties:
+        error:
+          type: string
+          description: Error message
     Webhook:
       type: object
       description: A webhook subscription on RubyGems.org
@@ -229,10 +197,6 @@ components:
         failure_count:
           type: integer
           description: Number of consecutive delivery failures
-    Error:
-      type: object
-      description: Error response from the RubyGems.org API
-      properties:
-        error:
-          type: string
-          description: Error message
+externalDocs:
+  description: RubyGems.org API Documentation
+  url: https://guides.rubygems.org/rubygems-org-api/

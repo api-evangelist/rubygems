@@ -1,0 +1,67 @@
+openapi: 3.1.0
+info:
+  title: RubyGems Activity Dependencies API
+  description: The RubyGems Activity API provides endpoints that return the most recently added and most recently updated gems on RubyGems.org. The latest endpoint returns the 50 gems most recently published to the registry, while the just-updated endpoint returns the 50 most recently modified gems. These endpoints are useful for building activity feeds, monitoring new releases, and tracking changes across the Ruby ecosystem.
+  version: '1.0'
+  contact:
+    name: RubyGems.org Support
+    url: https://help.rubygems.org
+  termsOfService: https://rubygems.org/pages/about
+servers:
+- url: https://rubygems.org/api/v1
+  description: Production Server
+tags:
+- name: Dependencies
+  description: Endpoints for querying gem dependency information.
+paths:
+  /dependencies:
+    get:
+      operationId: getDependencies
+      summary: Get Gem Dependencies
+      description: Returns dependency information for one or more gems specified as a comma-separated list. The response is a marshalled array of hashes containing dependency details. This endpoint is deprecated in favor of the Compact Index API.
+      tags:
+      - Dependencies
+      security: []
+      deprecated: true
+      parameters:
+      - name: gems
+        in: query
+        description: Comma-separated list of gem names
+        required: true
+        schema:
+          type: string
+        example: rails,sinatra
+      responses:
+        '200':
+          description: Successful response with dependency information
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DependencyInfo'
+components:
+  schemas:
+    DependencyInfo:
+      type: object
+      description: Dependency information for a gem version
+      properties:
+        name:
+          type: string
+          description: Name of the gem
+        number:
+          type: string
+          description: Version number
+        platform:
+          type: string
+          description: Platform identifier
+        dependencies:
+          type: array
+          items:
+            type: array
+            items:
+              type: string
+          description: Array of dependency pairs (name, version requirement)
+externalDocs:
+  description: RubyGems.org API Documentation
+  url: https://guides.rubygems.org/rubygems-org-api/

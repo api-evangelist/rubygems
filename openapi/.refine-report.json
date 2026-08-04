@@ -1,0 +1,30 @@
+{
+  "provider": "rubygems",
+  "sources": [
+    "rubygems-activity-api-openapi.yml",
+    "rubygems-dependencies-api-openapi.yml",
+    "rubygems-downloads-api-openapi.yml",
+    "rubygems-gems-api-openapi.yml",
+    "rubygems-owners-api-openapi.yml",
+    "rubygems-profiles-api-openapi.yml",
+    "rubygems-search-api-openapi.yml",
+    "rubygems-versions-api-openapi.yml",
+    "rubygems-webhooks-api-openapi.yml"
+  ],
+  "outputs": [
+    "rubygems-activity-api-openapi.yml",
+    "rubygems-dependencies-api-openapi.yml",
+    "rubygems-downloads-api-openapi.yml",
+    "rubygems-gems-api-openapi.yml",
+    "rubygems-owners-api-openapi.yml",
+    "rubygems-profiles-api-openapi.yml",
+    "rubygems-search-api-openapi.yml",
+    "rubygems-versions-api-openapi.yml",
+    "rubygems-webhooks-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

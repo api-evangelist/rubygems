@@ -1,16 +1,8 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "RubyGems Webhooks API",
+    "name": "RubyGems Activity Webhooks API",
     "version": "1.0"
-  },
-  "request": {
-    "auth": {
-      "type": "apikey",
-      "key": "Authorization",
-      "value": "{{Authorization}}",
-      "placement": "header"
-    }
   },
   "items": [
     {

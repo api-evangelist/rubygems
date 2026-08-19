@@ -1,7 +1,7 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "RubyGems Downloads API",
+    "name": "RubyGems Activity Downloads API",
     "version": "1.0"
   },
   "items": [

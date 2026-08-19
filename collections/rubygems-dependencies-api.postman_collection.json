@@ -1,0 +1,114 @@
+{
+  "item": [
+    {
+      "id": "385b5db0-13e7-488b-b254-a2f48f22b19c",
+      "name": "Dependencies",
+      "description": {
+        "content": "Endpoints for querying gem dependency information.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3d1d2d4b-19c6-4e7c-b2ff-903ac96b5e44",
+          "name": "Get Gem Dependencies",
+          "request": {
+            "name": "Get Gem Dependencies",
+            "description": {
+              "content": "Returns dependency information for one or more gems specified as a comma-separated list. The response is a marshalled array of hashes containing dependency details. This endpoint is deprecated in favor of the Compact Index API.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dependencies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "gems",
+                  "value": "<string>",
+                  "description": "(Required) Comma-separated list of gem names"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "04eaa627-e66b-4511-9e15-bc9e40e4d8ca",
+              "name": "Successful response with dependency information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dependencies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "gems",
+                      "value": "rails,sinatra"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"number\": \"string\",\n    \"platform\": \"string\",\n    \"dependencies\": [\n      [\n        \"string\",\n        \"string\"\n      ],\n      [\n        \"string\",\n        \"string\"\n      ]\n    ]\n  },\n  {\n    \"name\": \"string\",\n    \"number\": \"string\",\n    \"platform\": \"string\",\n    \"dependencies\": [\n      [\n        \"string\",\n        \"string\"\n      ],\n      [\n        \"string\",\n        \"string\"\n      ]\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://rubygems.org/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "e7371bcc-973a-415f-bd39-6c3c18a4e3a9",
+    "name": "RubyGems Activity Dependencies API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The RubyGems Activity API provides endpoints that return the most recently added and most recently updated gems on RubyGems.org. The latest endpoint returns the 50 gems most recently published to the registry, while the just-updated endpoint returns the 50 most recently modified gems. These endpoints are useful for building activity feeds, monitoring new releases, and tracking changes across the Ruby ecosystem.\n\nContact Support:\n Name: RubyGems.org Support",
+      "type": "text/plain"
+    }
+  }
+}

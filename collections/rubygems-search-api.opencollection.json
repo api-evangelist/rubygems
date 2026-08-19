@@ -1,7 +1,7 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "RubyGems Search API",
+    "name": "RubyGems Activity Search API",
     "version": "1.0"
   },
   "items": [

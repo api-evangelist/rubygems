@@ -1,0 +1,552 @@
+{
+  "item": [
+    {
+      "id": "07d9c1e6-9af7-4aca-9927-0cb874aa137f",
+      "name": "Versions",
+      "description": {
+        "content": "Endpoints for querying detailed version information for specific gem versions, including metadata, dependencies, checksums, and platform-specific builds.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f243b434-6399-484c-9775-3d78e87b1b5b",
+          "name": "Get Gem Version Details",
+          "request": {
+            "name": "Get Gem Version Details",
+            "description": {
+              "content": "Returns detailed information about a specific gem version, including name, version number, download counts, platform, authors, description, dependencies, URIs, timestamps, checksums, and metadata. Optionally filter by platform using the platform query parameter.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "rubygems",
+                ":gemName",
+                "versions",
+                "{{versionNumber}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "platform",
+                  "value": "<string>",
+                  "description": "Filter by platform. Common values include ruby, java, and x86_64-linux. If not specified, defaults to the ruby platform."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "gemName",
+                  "description": "(Required) The name of the gem"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ab4cfb1c-4f0b-42aa-81db-b877dacd6380",
+              "name": "Successful response with version details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rubygems",
+                    ":gemName",
+                    "versions",
+                    "{{versionNumber}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "platform",
+                      "value": "ruby"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "gemName",
+                      "description": "(Required) The name of the gem"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"downloads\": 5870,\n  \"version\": \"string\",\n  \"version_created_at\": \"2000-04-26T22:25:53.723Z\",\n  \"version_downloads\": 8615,\n  \"platform\": \"string\",\n  \"authors\": \"string\",\n  \"info\": \"string\",\n  \"licenses\": [\n    \"string\",\n    \"string\"\n  ],\n  \"metadata\": {\n    \"key_0\": \"string\"\n  },\n  \"yanked\": false,\n  \"sha\": \"string\",\n  \"spec_sha\": \"string\",\n  \"project_uri\": \"https://OwXOuBOHHRHhGtLBKjgmytRvFvaV.vtygJHjgWiXgkc7IOqv-co8RXe8\",\n  \"gem_uri\": \"https://yYMbxhZOBwWqqMtVuXLbk.ddiFcNXxEDKVTOCGQ5d\",\n  \"homepage_uri\": \"https://oqSLvdITjQeDVmob.kegzt2MX4Ei0,\",\n  \"wiki_uri\": \"http://FiQEbUWJdM.tvusy19gbuCzEU4VepOIzFPVIi6mzG6Cj0zyPCe1ta4Wewnxs\",\n  \"documentation_uri\": \"https://YfolofkTWDcUwUoLoTbAr.xvnmx8Qzx5klS.JrqV9ysyJBoUCU\",\n  \"mailing_list_uri\": \"https://xyWCNGtRnGwFUIQcBxyY.xppPwdf\",\n  \"source_code_uri\": \"http://BedRYZffJxgYTsmceE.mxkJtweMJrxX85UafkxCecOnCTxf7bd7sRhVfNc8tKHVba.zCoFgaEzbScmoPlMhZaQ\",\n  \"bug_tracker_uri\": \"http://dtpGJiPjopOHbIWnOTtVoFepa.tnaoEw8VsYZ6JumxOsuA5nQYc\",\n  \"changelog_uri\": \"http://hrgPXQEeNbtmyphdPNzGYxca.gnP+ybvAk4-cmaeyHiO2c06jFUTMkoIfiu8sSFtV+3..wG\",\n  \"funding_uri\": \"http://onwAvZLcjBsUUrKpdkbRAnffaYtdGQ.tovk5uFGxE4HjcToCauq7G7eQIDbVs24rmTV6Wu,d3ZV1SLqwSIPNFrL3zXF\",\n  \"dependencies\": {\n    \"development\": [\n      {\n        \"name\": \"string\",\n        \"requirements\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"requirements\": \"string\"\n      }\n    ],\n    \"runtime\": [\n      {\n        \"name\": \"string\",\n        \"requirements\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"requirements\": \"string\"\n      }\n    ]\n  },\n  \"built_at\": \"1948-05-02T23:29:53.329Z\",\n  \"created_at\": \"1975-07-04T12:27:19.723Z\",\n  \"description\": \"string\",\n  \"downloads_count\": 7124,\n  \"number\": \"string\",\n  \"summary\": \"string\",\n  \"rubygems_version\": \"string\",\n  \"ruby_version\": \"string\",\n  \"prerelease\": false,\n  \"requirements\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c5c98adf-de39-4e13-b72c-6f4da8661fad",
+              "name": "Gem or version not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rubygems",
+                    ":gemName",
+                    "versions",
+                    "{{versionNumber}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "platform",
+                      "value": "ruby"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "gemName",
+                      "description": "(Required) The name of the gem"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8e77e32d-fd54-4949-9aed-9baab31d9164",
+          "name": "List Gem Versions",
+          "request": {
+            "name": "List Gem Versions",
+            "description": {
+              "content": "Returns an array of version objects for a specific gem, including version numbers, platforms, authors, descriptions, checksums, and metadata for each published version.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "versions",
+                "{{gemName}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c79dfa89-5011-452e-8269-b64a82a2c900",
+              "name": "Successful response with array of version objects",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "versions",
+                    "{{gemName}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"authors\": \"string\",\n    \"built_at\": \"1987-12-18T10:39:27.597Z\",\n    \"created_at\": \"1989-02-20T15:01:27.005Z\",\n    \"description\": \"string\",\n    \"downloads_count\": 1954,\n    \"metadata\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    },\n    \"number\": \"string\",\n    \"summary\": \"string\",\n    \"platform\": \"string\",\n    \"rubygems_version\": \"string\",\n    \"ruby_version\": \"string\",\n    \"prerelease\": true,\n    \"licenses\": [\n      \"string\",\n      \"string\"\n    ],\n    \"requirements\": [\n      \"string\",\n      \"string\"\n    ],\n    \"sha\": \"string\"\n  },\n  {\n    \"authors\": \"string\",\n    \"built_at\": \"2008-05-13T11:00:42.059Z\",\n    \"created_at\": \"1963-06-16T01:07:16.272Z\",\n    \"description\": \"string\",\n    \"downloads_count\": 3937,\n    \"metadata\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"number\": \"string\",\n    \"summary\": \"string\",\n    \"platform\": \"string\",\n    \"rubygems_version\": \"string\",\n    \"ruby_version\": \"string\",\n    \"prerelease\": false,\n    \"licenses\": [\n      \"string\",\n      \"string\"\n    ],\n    \"requirements\": [\n      \"string\",\n      \"string\"\n    ],\n    \"sha\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9e3790cf-8f03-4ece-9967-427343a1a84a",
+              "name": "Gem not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "versions",
+                    "{{gemName}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c4aa7453-857d-4941-981d-ca41d9a2ccc1",
+          "name": "Get Latest Gem Version",
+          "request": {
+            "name": "Get Latest Gem Version",
+            "description": {
+              "content": "Returns an object containing the latest version number for the specified gem.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "versions",
+                ":gemName",
+                "latest.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "gemName",
+                  "description": "(Required) The name of the gem"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "40ac17e2-e715-4996-bdc3-51971ac3a4eb",
+              "name": "Successful response with latest version",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "versions",
+                    ":gemName",
+                    "latest.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "gemName",
+                      "description": "(Required) The name of the gem"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"version\": \"3.5.0\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "44380dd6-90de-4e87-9366-f831e0473ec8",
+              "name": "Gem not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "versions",
+                    ":gemName",
+                    "latest.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "gemName",
+                      "description": "(Required) The name of the gem"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "04b9b2d6-ff42-4653-9c8b-61fbdbfc2d9a",
+          "name": "Get Versions Within A Timeframe",
+          "request": {
+            "name": "Get Versions Within A Timeframe",
+            "description": {
+              "content": "Returns an array of gem versions created within a specified timeframe. The from parameter is required and must be an ISO 8601 timestamp. The time span cannot exceed 7 days. Results are paginated with 30 versions per page.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "timeframe_versions.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<dateTime>",
+                  "description": "(Required) Start of the timeframe in ISO 8601 format (e.g., 2024-01-01T00:00:00Z). Required."
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<dateTime>",
+                  "description": "End of the timeframe in ISO 8601 format. Defaults to current time if not specified."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Page number for paginated results"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d0fb75fa-7e38-4dcb-8056-2a0a3fa8fdbc",
+              "name": "Successful response with array of gem versions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "timeframe_versions.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"authors\": \"string\",\n    \"built_at\": \"1987-12-18T10:39:27.597Z\",\n    \"created_at\": \"1989-02-20T15:01:27.005Z\",\n    \"description\": \"string\",\n    \"downloads_count\": 1954,\n    \"metadata\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    },\n    \"number\": \"string\",\n    \"summary\": \"string\",\n    \"platform\": \"string\",\n    \"rubygems_version\": \"string\",\n    \"ruby_version\": \"string\",\n    \"prerelease\": true,\n    \"licenses\": [\n      \"string\",\n      \"string\"\n    ],\n    \"requirements\": [\n      \"string\",\n      \"string\"\n    ],\n    \"sha\": \"string\"\n  },\n  {\n    \"authors\": \"string\",\n    \"built_at\": \"2008-05-13T11:00:42.059Z\",\n    \"created_at\": \"1963-06-16T01:07:16.272Z\",\n    \"description\": \"string\",\n    \"downloads_count\": 3937,\n    \"metadata\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"number\": \"string\",\n    \"summary\": \"string\",\n    \"platform\": \"string\",\n    \"rubygems_version\": \"string\",\n    \"ruby_version\": \"string\",\n    \"prerelease\": false,\n    \"licenses\": [\n      \"string\",\n      \"string\"\n    ],\n    \"requirements\": [\n      \"string\",\n      \"string\"\n    ],\n    \"sha\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://rubygems.org/api/v1",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) The version number of the gem",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "versionNumber"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) The name of the gem",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "gemName"
+    }
+  ],
+  "info": {
+    "_postman_id": "0912e61f-71ea-470f-adb6-264e2f0cd069",
+    "name": "RubyGems Activity Versions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The RubyGems Activity API provides endpoints that return the most recently added and most recently updated gems on RubyGems.org. The latest endpoint returns the 50 gems most recently published to the registry, while the just-updated endpoint returns the 50 most recently modified gems. These endpoints are useful for building activity feeds, monitoring new releases, and tracking changes across the Ruby ecosystem.\n\nContact Support:\n Name: RubyGems.org Support",
+      "type": "text/plain"
+    }
+  }
+}

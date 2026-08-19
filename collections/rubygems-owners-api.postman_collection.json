@@ -1,0 +1,1142 @@
+{
+  "item": [
+    {
+      "id": "bb412b22-957c-45f7-8ba2-5d5fd08484e4",
+      "name": "Owners",
+      "description": {
+        "content": "Endpoints for managing gem ownership, including listing owners, adding and removing owners, and listing gems by owner.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "48532464-668d-4c52-9920-4221c09996c5",
+          "name": "List Gems By Owner",
+          "request": {
+            "name": "List Gems By Owner",
+            "description": {
+              "content": "Returns an array of gem objects owned by the specified user, identified by their handle or user ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "owners",
+                ":userHandle",
+                "gems.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "userHandle",
+                  "description": "(Required) The user handle or numeric user ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4d64c291-284c-4b26-b6de-504079ef3e0d",
+              "name": "Successful response with array of gems",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "owners",
+                    ":userHandle",
+                    "gems.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userHandle",
+                      "description": "(Required) The user handle or numeric user ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"downloads\": 7231,\n    \"version\": \"string\",\n    \"version_created_at\": \"1956-10-07T06:24:44.391Z\",\n    \"version_downloads\": 6933,\n    \"platform\": \"string\",\n    \"authors\": \"string\",\n    \"info\": \"string\",\n    \"licenses\": [\n      \"string\",\n      \"string\"\n    ],\n    \"metadata\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"yanked\": true,\n    \"sha\": \"string\",\n    \"project_uri\": \"https://JlzsoSJlOCMyzboqUbAIRpaBwzEmA.thyZNlBPRjydRCfV4dkFouVHzOH74xd0DLVubY9+j4oqyfucILYqIncDNNcw0KF401N\",\n    \"gem_uri\": \"https://iK.dfiBDbFRh4ndhmS\",\n    \"homepage_uri\": \"https://fqJOCWUxiysWOVFkcBc.vqzjfx\",\n    \"wiki_uri\": \"https://LDBqvvt.gykcCMuDmA1o4dkE6UaSpEAhY+Dbq6qCHZzux76ttAQ2IWezJl\",\n    \"documentation_uri\": \"https://LitBb.iantEFZwo2MErk8PlgJPF\",\n    \"mailing_list_uri\": \"https://xBufNiL.slpidUmftCj,inTjS335plkZGqv-v-OXHAKr,XVDwZgLSMaUOdz\",\n    \"source_code_uri\": \"http://LtxYmHKIjJYjhlHMhyqd.iexhIKBZkBkQ2KSRHuVE1ehkJeM2dUHdH0R3tI\",\n    \"bug_tracker_uri\": \"http://KvEyGw.wihecjEP5y\",\n    \"changelog_uri\": \"https://ySMZhWNNqdF.ydqScmKQDekPNqC5anfiAS6OXnVLfTJnfOHH1o-X1lOJcVNtwHbpL6ypgHi\",\n    \"funding_uri\": \"https://xiyitgmYlbAJLlz.ivw14OufddI.6Q7OVaEOyzNFcbnqzpluRS.WgynAFgL9hdlawBQUG\",\n    \"dependencies\": {\n      \"development\": [\n        {\n          \"name\": \"string\",\n          \"requirements\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"requirements\": \"string\"\n        }\n      ],\n      \"runtime\": [\n        {\n          \"name\": \"string\",\n          \"requirements\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"requirements\": \"string\"\n        }\n      ]\n    }\n  },\n  {\n    \"name\": \"string\",\n    \"downloads\": 2798,\n    \"version\": \"string\",\n    \"version_created_at\": \"1947-07-25T20:25:18.596Z\",\n    \"version_downloads\": 4616,\n    \"platform\": \"string\",\n    \"authors\": \"string\",\n    \"info\": \"string\",\n    \"licenses\": [\n      \"string\",\n      \"string\"\n    ],\n    \"metadata\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    },\n    \"yanked\": false,\n    \"sha\": \"string\",\n    \"project_uri\": \"https://OjvMlRu.sdaIdKptgi4c\",\n    \"gem_uri\": \"https://QolcDEFuE.uoOB0ZAFBeVhpSXdqstvkmrGR2WDtCImzZ,J6XQ+D2RH\",\n    \"homepage_uri\": \"http://ifPwpudwIAtlUwXH.zttcEY\",\n    \"wiki_uri\": \"https://ducftSzmwZsXGI.cgiyrumBvsdG4kLi7f97M9YnHUxBUUSKnqygkbUmnedDc5UAtzlv1Xhzb.g4N56fDyF3OhEC,o,P\",\n    \"documentation_uri\": \"http://RYroRvpjcblGtAPf.tmrfaXbkzfsF-sZ8t\",\n    \"mailing_list_uri\": \"https://XXswzQIoeBMixklqeeYEbqQjNfKvES.spamKYBkd\",\n    \"source_code_uri\": \"http://GkPxRftBZgvJKViqnKOE.miqMbAeusUc-tLpyVw\",\n    \"bug_tracker_uri\": \"http://eSIArLCXCupNRgZRuJH.lrGSLT4TC,gXOJ9fbzA49XRVn33ibCBN5G2gik3b6U3klK3YLZhxK\",\n    \"changelog_uri\": \"http://FxdXo.rkbJjRGyKpU9YOWg\",\n    \"funding_uri\": \"http://yXGLmBAeL.fqzptZwcmqTlgb5RppISCcheLpKqMuEc9Q.MxEjmlf32A5FKaoe0KDSzbMe-EmBcWtTT7B6.Un.0T6\",\n    \"dependencies\": {\n      \"development\": [\n        {\n          \"name\": \"string\",\n          \"requirements\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"requirements\": \"string\"\n        }\n      ],\n      \"runtime\": [\n        {\n          \"name\": \"string\",\n          \"requirements\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"requirements\": \"string\"\n        }\n      ]\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "05b36e9b-c603-4b0f-87b3-57259229344e",
+              "name": "User not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "owners",
+                    ":userHandle",
+                    "gems.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userHandle",
+                      "description": "(Required) The user handle or numeric user ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b8d7f885-370a-4d04-a272-9f9da88634c8",
+          "name": "List Owners Of A Gem",
+          "request": {
+            "name": "List Owners Of A Gem",
+            "description": {
+              "content": "Returns an array of owner objects for the specified gem, including their email addresses.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "gems",
+                ":gemName",
+                "owners.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "gemName",
+                  "description": "(Required) The name of the gem"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fb5dfe10-1731-4666-9c05-fd4f48bad1ac",
+              "name": "Successful response with array of owners",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "gems",
+                    ":gemName",
+                    "owners.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "gemName",
+                      "description": "(Required) The name of the gem"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 1536,\n    \"handle\": \"string\",\n    \"email\": \"RG7UIK6uZ@wKsSmjlXquAxYyasPTGnJeCCCKInUIsZ.erbe\"\n  },\n  {\n    \"id\": 3913,\n    \"handle\": \"string\",\n    \"email\": \"scV8gId@TMthHWzODLCQGxqNNwJDROOZ.kglu\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aeb7ea14-725b-437f-aa03-6e43c79b44a2",
+              "name": "Gem not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "gems",
+                    ":gemName",
+                    "owners.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "gemName",
+                      "description": "(Required) The name of the gem"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "587c037f-8e77-42a5-b012-39ae2391593a",
+          "name": "Add A Gem Owner",
+          "request": {
+            "name": "Add A Gem Owner",
+            "description": {
+              "content": "Add a new owner to the specified gem. The new owner is identified by their email address and can be assigned a role.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "gems",
+                ":gemName",
+                "owners"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "gemName",
+                  "description": "(Required) The name of the gem"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "One-time passcode for multi-factor authentication if enabled.",
+                "key": "OTP",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "email",
+                  "value": "<email>",
+                  "description": "(Required) Email address of the user to add as owner"
+                },
+                {
+                  "disabled": false,
+                  "key": "role",
+                  "value": "<string>",
+                  "description": "Role to assign to the new owner"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a4532013-e95b-4744-9307-959df25fa80d",
+              "name": "Owner added successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "gems",
+                    ":gemName",
+                    "owners"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "gemName",
+                      "description": "(Required) The name of the gem"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "One-time passcode for multi-factor authentication if enabled.",
+                    "key": "OTP",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Email address of the user to add as owner",
+                        "type": "text/plain"
+                      },
+                      "key": "email",
+                      "value": "<email>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Role to assign to the new owner",
+                        "type": "text/plain"
+                      },
+                      "key": "role",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "Owner added successfully.",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c5d9f748-8e89-4ebf-8e5b-d7e952ad6572",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "gems",
+                    ":gemName",
+                    "owners"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "gemName",
+                      "description": "(Required) The name of the gem"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "One-time passcode for multi-factor authentication if enabled.",
+                    "key": "OTP",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Email address of the user to add as owner",
+                        "type": "text/plain"
+                      },
+                      "key": "email",
+                      "value": "<email>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Role to assign to the new owner",
+                        "type": "text/plain"
+                      },
+                      "key": "role",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4117c4c2-44dd-4e69-96a0-5d7f75c53779",
+              "name": "Gem or user not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "gems",
+                    ":gemName",
+                    "owners"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "gemName",
+                      "description": "(Required) The name of the gem"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "One-time passcode for multi-factor authentication if enabled.",
+                    "key": "OTP",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Email address of the user to add as owner",
+                        "type": "text/plain"
+                      },
+                      "key": "email",
+                      "value": "<email>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Role to assign to the new owner",
+                        "type": "text/plain"
+                      },
+                      "key": "role",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ec915c77-cee5-42ad-ba5b-d1a2299b3a3c",
+          "name": "Remove A Gem Owner",
+          "request": {
+            "name": "Remove A Gem Owner",
+            "description": {
+              "content": "Remove an owner from the specified gem. The owner is identified by their email address.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "gems",
+                ":gemName",
+                "owners"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "gemName",
+                  "description": "(Required) The name of the gem"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "One-time passcode for multi-factor authentication if enabled.",
+                "key": "OTP",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "email",
+                  "value": "<email>",
+                  "description": "(Required) Email address of the owner to remove"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "79d651b4-e97d-43e9-89bf-9a6797e248f2",
+              "name": "Owner removed successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "gems",
+                    ":gemName",
+                    "owners"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "gemName",
+                      "description": "(Required) The name of the gem"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "One-time passcode for multi-factor authentication if enabled.",
+                    "key": "OTP",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Email address of the owner to remove",
+                        "type": "text/plain"
+                      },
+                      "key": "email",
+                      "value": "<email>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "Owner removed successfully.",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "665e34cb-15ff-49a1-b20e-37cf9ec07927",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "gems",
+                    ":gemName",
+                    "owners"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "gemName",
+                      "description": "(Required) The name of the gem"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "One-time passcode for multi-factor authentication if enabled.",
+                    "key": "OTP",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Email address of the owner to remove",
+                        "type": "text/plain"
+                      },
+                      "key": "email",
+                      "value": "<email>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "11fc6820-db27-4931-802f-03ad61c759b2",
+              "name": "Gem or user not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "gems",
+                    ":gemName",
+                    "owners"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "gemName",
+                      "description": "(Required) The name of the gem"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "One-time passcode for multi-factor authentication if enabled.",
+                    "key": "OTP",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Email address of the owner to remove",
+                        "type": "text/plain"
+                      },
+                      "key": "email",
+                      "value": "<email>"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "18ab4a85-7617-4132-a1fd-6dc02b229d24",
+          "name": "Update A Gem Owner",
+          "request": {
+            "name": "Update A Gem Owner",
+            "description": {
+              "content": "Update the role of an existing owner on the specified gem.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "gems",
+                ":gemName",
+                "owners"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "gemName",
+                  "description": "(Required) The name of the gem"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "One-time passcode for multi-factor authentication if enabled.",
+                "key": "OTP",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "email",
+                  "value": "<email>",
+                  "description": "(Required) Email address of the owner to update"
+                },
+                {
+                  "disabled": false,
+                  "key": "role",
+                  "value": "<string>",
+                  "description": "(Required) New role for the owner"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c2cf4666-bc26-4498-a695-58a8dafb9219",
+              "name": "Owner updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "gems",
+                    ":gemName",
+                    "owners"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "gemName",
+                      "description": "(Required) The name of the gem"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "One-time passcode for multi-factor authentication if enabled.",
+                    "key": "OTP",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Email address of the owner to update",
+                        "type": "text/plain"
+                      },
+                      "key": "email",
+                      "value": "<email>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) New role for the owner",
+                        "type": "text/plain"
+                      },
+                      "key": "role",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "Owner updated successfully.",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b7a05a76-b744-439f-b8df-87e26c70e9d9",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "gems",
+                    ":gemName",
+                    "owners"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "gemName",
+                      "description": "(Required) The name of the gem"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "One-time passcode for multi-factor authentication if enabled.",
+                    "key": "OTP",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Email address of the owner to update",
+                        "type": "text/plain"
+                      },
+                      "key": "email",
+                      "value": "<email>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) New role for the owner",
+                        "type": "text/plain"
+                      },
+                      "key": "role",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d2ec9c7c-0c52-4c74-8eee-4286b3ea0d76",
+              "name": "Gem or user not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "gems",
+                    ":gemName",
+                    "owners"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "gemName",
+                      "description": "(Required) The name of the gem"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "One-time passcode for multi-factor authentication if enabled.",
+                    "key": "OTP",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Email address of the owner to update",
+                        "type": "text/plain"
+                      },
+                      "key": "email",
+                      "value": "<email>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) New role for the owner",
+                        "type": "text/plain"
+                      },
+                      "key": "role",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://rubygems.org/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "e5d6fdcc-7b84-4f09-a243-8b192b57cef0",
+    "name": "RubyGems Activity Owners API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The RubyGems Activity API provides endpoints that return the most recently added and most recently updated gems on RubyGems.org. The latest endpoint returns the 50 gems most recently published to the registry, while the just-updated endpoint returns the 50 most recently modified gems. These endpoints are useful for building activity feeds, monitoring new releases, and tracking changes across the Ruby ecosystem.\n\nContact Support:\n Name: RubyGems.org Support",
+      "type": "text/plain"
+    }
+  }
+}

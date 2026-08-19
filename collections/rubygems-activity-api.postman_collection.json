@@ -1,7 +1,7 @@
 {
   "item": [
     {
-      "id": "1d63cdcd-b368-442a-9c26-14c55b3e0b18",
+      "id": "b2d59aab-45b8-476b-9fce-8539d04e818b",
       "name": "Activity",
       "description": {
         "content": "Endpoints for monitoring recently added and recently updated gems on RubyGems.org.",
@@ -9,7 +9,7 @@
       },
       "item": [
         {
-          "id": "2b73f4e2-0ef8-42e6-aa46-9859985c5468",
+          "id": "612220a2-8111-4fd1-90e5-682017d26af4",
           "name": "Get Latest Gems",
           "request": {
             "name": "Get Latest Gems",
@@ -39,7 +39,7 @@
           },
           "response": [
             {
-              "id": "900df620-264d-441e-aa71-c635383b2b89",
+              "id": "6bacae4d-1a61-4b40-a5bc-0b090c55d434",
               "name": "Successful response with array of latest gems",
               "originalRequest": {
                 "url": {
@@ -70,7 +70,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "[\n  {\n    \"name\": \"string\",\n    \"downloads\": 3692,\n    \"version\": \"string\",\n    \"version_created_at\": \"1987-02-27T07:21:46.929Z\",\n    \"version_downloads\": 6815,\n    \"platform\": \"string\",\n    \"authors\": \"string\",\n    \"info\": \"string\",\n    \"licenses\": [\n      \"string\",\n      \"string\"\n    ],\n    \"metadata\": {\n      \"key_0\": \"string\"\n    },\n    \"sha\": \"string\",\n    \"project_uri\": \"https://HgKmRajPTNZJyHXow.icti.FxZSoSqqTUZ\",\n    \"gem_uri\": \"https://KSuBhvKvSRhdGWNcfRlWorzWxXfmL.sbq+Oxo4Gppho.AOulvf2dob03+TCcT6BbxjmSwVE+y4G\",\n    \"homepage_uri\": \"http://JLzaSdWxRmgKVgstYRVAfxQkWVHf.mlQSAwuafXo8xNACQmxT\",\n    \"source_code_uri\": \"http://DjmKchgWtosKYuVW.lhzPBs26S-2LGKbgaTMDPSPGQlOs8N4BFdVKDJ5xmaYRBcbvLcyHbv1BuvDLPEg9\",\n    \"dependencies\": {\n      \"development\": [\n        {\n          \"name\": \"string\",\n          \"requirements\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"requirements\": \"string\"\n        }\n      ],\n      \"runtime\": [\n        {\n          \"name\": \"string\",\n          \"requirements\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"requirements\": \"string\"\n        }\n      ]\n    }\n  },\n  {\n    \"name\": \"string\",\n    \"downloads\": 5259,\n    \"version\": \"string\",\n    \"version_created_at\": \"1948-02-21T10:58:19.687Z\",\n    \"version_downloads\": 856,\n    \"platform\": \"string\",\n    \"authors\": \"string\",\n    \"info\": \"string\",\n    \"licenses\": [\n      \"string\",\n      \"string\"\n    ],\n    \"metadata\": {\n      \"key_0\": \"string\"\n    },\n    \"sha\": \"string\",\n    \"project_uri\": \"http://CGXecOyUQTmAxjMRhGuyO.uosxKJSALok8gIaVrEYkYJWAqvr1nLUG5i70LzHf\",\n    \"gem_uri\": \"http://zBIxspRlsumdetxmdaIZVTKZnq.ztinAzgz9,PuM\",\n    \"homepage_uri\": \"https://tnagLkPTOUMkbFFXT.wgqnOM1Pf,upCJC.pxNQDo7SZ0-bPKfs3+a8TNGa\",\n    \"source_code_uri\": \"https://HQIgKvGpAHkhkvSECJiroGHrDild.hstezI7TtmZ1O8mKb+FP\",\n    \"dependencies\": {\n      \"development\": [\n        {\n          \"name\": \"string\",\n          \"requirements\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"requirements\": \"string\"\n        }\n      ],\n      \"runtime\": [\n        {\n          \"name\": \"string\",\n          \"requirements\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"requirements\": \"string\"\n        }\n      ]\n    }\n  }\n]",
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"downloads\": 2687,\n    \"version\": \"string\",\n    \"version_created_at\": \"2012-01-26T12:38:33.745Z\",\n    \"version_downloads\": 4493,\n    \"platform\": \"string\",\n    \"authors\": \"string\",\n    \"info\": \"string\",\n    \"licenses\": [\n      \"string\",\n      \"string\"\n    ],\n    \"metadata\": {\n      \"key_0\": \"string\"\n    },\n    \"sha\": \"string\",\n    \"project_uri\": \"http://HQNjIKAxtNdgGmAwzgfinGh.uemkhm+YN0R.tpmmqKryotCxhYsBqH4ah8KvgB.ggpz3yHXdmRtKfEP+EKZ\",\n    \"gem_uri\": \"https://CvKAk.xnC+XrOEyow.DpUjc6\",\n    \"homepage_uri\": \"https://fiWkEvyPSeGeiJKkDsVgRWzc.uctaDx2jmEStB3BkXkZ\",\n    \"source_code_uri\": \"http://oxzPF.cdpqX3lO5WDU9qIynhmCOU6fzIGUm9Rp,eS4Urol9T4k2WMrM5kZ\",\n    \"dependencies\": {\n      \"development\": [\n        {\n          \"name\": \"string\",\n          \"requirements\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"requirements\": \"string\"\n        }\n      ],\n      \"runtime\": [\n        {\n          \"name\": \"string\",\n          \"requirements\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"requirements\": \"string\"\n        }\n      ]\n    }\n  },\n  {\n    \"name\": \"string\",\n    \"downloads\": 9483,\n    \"version\": \"string\",\n    \"version_created_at\": \"1980-11-29T15:29:03.974Z\",\n    \"version_downloads\": 1528,\n    \"platform\": \"string\",\n    \"authors\": \"string\",\n    \"info\": \"string\",\n    \"licenses\": [\n      \"string\",\n      \"string\"\n    ],\n    \"metadata\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"sha\": \"string\",\n    \"project_uri\": \"https://AyBkGuNzRW.qptDcRffemdPCShPgmJAanlK\",\n    \"gem_uri\": \"https://zZdFIagAzlUOnYQnxoUhsgrIo.hkmbBVdEaP5XNnX3Sfg,Ys\",\n    \"homepage_uri\": \"http://liLUIYRnWmzmCsTfGR.wolbRPlNst3aFZACj\",\n    \"source_code_uri\": \"http://fzPynzNhfIqWpjEvR.nzpPvCXPkEZzEclRoJ6jivxoONgXVbsr6k5\",\n    \"dependencies\": {\n      \"development\": [\n        {\n          \"name\": \"string\",\n          \"requirements\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"requirements\": \"string\"\n        }\n      ],\n      \"runtime\": [\n        {\n          \"name\": \"string\",\n          \"requirements\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"requirements\": \"string\"\n        }\n      ]\n    }\n  }\n]",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -81,7 +81,7 @@
           }
         },
         {
-          "id": "f2f7c653-3d51-469c-a031-b004ce12d247",
+          "id": "4e72b151-5ff6-4aa2-a5ca-9c678138bc46",
           "name": "Get Recently Updated Gems",
           "request": {
             "name": "Get Recently Updated Gems",
@@ -111,7 +111,7 @@
           },
           "response": [
             {
-              "id": "5ab4ea01-e852-4c3c-915d-89ef5ffd4e99",
+              "id": "532ba760-2929-49b3-a3dd-a93c4007e0ee",
               "name": "Successful response with array of recently updated gems",
               "originalRequest": {
                 "url": {
@@ -142,7 +142,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "[\n  {\n    \"authors\": \"string\",\n    \"built_at\": \"1983-02-15T20:18:06.770Z\",\n    \"created_at\": \"1996-12-23T05:19:14.398Z\",\n    \"description\": \"string\",\n    \"downloads_count\": 3753,\n    \"number\": \"string\",\n    \"summary\": \"string\",\n    \"platform\": \"string\",\n    \"prerelease\": true,\n    \"licenses\": [\n      \"string\",\n      \"string\"\n    ],\n    \"sha\": \"string\"\n  },\n  {\n    \"authors\": \"string\",\n    \"built_at\": \"1958-02-25T17:38:07.966Z\",\n    \"created_at\": \"1969-08-03T06:34:54.750Z\",\n    \"description\": \"string\",\n    \"downloads_count\": 88,\n    \"number\": \"string\",\n    \"summary\": \"string\",\n    \"platform\": \"string\",\n    \"prerelease\": false,\n    \"licenses\": [\n      \"string\",\n      \"string\"\n    ],\n    \"sha\": \"string\"\n  }\n]",
+              "body": "[\n  {\n    \"authors\": \"string\",\n    \"built_at\": \"1986-03-11T00:44:10.258Z\",\n    \"created_at\": \"1962-06-04T06:43:27.529Z\",\n    \"description\": \"string\",\n    \"downloads_count\": 1982,\n    \"number\": \"string\",\n    \"summary\": \"string\",\n    \"platform\": \"string\",\n    \"prerelease\": true,\n    \"licenses\": [\n      \"string\",\n      \"string\"\n    ],\n    \"sha\": \"string\"\n  },\n  {\n    \"authors\": \"string\",\n    \"built_at\": \"2001-10-28T03:14:51.214Z\",\n    \"created_at\": \"2009-03-12T17:50:06.768Z\",\n    \"description\": \"string\",\n    \"downloads_count\": 7942,\n    \"number\": \"string\",\n    \"summary\": \"string\",\n    \"platform\": \"string\",\n    \"prerelease\": true,\n    \"licenses\": [\n      \"string\",\n      \"string\"\n    ],\n    \"sha\": \"string\"\n  }\n]",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -165,7 +165,7 @@
     }
   ],
   "info": {
-    "_postman_id": "d3bad286-b67f-46bf-b08e-0a5cdc63db05",
+    "_postman_id": "d1392562-57fd-42ac-9c53-6e7e62568885",
     "name": "RubyGems Activity API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {

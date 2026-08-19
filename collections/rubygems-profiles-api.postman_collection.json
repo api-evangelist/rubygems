@@ -1,25 +1,26 @@
 {
   "item": [
     {
-      "id": "c89b47f2-7b0a-49c7-8a3b-21dde2512bf0",
-      "name": "Downloads",
+      "id": "e8db63e6-f0da-46eb-b6c0-38c6268b59f6",
+      "name": "Profiles",
       "description": {
-        "content": "Endpoints for retrieving download count statistics for gems and gem versions on RubyGems.org.",
+        "content": "Endpoints for retrieving user profile information from RubyGems.org.",
         "type": "text/plain"
       },
       "item": [
         {
-          "id": "0496a078-7e36-4263-a175-3ba7d189877a",
-          "name": "Get Total Downloads",
+          "id": "857a5b1e-8eea-4b40-ad71-eb7554363eca",
+          "name": "Get User Profile",
           "request": {
-            "name": "Get Total Downloads",
+            "name": "Get User Profile",
             "description": {
-              "content": "Returns the total number of gem downloads across all gems on RubyGems.org. This provides a single aggregate count of all gem installations ever recorded.",
+              "content": "Returns profile information for the specified user, identified by their handle or user ID.",
               "type": "text/plain"
             },
             "url": {
               "path": [
-                "downloads.json"
+                "profiles",
+                "{{userHandle}}.json"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -38,12 +39,13 @@
           },
           "response": [
             {
-              "id": "d9d8100f-78f3-412f-a2e8-145344ac1d90",
-              "name": "Successful response with total download count",
+              "id": "1db86621-0585-4911-8564-793d6cd95e76",
+              "name": "Successful response with user profile",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "downloads.json"
+                    "profiles",
+                    "{{userHandle}}.json"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -68,90 +70,18 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"total\": 100000000000\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "a58421e7-4486-410c-a4e7-9f74e7fc38ee",
-          "name": "Get Version Download Counts",
-          "request": {
-            "name": "Get Version Download Counts",
-            "description": {
-              "content": "Returns download count statistics for a specific gem version. The path parameter combines the gem name and version number with a hyphen separator (e.g., rails-7.0.0). Returns both the version- specific download count and the total download count across all versions of the gem.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "downloads",
-                "{{gemNameVersion}}.json"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "75fa2a81-b5ee-4114-bba4-4ec5796149cd",
-              "name": "Successful response with download statistics",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "downloads",
-                    "{{gemNameVersion}}.json"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"version_downloads\": 5000000,\n  \"total_downloads\": 500000000\n}",
+              "body": "{\n  \"id\": 3697,\n  \"handle\": \"string\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "6cb7fa41-d0d4-4b7b-9d85-3085e51a6de1",
-              "name": "Gem version not found",
+              "id": "a24e9645-99a4-436f-86ea-744dd34e09f9",
+              "name": "User not found",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "downloads",
-                    "{{gemNameVersion}}.json"
+                    "profiles",
+                    "{{userHandle}}.json"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -185,6 +115,113 @@
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           }
+        },
+        {
+          "id": "f50e29b4-b3e1-4c45-a7b2-9c7d68bddc52",
+          "name": "Get Authenticated User Profile",
+          "request": {
+            "name": "Get Authenticated User Profile",
+            "description": {
+              "content": "Returns the profile information for the currently authenticated user, including multi-factor authentication status. Requires HTTP Basic authentication with email and password.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "profile",
+                "me.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "b38d0ce5-a1fd-410f-80b7-7a2107895e3a",
+              "name": "Successful response with user profile",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile",
+                    "me.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 2056,\n  \"handle\": \"string\",\n  \"mfa\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "252a7e8d-de8f-4165-aee2-ace48867f626",
+              "name": "Unauthorized - invalid credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile",
+                    "me.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
         }
       ],
       "event": []
@@ -200,17 +237,17 @@
     {
       "disabled": false,
       "description": {
-        "content": "(Required) The gem name and version number joined by a hyphen (e.g., rails-7.0.0).",
+        "content": "(Required) The user handle or numeric user ID",
         "type": "text/plain"
       },
       "type": "any",
       "value": "<string>",
-      "key": "gemNameVersion"
+      "key": "userHandle"
     }
   ],
   "info": {
-    "_postman_id": "77b640a5-000f-4fc3-b25f-832c6d596210",
-    "name": "RubyGems Activity Downloads API",
+    "_postman_id": "9e5d5706-1527-4468-a7e8-d40dd0cfbd6b",
+    "name": "RubyGems Activity Profiles API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
       "content": "The RubyGems Activity API provides endpoints that return the most recently added and most recently updated gems on RubyGems.org. The latest endpoint returns the 50 gems most recently published to the registry, while the just-updated endpoint returns the 50 most recently modified gems. These endpoints are useful for building activity feeds, monitoring new releases, and tracking changes across the Ruby ecosystem.\n\nContact Support:\n Name: RubyGems.org Support",

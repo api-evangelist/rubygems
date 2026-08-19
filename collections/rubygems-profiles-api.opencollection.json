@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "RubyGems Activity Profiles API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Profiles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get User Profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rubygems.org/api/v1/profiles/:userHandle.json",
+            "params": [
+              {
+                "name": "userHandle",
+                "value": "tenderlove",
+                "type": "path",
+                "description": "The user handle or numeric user ID"
+              }
+            ]
+          },
+          "docs": "Returns profile information for the specified user, identified by their handle or user ID."
+        },
+        {
+          "info": {
+            "name": "Get Authenticated User Profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rubygems.org/api/v1/profile/me.json"
+          },
+          "docs": "Returns the profile information for the currently authenticated user, including multi-factor authentication status. Requires HTTP Basic authentication with email and password."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

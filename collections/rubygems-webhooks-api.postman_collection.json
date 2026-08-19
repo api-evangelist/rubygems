@@ -1,7 +1,7 @@
 {
   "item": [
     {
-      "id": "666a0f75-3880-4bfe-b2aa-21c9d77358f8",
+      "id": "dbc01a6f-510e-469b-97b2-fc7addd7689a",
       "name": "Webhooks",
       "description": {
         "content": "Endpoints for managing webhook subscriptions that fire when gems are pushed to RubyGems.org.",
@@ -9,7 +9,7 @@
       },
       "item": [
         {
-          "id": "e0f2fc66-d8e5-4830-8792-8f70bc3b7424",
+          "id": "ba7065ff-ca56-494c-874b-9e8a04cc2385",
           "name": "List Webhooks",
           "request": {
             "name": "List Webhooks",
@@ -38,7 +38,7 @@
           },
           "response": [
             {
-              "id": "c73abda7-7088-421e-a2c4-892db67b80f3",
+              "id": "544a27a0-9e43-4b7c-a8c8-1e3a944c6f5d",
               "name": "Successful response with webhook listings",
               "originalRequest": {
                 "url": {
@@ -52,14 +52,6 @@
                   "variable": []
                 },
                 "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
                   {
                     "key": "Accept",
                     "value": "application/json"
@@ -76,12 +68,12 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"key_0\": [\n    {\n      \"url\": \"https://vCKmjTteEhjOfgMEkVBSe.ciCSdX\",\n      \"failure_count\": 4335\n    },\n    {\n      \"url\": \"https://aXSjtlsC.jaoKNkmqD0fanOrwIlC-B8SwviTn+NhPeE3DeChWaIR\",\n      \"failure_count\": 9360\n    }\n  ]\n}",
+              "body": "{\n  \"key_0\": [\n    {\n      \"url\": \"http://wjdnI.lssEtvFJkrJyRV\",\n      \"failure_count\": 4264\n    },\n    {\n      \"url\": \"https://xacqeDLzI.mmixPGdRvCzxEbRe5DcH6VrIwCcj.a9,HzkVyioaJjT\",\n      \"failure_count\": 9625\n    }\n  ],\n  \"key_1\": [\n    {\n      \"url\": \"http://AuYLvAprSnAWACXFdZCQJCUrEAVCGj.iwngSvfi+EcODZLqCBDq+Mx8ZGsWwiJnwTV1lL\",\n      \"failure_count\": 3001\n    },\n    {\n      \"url\": \"http://OepvXpvQqwNuCyTPRPeqwKYNOslbXtP.lvSyIYsFOIOPwH2\",\n      \"failure_count\": 9915\n    }\n  ]\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "be759692-2b54-4fe8-b559-d74d030df1e7",
+              "id": "55e7448f-ef79-4493-bd69-726df838fc9e",
               "name": "Unauthorized - invalid or missing API key",
               "originalRequest": {
                 "url": {
@@ -95,14 +87,6 @@
                   "variable": []
                 },
                 "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
                   {
                     "key": "Accept",
                     "value": "application/json"
@@ -130,7 +114,7 @@
           }
         },
         {
-          "id": "a5b745de-b177-4024-9489-f3d8897335c0",
+          "id": "6390a858-2934-4ab8-986c-3e4d1aad5974",
           "name": "Create A Webhook",
           "request": {
             "name": "Create A Webhook",
@@ -180,7 +164,7 @@
           },
           "response": [
             {
-              "id": "3288cad2-e538-4eab-beaa-e55e916cd5a1",
+              "id": "03828147-288a-413f-8648-7b4c2895f247",
               "name": "Webhook created successfully",
               "originalRequest": {
                 "url": {
@@ -194,14 +178,6 @@
                   "variable": []
                 },
                 "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
                   {
                     "key": "Accept",
                     "value": "text/plain"
@@ -245,7 +221,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "67611528-5046-421c-acc7-e4adbb3c12bc",
+              "id": "bbab3d58-e0f0-4af3-bef3-408995329d84",
               "name": "Unauthorized - invalid or missing API key",
               "originalRequest": {
                 "url": {
@@ -259,14 +235,6 @@
                   "variable": []
                 },
                 "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
                   {
                     "key": "Accept",
                     "value": "application/json"
@@ -310,7 +278,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "8d2fe0d6-c720-4e82-a66a-4a43977f78ea",
+              "id": "faeba3ac-6b89-43c6-a278-668d48b6c945",
               "name": "Webhook already exists",
               "originalRequest": {
                 "url": {
@@ -324,14 +292,6 @@
                   "variable": []
                 },
                 "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
                   {
                     "key": "Accept",
                     "value": "application/json"
@@ -381,7 +341,7 @@
           }
         },
         {
-          "id": "fa7136f5-254c-4f74-b430-510ab9aad231",
+          "id": "c1b63a5d-ae20-4ff5-bf8e-1bce240ef6a8",
           "name": "Remove A Webhook",
           "request": {
             "name": "Remove A Webhook",
@@ -432,7 +392,7 @@
           },
           "response": [
             {
-              "id": "46fa2d4a-504e-4050-af30-e01713ef6890",
+              "id": "f7f91ffc-2d2e-4553-92c9-0ee9ec523118",
               "name": "Webhook removed successfully",
               "originalRequest": {
                 "url": {
@@ -447,14 +407,6 @@
                   "variable": []
                 },
                 "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
                   {
                     "key": "Accept",
                     "value": "text/plain"
@@ -498,7 +450,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "9c6ec39e-42c6-4414-87f1-d9c437036794",
+              "id": "9a702e87-b00c-4f1d-bf83-3d6d3890312d",
               "name": "Unauthorized - invalid or missing API key",
               "originalRequest": {
                 "url": {
@@ -513,14 +465,6 @@
                   "variable": []
                 },
                 "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
                   {
                     "key": "Accept",
                     "value": "application/json"
@@ -564,7 +508,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "f190f686-058d-45c5-bbc7-76d972f19ce7",
+              "id": "ebd0def1-ea85-4ac1-b78e-1f8f0eb208bb",
               "name": "Webhook not found",
               "originalRequest": {
                 "url": {
@@ -579,14 +523,6 @@
                   "variable": []
                 },
                 "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
                   {
                     "key": "Accept",
                     "value": "application/json"
@@ -636,7 +572,7 @@
           }
         },
         {
-          "id": "749be4aa-9719-4196-9145-e777c2c5b9a6",
+          "id": "6d609b78-a7c3-4966-b6b3-e46a6fa1ca53",
           "name": "Test Fire A Webhook",
           "request": {
             "name": "Test Fire A Webhook",
@@ -687,7 +623,7 @@
           },
           "response": [
             {
-              "id": "c18298fe-6049-4fa0-9cd3-89b29ea0e324",
+              "id": "eda198a6-302a-4fac-9d59-386530da22aa",
               "name": "Webhook test fired successfully",
               "originalRequest": {
                 "url": {
@@ -702,14 +638,6 @@
                   "variable": []
                 },
                 "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
                   {
                     "key": "Accept",
                     "value": "text/plain"
@@ -753,7 +681,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "124699f4-1a96-4e54-9af5-edade18cb5a0",
+              "id": "c6073c41-d6eb-47ad-bf57-67f3cc76adbd",
               "name": "Unauthorized - invalid or missing API key",
               "originalRequest": {
                 "url": {
@@ -768,14 +696,6 @@
                   "variable": []
                 },
                 "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
                   {
                     "key": "Accept",
                     "value": "application/json"
@@ -819,7 +739,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "3e2dbe39-014d-4bd4-930f-4daab91c6df7",
+              "id": "09ba7e64-e577-43ec-9028-6a5c0011f079",
               "name": "Webhook not found",
               "originalRequest": {
                 "url": {
@@ -834,14 +754,6 @@
                   "variable": []
                 },
                 "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
                   {
                     "key": "Accept",
                     "value": "application/json"
@@ -902,29 +814,12 @@
       "key": "baseUrl"
     }
   ],
-  "auth": {
-    "type": "apikey",
-    "apikey": [
-      {
-        "key": "key",
-        "value": "Authorization"
-      },
-      {
-        "key": "value",
-        "value": "{{apiKey}}"
-      },
-      {
-        "key": "in",
-        "value": "header"
-      }
-    ]
-  },
   "info": {
-    "_postman_id": "09e6e55b-55d4-46a8-9843-67277a2e3715",
-    "name": "RubyGems Webhooks API",
+    "_postman_id": "7667563e-65df-47a4-8e4e-1b7329995ff3",
+    "name": "RubyGems Activity Webhooks API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
-      "content": "The RubyGems Webhooks API enables developers to register, list, test, and remove webhook subscriptions that fire when gems are pushed to RubyGems.org. Webhooks can be configured for specific gems or applied globally using a wildcard to receive notifications for all gem pushes. Each webhook request includes an Authorization header for verification, allowing downstream systems to confirm the notification originated from RubyGems.org.\n\nContact Support:\n Name: RubyGems.org Support",
+      "content": "The RubyGems Activity API provides endpoints that return the most recently added and most recently updated gems on RubyGems.org. The latest endpoint returns the 50 gems most recently published to the registry, while the just-updated endpoint returns the 50 most recently modified gems. These endpoints are useful for building activity feeds, monitoring new releases, and tracking changes across the Ruby ecosystem.\n\nContact Support:\n Name: RubyGems.org Support",
       "type": "text/plain"
     }
   }

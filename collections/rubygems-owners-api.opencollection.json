@@ -1,0 +1,166 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "RubyGems Activity Owners API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Owners",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Gems By Owner",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rubygems.org/api/v1/owners/:userHandle/gems.json",
+            "params": [
+              {
+                "name": "userHandle",
+                "value": "tenderlove",
+                "type": "path",
+                "description": "The user handle or numeric user ID"
+              }
+            ]
+          },
+          "docs": "Returns an array of gem objects owned by the specified user, identified by their handle or user ID."
+        },
+        {
+          "info": {
+            "name": "List Owners Of A Gem",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rubygems.org/api/v1/gems/:gemName/owners.json",
+            "params": [
+              {
+                "name": "gemName",
+                "value": "rails",
+                "type": "path",
+                "description": "The name of the gem"
+              }
+            ]
+          },
+          "docs": "Returns an array of owner objects for the specified gem, including their email addresses."
+        },
+        {
+          "info": {
+            "name": "Add A Gem Owner",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rubygems.org/api/v1/gems/:gemName/owners",
+            "headers": [
+              {
+                "name": "OTP",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "gemName",
+                "value": "rails",
+                "type": "path",
+                "description": "The name of the gem"
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "email",
+                  "value": ""
+                },
+                {
+                  "name": "role",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Add a new owner to the specified gem. The new owner is identified by their email address and can be assigned a role."
+        },
+        {
+          "info": {
+            "name": "Update A Gem Owner",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://rubygems.org/api/v1/gems/:gemName/owners",
+            "headers": [
+              {
+                "name": "OTP",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "gemName",
+                "value": "rails",
+                "type": "path",
+                "description": "The name of the gem"
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "email",
+                  "value": ""
+                },
+                {
+                  "name": "role",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Update the role of an existing owner on the specified gem."
+        },
+        {
+          "info": {
+            "name": "Remove A Gem Owner",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://rubygems.org/api/v1/gems/:gemName/owners",
+            "headers": [
+              {
+                "name": "OTP",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "gemName",
+                "value": "rails",
+                "type": "path",
+                "description": "The name of the gem"
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "email",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Remove an owner from the specified gem. The owner is identified by their email address."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

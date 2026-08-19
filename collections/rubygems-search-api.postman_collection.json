@@ -1,7 +1,7 @@
 {
   "item": [
     {
-      "id": "1d265dc9-4efb-40a2-b070-0af6844abbf9",
+      "id": "0cce0efc-3402-44d0-876f-6b3738fa1656",
       "name": "Search",
       "description": {
         "content": "Endpoints for searching gems on RubyGems.org by name and description.",
@@ -9,7 +9,7 @@
       },
       "item": [
         {
-          "id": "1b19b3bf-7cb7-46f6-83b5-be6ff6491575",
+          "id": "fc39bc9b-b13c-4921-b339-dbec3b387245",
           "name": "Search For Gems",
           "request": {
             "name": "Search For Gems",
@@ -51,7 +51,7 @@
           },
           "response": [
             {
-              "id": "e3ad326d-996d-411a-9d5e-5046a2bd93e8",
+              "id": "e99d4d06-fe75-48c7-bf1b-358a578828d1",
               "name": "Successful response with array of matching gems",
               "originalRequest": {
                 "url": {
@@ -90,7 +90,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "[\n  {\n    \"name\": \"string\",\n    \"downloads\": 7752,\n    \"version\": \"string\",\n    \"version_created_at\": \"1989-12-24T12:38:22.027Z\",\n    \"version_downloads\": 6501,\n    \"platform\": \"string\",\n    \"authors\": \"string\",\n    \"info\": \"string\",\n    \"licenses\": [\n      \"string\",\n      \"string\"\n    ],\n    \"metadata\": {\n      \"key_0\": \"string\"\n    },\n    \"sha\": \"string\",\n    \"project_uri\": \"https://usQRpPJXXVJYbMWQQIjaK.zmrQHYposZpyynZ.NreTILwFNGbIvzH8lgOcIB\",\n    \"gem_uri\": \"https://mfwZyjvEkhlznaoqxVzVQ.ycwub5Xtd9d.mesy51qO1pINb6hTANUfFeJq0Hi1ff8naP21idO4DJHrRV,Mq2GH8HgLvfL5nzmJDDf.\",\n    \"homepage_uri\": \"https://TQreH.qifnEU2ysEuwnbhCyY2fCSyo7RIs+ABj7FgIWopdn8xBKlBn9vj1ck8IGbABeRLtW31b2fFE6vSMr\",\n    \"documentation_uri\": \"https://awpUtHtnDaKRqKR.bwzmt0ry\",\n    \"source_code_uri\": \"https://WGxxNMocllORmvsgWhP.wauxSpBeVgTJhHT,GhXkK7-KJ9jEthVDjcGhyFpDGB4uPBCmp1w.cLE-Od5MEmv\",\n    \"bug_tracker_uri\": \"http://xkiaswQMwPbViXrPb.zzPsKqXQAYV+6ps-pHeGwKiVcxDe.S\",\n    \"changelog_uri\": \"https://pPwdyb.resuK8bpzmnMme9yE91HIq,YBWJG6uf2\",\n    \"dependencies\": {\n      \"development\": [\n        {\n          \"name\": \"string\",\n          \"requirements\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"requirements\": \"string\"\n        }\n      ],\n      \"runtime\": [\n        {\n          \"name\": \"string\",\n          \"requirements\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"requirements\": \"string\"\n        }\n      ]\n    }\n  },\n  {\n    \"name\": \"string\",\n    \"downloads\": 3170,\n    \"version\": \"string\",\n    \"version_created_at\": \"1979-09-12T09:34:26.559Z\",\n    \"version_downloads\": 9876,\n    \"platform\": \"string\",\n    \"authors\": \"string\",\n    \"info\": \"string\",\n    \"licenses\": [\n      \"string\",\n      \"string\"\n    ],\n    \"metadata\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"sha\": \"string\",\n    \"project_uri\": \"https://enKCLrGQkck.jaRdbcml41E7SJn6nuZMAfHUVB7yMIVgTNg+dKo6afcQMEUf\",\n    \"gem_uri\": \"https://GAUiJUtTMWKyRNzKWueIwbMrHjbhzSyU.swdbl3-uLwU5AgPUGT8-UrxstawJOkeh6P1OSHt61UuEuG\",\n    \"homepage_uri\": \"http://fbx.kdkzUGhj8QRhIYSmBofJXOOccOydNNCEbcLMvxH4+vH-ZC7QEmit\",\n    \"documentation_uri\": \"http://swgfTwfLXHYNfadTYryZElC.ntjs1bGR9ooffrRfcbsA6F99qCymV1PEJ8zMkCrleqJKPmm4\",\n    \"source_code_uri\": \"http://Wmdefaih.gqjEPwmapCgggdQnhUwnmLiwKF+Z59wxjs\",\n    \"bug_tracker_uri\": \"http://MBa.vbfnV3r1GZECG\",\n    \"changelog_uri\": \"http://eTnJgVmgrIRwSpZNHyCPjE.wbvdEX5itU37ugYe9GeE33rH0SP5eJQNbsVuR4Ltv1akyHnaj6\",\n    \"dependencies\": {\n      \"development\": [\n        {\n          \"name\": \"string\",\n          \"requirements\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"requirements\": \"string\"\n        }\n      ],\n      \"runtime\": [\n        {\n          \"name\": \"string\",\n          \"requirements\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"requirements\": \"string\"\n        }\n      ]\n    }\n  }\n]",
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"downloads\": 5569,\n    \"version\": \"string\",\n    \"version_created_at\": \"1983-03-10T09:02:02.643Z\",\n    \"version_downloads\": 414,\n    \"platform\": \"string\",\n    \"authors\": \"string\",\n    \"info\": \"string\",\n    \"licenses\": [\n      \"string\",\n      \"string\"\n    ],\n    \"metadata\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"sha\": \"string\",\n    \"project_uri\": \"https://oOj.snwuMdKkKtuGu.w-rsiwnfte1IQZ6Bnv7qCqOsn10JZ.zVEcZbbKs2ZA+\",\n    \"gem_uri\": \"http://tiuyaliqbEI.qxgdDl9ly0ksWCFcuT7FHpVwHv-hzs2HlNkkULHjlv.MYjt0xGTuramfobslu\",\n    \"homepage_uri\": \"https://tzZCkCTcLmnVuFMENYVszb.emxcYEzXCRo,69CAoJ4LyI,ZV9NNp\",\n    \"documentation_uri\": \"https://Fy.snqyeErAz2\",\n    \"source_code_uri\": \"http://ZqUzWtuqwdxyfHwUUrqnUcyK.zgdljwig1oK7plJudtX9q8F\",\n    \"bug_tracker_uri\": \"https://MRTc.iuV1lgKtw4l62gvUBld2IuNnauHJdfKz+X\",\n    \"changelog_uri\": \"http://FUsJGyno.ddsIf1KP4xDyBi2KVvn78Dy3k\",\n    \"dependencies\": {\n      \"development\": [\n        {\n          \"name\": \"string\",\n          \"requirements\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"requirements\": \"string\"\n        }\n      ],\n      \"runtime\": [\n        {\n          \"name\": \"string\",\n          \"requirements\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"requirements\": \"string\"\n        }\n      ]\n    }\n  },\n  {\n    \"name\": \"string\",\n    \"downloads\": 5086,\n    \"version\": \"string\",\n    \"version_created_at\": \"1951-07-15T07:11:27.997Z\",\n    \"version_downloads\": 3753,\n    \"platform\": \"string\",\n    \"authors\": \"string\",\n    \"info\": \"string\",\n    \"licenses\": [\n      \"string\",\n      \"string\"\n    ],\n    \"metadata\": {\n      \"key_0\": \"string\"\n    },\n    \"sha\": \"string\",\n    \"project_uri\": \"http://VmuKDVbUoDUUshPDgPYg.bldS,\",\n    \"gem_uri\": \"https://KWThMgH.puiUfLPTqv2jHa.PTW.Giwim7fBECyE8Qm5DetkM6HFrJkviBs1Z,4l4fi\",\n    \"homepage_uri\": \"https://VXLvbvJj.micPJYRtfFTUFf7BJe8RcmtPudSy4bvf3GbG9a+43,PGCPOrTbDzET\",\n    \"documentation_uri\": \"http://iAgsAdbwTPelcKFSo.yjPi4zgB0,BwdyvCtfz22,CNF6xBfKSSvCPm4CA0vGIgCzXELEwcs9OXZ4P4+wzOP8,Oj\",\n    \"source_code_uri\": \"https://PcojNUn.bxcIOduGjQATXh7VYd.LgwPnJV\",\n    \"bug_tracker_uri\": \"http://WciaRptWPb.qymUyGA0jayUgBv1XKL.qBpaFWaJNJxbm7vCNV6BHeBkdPb5k7CtZmMnaz\",\n    \"changelog_uri\": \"http://aOyqJjqKCiqkXRzngEObPtESQx.yrwmFNusuqrk71MY08JgQi\",\n    \"dependencies\": {\n      \"development\": [\n        {\n          \"name\": \"string\",\n          \"requirements\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"requirements\": \"string\"\n        }\n      ],\n      \"runtime\": [\n        {\n          \"name\": \"string\",\n          \"requirements\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"requirements\": \"string\"\n        }\n      ]\n    }\n  }\n]",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -113,11 +113,11 @@
     }
   ],
   "info": {
-    "_postman_id": "ebca9ba0-5ee1-44dc-bac2-0b94bca6d856",
-    "name": "RubyGems Search API",
+    "_postman_id": "83f99d37-b0d1-48f5-b693-e3cc495494c5",
+    "name": "RubyGems Activity Search API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
-      "content": "The RubyGems Search API allows developers to search for gems on RubyGems.org by matching a query string against gem names and descriptions. It returns an array of matching active gems with their metadata, making it useful for building gem discovery tools, IDE integrations, and dependency resolution utilities. The search endpoint supports pagination for handling large result sets.\n\nContact Support:\n Name: RubyGems.org Support",
+      "content": "The RubyGems Activity API provides endpoints that return the most recently added and most recently updated gems on RubyGems.org. The latest endpoint returns the 50 gems most recently published to the registry, while the just-updated endpoint returns the 50 most recently modified gems. These endpoints are useful for building activity feeds, monitoring new releases, and tracking changes across the Ruby ecosystem.\n\nContact Support:\n Name: RubyGems.org Support",
       "type": "text/plain"
     }
   }

@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "RubyGems Activity Dependencies API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Dependencies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Gem Dependencies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rubygems.org/api/v1/dependencies",
+            "params": [
+              {
+                "name": "gems",
+                "value": "rails,sinatra",
+                "type": "query",
+                "description": "Comma-separated list of gem names"
+              }
+            ]
+          },
+          "docs": "Returns dependency information for one or more gems specified as a comma-separated list. The response is a marshalled array of hashes containing dependency details. This endpoint is deprecated in favor of the Compact Index API."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

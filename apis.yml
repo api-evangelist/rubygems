@@ -25,6 +25,11 @@ image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/rubygems.p
 tags:
   - Ruby
   - Package Manager
+  - Open-Source
+  - Developer Tools
+tags_raw:
+  - Ruby
+  - Package Manager
   - Open Source
   - Developer Tools
 created: '2025-01-01'
@@ -110,6 +115,10 @@ apis:
   humanURL: https://guides.rubygems.org/rubygems-org-api/
   baseURL: https://rubygems.org/api/v1
   tags:
+  - Ruby
+  - Webhook
+  - Event
+  tags_raw:
   - Ruby
   - Webhooks
   - Events

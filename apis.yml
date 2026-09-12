@@ -196,6 +196,8 @@ apis:
   - type: Documentation
     url: https://guides.rubygems.org/rubygems-org-api-v2/
 common:
+  - type: Website
+    url: https://www.rubygems.org/
   - type: AgenticAccess
     url: agentic-access/rubygems-agentic-access.yml
   - type: DomainSecurity

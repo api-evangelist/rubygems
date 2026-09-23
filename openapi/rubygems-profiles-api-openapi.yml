@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: RubyGems Activity Profiles API
   description: The RubyGems Activity API provides endpoints that return the most recently added and most recently updated gems on RubyGems.org. The latest endpoint returns the 50 gems most recently published to the registry, while the just-updated endpoint returns the 50 most recently modified gems. These endpoints are useful for building activity feeds, monitoring new releases, and tracking changes across the Ruby ecosystem.
@@ -61,6 +61,23 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    Error:
+      type: object
+      description: Error response from the RubyGems.org API
+      properties:
+        error:
+          type: string
+          description: Error message
+    Profile:
+      type: object
+      description: A RubyGems.org user profile
+      properties:
+        id:
+          type: integer
+          description: Unique user ID
+        handle:
+          type: string
+          description: User handle
     ProfileWithMfa:
       type: object
       description: A RubyGems.org user profile with multi-factor authentication status
@@ -74,23 +91,6 @@ components:
         mfa:
           type: string
           description: Multi-factor authentication status
-    Profile:
-      type: object
-      description: A RubyGems.org user profile
-      properties:
-        id:
-          type: integer
-          description: Unique user ID
-        handle:
-          type: string
-          description: User handle
-    Error:
-      type: object
-      description: Error response from the RubyGems.org API
-      properties:
-        error:
-          type: string
-          description: Error message
   parameters:
     userHandle:
       name: userHandle

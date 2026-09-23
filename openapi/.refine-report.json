@@ -1,6 +1,7 @@
 {
   "provider": "rubygems",
   "sources": [
+    "_original/rubygems-api-v2-openapi.yml",
     "rubygems-activity-api-openapi.yml",
     "rubygems-dependencies-api-openapi.yml",
     "rubygems-downloads-api-openapi.yml",
@@ -12,6 +13,7 @@
     "rubygems-webhooks-api-openapi.yml"
   ],
   "outputs": [
+    "rubygems-versions-api-openapi.yml",
     "rubygems-activity-api-openapi.yml",
     "rubygems-dependencies-api-openapi.yml",
     "rubygems-downloads-api-openapi.yml",
@@ -19,12 +21,26 @@
     "rubygems-owners-api-openapi.yml",
     "rubygems-profiles-api-openapi.yml",
     "rubygems-search-api-openapi.yml",
-    "rubygems-versions-api-openapi.yml",
     "rubygems-webhooks-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
-  "warnings": [],
-  "notes": [],
+  "warnings": [
+    "rubygems-activity-api-openapi.yml: previously refined output kept for 2 operation(s) no archived document covers (e.g. /activity/just_updated.json get, /activity/latest.json get); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth.",
+    "rubygems-dependencies-api-openapi.yml: previously refined output kept for 1 operation(s) no archived document covers (e.g. /dependencies get); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth.",
+    "rubygems-downloads-api-openapi.yml: previously refined output kept for 2 operation(s) no archived document covers (e.g. /downloads.json get, /downloads/{gemNameVersion}.json get); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth.",
+    "rubygems-gems-api-openapi.yml: previously refined output kept for 7 operation(s) no archived document covers (e.g. /api_key.json get, /gems post, /gems.json get); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth.",
+    "rubygems-owners-api-openapi.yml: previously refined output kept for 5 operation(s) no archived document covers (e.g. /gems/{gemName}/owners delete, /gems/{gemName}/owners patch, /gems/{gemName}/owners post); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth.",
+    "rubygems-profiles-api-openapi.yml: previously refined output kept for 2 operation(s) no archived document covers (e.g. /profile/me.json get, /profiles/{userHandle}.json get); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth.",
+    "rubygems-search-api-openapi.yml: previously refined output kept for 1 operation(s) no archived document covers (e.g. /search.json get); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth.",
+    "rubygems-versions-api-openapi.yml: previously refined output kept for 3 operation(s) no archived document covers (e.g. /timeframe_versions.json get, /versions/{gemName}.json get, /versions/{gemName}/latest.json get); its other 1 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth.",
+    "rubygems-webhooks-api-openapi.yml: previously refined output kept for 4 operation(s) no archived document covers (e.g. /web_hooks post, /web_hooks.json get, /web_hooks/fire post); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth."
+  ],
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "rubygems-api-v2-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "tag 'Versions' spans 2 source specs (rubygems-api-v2-openapi.yml, rubygems-versions-api-openapi.yml): per-path servers applied",
+    "apis.yml register: already-registered"
+  ],
   "skipped": []
 }

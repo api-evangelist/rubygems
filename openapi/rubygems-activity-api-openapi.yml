@@ -52,6 +52,16 @@ paths:
                 maxItems: 50
 components:
   schemas:
+    Dependency:
+      type: object
+      description: A gem dependency
+      properties:
+        name:
+          type: string
+          description: Name of the dependency gem
+        requirements:
+          type: string
+          description: Version requirements string
     GemVersion:
       type: object
       description: A specific version of a Ruby gem
@@ -165,16 +175,6 @@ components:
                 $ref: '#/components/schemas/Dependency'
               description: Runtime dependencies
           description: Gem dependency information
-    Dependency:
-      type: object
-      description: A gem dependency
-      properties:
-        name:
-          type: string
-          description: Name of the dependency gem
-        requirements:
-          type: string
-          description: Version requirements string
 externalDocs:
   description: RubyGems.org API Documentation
   url: https://guides.rubygems.org/rubygems-org-api/

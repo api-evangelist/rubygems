@@ -172,6 +172,16 @@ components:
         error:
           type: string
           description: Error message
+    Dependency:
+      type: object
+      description: A gem dependency
+      properties:
+        name:
+          type: string
+          description: Name of the dependency gem
+        requirements:
+          type: string
+          description: Version requirements string
     GemVersionDetail:
       type: object
       description: Detailed information about a specific gem version
@@ -308,16 +318,6 @@ components:
           items:
             type: string
           description: Requirements for this version
-    Dependency:
-      type: object
-      description: A gem dependency
-      properties:
-        name:
-          type: string
-          description: Name of the dependency gem
-        requirements:
-          type: string
-          description: Version requirements string
     GemVersion:
       type: object
       description: A specific version of a Ruby gem

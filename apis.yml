@@ -8,14 +8,18 @@ description: >-
 type: Index
 deliveryModel:
   model: unknown
-  open_source: false
+  license_evidence:
+    not_product:
+    - rubygems/rubygems.org
+  open_source: unknown
   commercial: false
   callable_host: true
   label: Delivery model not determined — needs a product licence on record
   confidence: low
   source:
   - openapi
-  generated: '2026-08-28'
+  - repository-not-product
+  generated: '2026-09-25'
   method: derived
 accessModel:
   pricing: unknown
@@ -37,13 +41,14 @@ image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/rubygems.p
 tags:
   - Ruby
   - Package Manager
-  - Open-Source
+  - Open Source
   - Developer Tools
 tags_raw:
   - Ruby
   - Package Manager
   - Open Source
   - Developer Tools
+  - Open-Source
 created: '2025-01-01'
 modified: '2026-05-19'
 url: https://raw.githubusercontent.com/api-evangelist/rubygems/refs/heads/main/apis.yml

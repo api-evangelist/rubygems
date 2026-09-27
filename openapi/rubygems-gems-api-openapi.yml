@@ -265,6 +265,16 @@ components:
         error:
           type: string
           description: Error message
+    Dependency:
+      type: object
+      description: A gem dependency
+      properties:
+        name:
+          type: string
+          description: Name of the dependency gem
+        requirements:
+          type: string
+          description: Version requirements string
     Gem:
       type: object
       description: A Ruby gem hosted on RubyGems.org
@@ -364,16 +374,6 @@ components:
                 $ref: '#/components/schemas/Dependency'
               description: Runtime dependencies
           description: Gem dependency information
-    Dependency:
-      type: object
-      description: A gem dependency
-      properties:
-        name:
-          type: string
-          description: Name of the dependency gem
-        requirements:
-          type: string
-          description: Version requirements string
   parameters:
     gemName:
       name: gemName

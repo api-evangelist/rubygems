@@ -215,14 +215,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   parameters:
-    userHandle:
-      name: userHandle
-      in: path
-      description: The user handle or numeric user ID
-      required: true
-      schema:
-        type: string
-      example: tenderlove
     gemName:
       name: gemName
       in: path
@@ -231,7 +223,46 @@ components:
       schema:
         type: string
       example: rails
+    userHandle:
+      name: userHandle
+      in: path
+      description: The user handle or numeric user ID
+      required: true
+      schema:
+        type: string
+      example: tenderlove
   schemas:
+    Owner:
+      type: object
+      description: A gem owner on RubyGems.org
+      properties:
+        id:
+          type: integer
+          description: Unique user ID
+        handle:
+          type: string
+          description: User handle
+        email:
+          type: string
+          format: email
+          description: User email address
+    Error:
+      type: object
+      description: Error response from the RubyGems.org API
+      properties:
+        error:
+          type: string
+          description: Error message
+    Dependency:
+      type: object
+      description: A gem dependency
+      properties:
+        name:
+          type: string
+          description: Name of the dependency gem
+        requirements:
+          type: string
+          description: Version requirements string
     Gem:
       type: object
       description: A Ruby gem hosted on RubyGems.org
@@ -331,37 +362,6 @@ components:
                 $ref: '#/components/schemas/Dependency'
               description: Runtime dependencies
           description: Gem dependency information
-    Owner:
-      type: object
-      description: A gem owner on RubyGems.org
-      properties:
-        id:
-          type: integer
-          description: Unique user ID
-        handle:
-          type: string
-          description: User handle
-        email:
-          type: string
-          format: email
-          description: User email address
-    Dependency:
-      type: object
-      description: A gem dependency
-      properties:
-        name:
-          type: string
-          description: Name of the dependency gem
-        requirements:
-          type: string
-          description: Version requirements string
-    Error:
-      type: object
-      description: Error response from the RubyGems.org API
-      properties:
-        error:
-          type: string
-          description: Error message
 externalDocs:
   description: RubyGems.org API Documentation
   url: https://guides.rubygems.org/rubygems-org-api/

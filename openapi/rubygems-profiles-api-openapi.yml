@@ -61,6 +61,19 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    ProfileWithMfa:
+      type: object
+      description: A RubyGems.org user profile with multi-factor authentication status
+      properties:
+        id:
+          type: integer
+          description: Unique user ID
+        handle:
+          type: string
+          description: User handle
+        mfa:
+          type: string
+          description: Multi-factor authentication status
     Error:
       type: object
       description: Error response from the RubyGems.org API
@@ -78,19 +91,6 @@ components:
         handle:
           type: string
           description: User handle
-    ProfileWithMfa:
-      type: object
-      description: A RubyGems.org user profile with multi-factor authentication status
-      properties:
-        id:
-          type: integer
-          description: Unique user ID
-        handle:
-          type: string
-          description: User handle
-        mfa:
-          type: string
-          description: Multi-factor authentication status
   parameters:
     userHandle:
       name: userHandle

@@ -165,13 +165,6 @@ paths:
                   $ref: '#/components/schemas/GemVersion'
 components:
   schemas:
-    Error:
-      type: object
-      description: Error response from the RubyGems.org API
-      properties:
-        error:
-          type: string
-          description: Error message
     Dependency:
       type: object
       description: A gem dependency
@@ -182,6 +175,13 @@ components:
         requirements:
           type: string
           description: Version requirements string
+    Error:
+      type: object
+      description: Error response from the RubyGems.org API
+      properties:
+        error:
+          type: string
+          description: Error message
     GemVersionDetail:
       type: object
       description: Detailed information about a specific gem version

@@ -179,6 +179,13 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    Error:
+      type: object
+      description: Error response from the RubyGems.org API
+      properties:
+        error:
+          type: string
+          description: Error message
     Webhook:
       type: object
       description: A webhook subscription on RubyGems.org
@@ -190,13 +197,6 @@ components:
         failure_count:
           type: integer
           description: Number of consecutive delivery failures
-    Error:
-      type: object
-      description: Error response from the RubyGems.org API
-      properties:
-        error:
-          type: string
-          description: Error message
 externalDocs:
   description: RubyGems.org API Documentation
   url: https://guides.rubygems.org/rubygems-org-api/

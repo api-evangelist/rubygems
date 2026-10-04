@@ -71,6 +71,13 @@ components:
         handle:
           type: string
           description: User handle
+    Error:
+      type: object
+      description: Error response from the RubyGems.org API
+      properties:
+        error:
+          type: string
+          description: Error message
     ProfileWithMfa:
       type: object
       description: A RubyGems.org user profile with multi-factor authentication status
@@ -84,13 +91,6 @@ components:
         mfa:
           type: string
           description: Multi-factor authentication status
-    Error:
-      type: object
-      description: Error response from the RubyGems.org API
-      properties:
-        error:
-          type: string
-          description: Error message
   parameters:
     userHandle:
       name: userHandle

@@ -52,16 +52,6 @@ paths:
                 maxItems: 50
 components:
   schemas:
-    Dependency:
-      type: object
-      description: A gem dependency
-      properties:
-        name:
-          type: string
-          description: Name of the dependency gem
-        requirements:
-          type: string
-          description: Version requirements string
     Gem:
       type: object
       description: A Ruby gem hosted on RubyGems.org
@@ -175,6 +165,16 @@ components:
         sha:
           type: string
           description: SHA-256 checksum of the gem file
+    Dependency:
+      type: object
+      description: A gem dependency
+      properties:
+        name:
+          type: string
+          description: Name of the dependency gem
+        requirements:
+          type: string
+          description: Version requirements string
 externalDocs:
   description: RubyGems.org API Documentation
   url: https://guides.rubygems.org/rubygems-org-api/

@@ -214,24 +214,14 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 components:
-  parameters:
-    gemName:
-      name: gemName
-      in: path
-      description: The name of the gem
-      required: true
-      schema:
-        type: string
-      example: rails
-    userHandle:
-      name: userHandle
-      in: path
-      description: The user handle or numeric user ID
-      required: true
-      schema:
-        type: string
-      example: tenderlove
   schemas:
+    Error:
+      type: object
+      description: Error response from the RubyGems.org API
+      properties:
+        error:
+          type: string
+          description: Error message
     Dependency:
       type: object
       description: A gem dependency
@@ -355,13 +345,23 @@ components:
           type: string
           format: email
           description: User email address
-    Error:
-      type: object
-      description: Error response from the RubyGems.org API
-      properties:
-        error:
-          type: string
-          description: Error message
+  parameters:
+    userHandle:
+      name: userHandle
+      in: path
+      description: The user handle or numeric user ID
+      required: true
+      schema:
+        type: string
+      example: tenderlove
+    gemName:
+      name: gemName
+      in: path
+      description: The name of the gem
+      required: true
+      schema:
+        type: string
+      example: rails
 externalDocs:
   description: RubyGems.org API Documentation
   url: https://guides.rubygems.org/rubygems-org-api/
